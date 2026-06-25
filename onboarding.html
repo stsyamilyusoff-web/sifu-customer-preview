@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onboarding + Auth · on one skin, lighter front door</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{background:#fff}
+  body{margin:0;padding:24px 16px;font-family:-apple-system,system-ui,"Segoe UI",sans-serif;color:#18181b;--tint:#243cb3;--grey:#F2F2F7}
+  .doc{max-width:980px;margin:0 auto}
+  .head{background:#243cb3;color:#fff;border-radius:16px;padding:24px 26px}
+  .head .t{font-size:23px;font-weight:800;letter-spacing:-.3px}
+  .head .s{font-size:12.5px;opacity:.92;margin-top:6px;line-height:1.55}
+  .intro{background:#eef1fb;border:1px solid rgba(36,60,179,.2);border-radius:13px;padding:16px 20px;margin:16px 0 8px;font-size:12.5px;line-height:1.6;color:#3a3a52}.intro b{color:#243cb3}
+  .sech{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--tint);margin:32px 0 4px}
+  .secs{font-size:12.5px;color:#52525b;margin-bottom:14px;line-height:1.55}.secs b{color:#1a5c38}
+  .pair{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+  .col{flex:1;min-width:0}
+  .cl{font-size:10px;font-weight:800;text-align:center;padding:4px 6px;border-radius:6px;margin-bottom:8px}
+  .cl.b{background:#fdeaea;color:#b42318}.cl.a{background:#e6eaf9;color:var(--tint)}
+  .ph{border-radius:26px;padding:13px 12px 9px;width:280px;max-width:100%;margin:0 auto;aspect-ratio:402/874;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.1)}
+  .ph.bf{background:#fff;border:1px solid #e2e2e6}.ph.af{background:var(--grey)}
+  .ph::after{content:"";flex-shrink:0;width:38%;height:5px;border-radius:99px;background:rgba(0,0,0,.2);margin:11px auto 0}
+  .sb{display:flex;justify-content:space-between;font-size:8.5px;font-weight:700;margin-bottom:11px}
+  .sp{flex:1 1 auto}
+  .nt{font-size:16px;font-weight:800;letter-spacing:-.2px;margin-bottom:3px}
+  .nsub{font-size:10px;color:#71717a;margin-bottom:13px;line-height:1.4}
+  .grp{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden;margin-bottom:11px}
+  .row{display:flex;align-items:center;gap:8px;padding:10px 13px;border-bottom:1px solid #f0f0f3}
+  .row:last-child{border-bottom:none}
+  .rl{font-size:11px;font-weight:600;color:#18181b;flex:1;min-width:0}
+  .rv{font-size:11px;color:#18181b;font-weight:700;white-space:nowrap}
+  .rv.empty{color:#b8b8be;font-weight:500}
+  .chev{color:#c8c8cc;font-weight:800;font-size:13px;margin-left:2px}
+  .opt{font-size:7.5px;font-weight:800;color:#71717a;background:#f1f1f3;border-radius:99px;padding:1px 6px;margin-left:5px}
+  .lock{font-size:8.5px;color:#9a9aa0;margin-left:5px}
+  .cta{background:var(--tint);color:#fff;text-align:center;font-size:13px;font-weight:700;padding:13px;border-radius:999px}
+  .skinflat{background:#fff;border-radius:9px;padding:11px;box-shadow:0 1px 4px rgba(213,226,245,.5);margin-bottom:7px;font-size:10px;color:#9a9aa0}
+  .illus{height:150px;border-radius:14px;background:linear-gradient(135deg,#e6eaf9,#eef1fb);display:flex;align-items:center;justify-content:center;font-size:42px;margin-bottom:14px}
+  .ihead{font-size:17px;font-weight:800;text-align:center;line-height:1.25}
+  .isub{font-size:10.5px;color:#71717a;text-align:center;margin:7px 0 0;line-height:1.5}
+  .dots2{display:flex;gap:6px;justify-content:center;margin:14px 0}
+  .dot2{width:6px;height:6px;border-radius:99px;background:#d8d8de}.dot2.on{background:#243cb3;width:18px}
+  .otp{display:flex;gap:7px;justify-content:center;margin-bottom:12px}
+  .otpcell{width:38px;height:46px;background:#fff;border:1.5px solid #e2e2e6;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#18181b}
+  .otpcell.on{border-color:#243cb3}.otpcell.e{color:#b8b8be}
+  .resend{font-size:10px;color:#71717a;text-align:center;font-weight:600}
+  .resend b{color:#243cb3}
+  .editln{font-size:9.5px;color:#243cb3;text-align:center;font-weight:700;margin-top:8px}
+  .stage{font-size:8px;font-weight:800;color:#243cb3;background:#eef1fb;border-radius:99px;padding:2px 8px;display:inline-block;margin-bottom:9px}
+  .tc{display:flex;align-items:flex-start;gap:8px;font-size:9px;color:#52525b;line-height:1.4;margin-bottom:11px}
+  .tcb{width:16px;height:16px;border-radius:4px;background:#243cb3;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:800}
+  .tc b{color:#243cb3}
+  .lighter{font-size:9px;color:#3f3f46;background:#eef1fb;border:1px solid rgba(36,60,179,.18);border-radius:8px;padding:9px 10px;margin-bottom:11px;line-height:1.45;font-weight:600;display:flex;gap:7px;align-items:center}
+  .skip{font-size:9px;font-weight:700;color:#71717a;text-align:right;margin-bottom:8px}
+  .muted{font-size:8.5px;color:#a8a8ae;text-align:center;line-height:1.5;font-style:italic;margin-top:8px}
+  .note{font-size:11.5px;line-height:1.55;color:#52525b;border-radius:9px;padding:11px 14px;margin-bottom:9px}.note b{color:#3a3a52}
+  .note.flag{background:#eef1fb;border:1px solid rgba(36,60,179,.22)}
+  .note.spec{background:#fff7e6;border:1px solid rgba(245,158,11,.3)}
+  .note.good{background:#eef7f1;border:1px solid rgba(31,122,68,.3)}
+  .foot{margin-top:12px;font-size:13px;font-weight:700;color:#fff;background:#475569;border-radius:12px;padding:14px 18px;line-height:1.5}
+  @media (max-width:760px){ .pair{flex-direction:column;gap:26px;align-items:center} .ph{width:330px} .head .t{font-size:20px} }
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="head"><div class="t">Onboarding + Auth &middot; on one skin, lighter front door</div><div class="s">Cluster A of the secondary sweep. The six onboarding and auth screens, brought onto the parent design language that already lives in the app's code, plus the cheap fixes and a lighter first wall. For Hafiz &middot; 26 June 2026.</div></div>
+
+  <div class="intro">The parent skin already exists in code (the design tokens + the redesigned Invoice / Requests / Profile screens). These six screens are still on the old look. This brings them onto one language, ports the OTP fix the tutor app already shipped, restores the intro copy (commented out today), and <b>splits the heaviest gate in the app</b>: UpdateProfile asked for a full profile (about 13 taps) before the parent saw any value.</div>
+
+  <div class="sech">1 &middot; Onboarding intro, on-skin and with its words back</div>
+  <div class="secs">Today the three intro slides render image-only (all copy is commented out), and a near-duplicate GetStarted screen repeats the value-prop. The redesign restores the copy on-skin and folds GetStarted into the last slide.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; image only, no words</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="skip">Skip</div>
+        <div class="illus" style="background:#5B56FB;color:#fff;height:430px">&#128247;</div>
+        <div class="muted">A full-bleed marketing image with every headline commented out, so the intro says nothing. Then a separate GetStarted screen repeats the same pitch.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; on-skin, copy restored, GetStarted folded in</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="skip">Skip</div>
+        <div class="illus">&#127891;</div>
+        <div class="ihead">Get a recommended tutor within 24 hours</div>
+        <div class="isub">Simplify your tutor search for your child's success. Verified tutors, matched to you.</div>
+        <div class="dots2"><div class="dot2"></div><div class="dot2"></div><div class="dot2 on"></div></div>
+        <div class="sp"></div>
+        <div class="cta">Get started</div>
+        <div class="muted">On-skin ground, real headline, brand-blue progress dots, one primary CTA. 3 slides to 3, plus GetStarted folded away.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">2 &middot; The OTP screen, re-skinned and fixed</div>
+  <div class="secs">The same "Resend in 59 Seconds" issue the tutor app already fixed is here too. The redesign ports that fix and groups the code into an on-skin card.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; off-skin, disjoint resend</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Verify Code</div>
+        <div class="nsub">A Verification OTP has been sent to +60 12-345 6789</div>
+        <div class="otp"><div class="otpcell">3</div><div class="otpcell">9</div><div class="otpcell e">&middot;</div><div class="otpcell e">&middot;</div><div class="otpcell e">&middot;</div></div>
+        <div class="resend">Expire in 59 Seconds</div>
+        <div class="resend" style="margin-top:9px">Didn't Receive a Code? <b>Resend Code</b></div>
+        <div class="sp"></div>
+        <div class="muted">Bare title, two disjoint resend/countdown rows, no step counter, no reassurance, no "wrong number" exit.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; the tutor OTP fix, on-skin</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <span class="stage">Step 2 of 2</span>
+        <div class="nt">Enter your code</div>
+        <div class="nsub">We sent a 5-digit code to +60 12-345 6789.</div>
+        <div class="otp"><div class="otpcell on">3</div><div class="otpcell on">9</div><div class="otpcell e">&middot;</div><div class="otpcell e">&middot;</div><div class="otpcell e">&middot;</div></div>
+        <div class="resend">Resend in <b>0:59</b></div>
+        <div class="editln">Wrong number? Edit</div>
+        <div class="sp"></div>
+        <div class="muted">Step counter, a clear reassurance line, one coherent resend control, and an edit exit.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">3 &middot; The first wall, split and lightened (the hero)</div>
+  <div class="secs">UpdateProfile is the heaviest gate in the whole app: a full profile, about 13 taps, before any value. The split lets the parent in on the essentials and asks for location at the first request (where it is already collected). The referral field comes back.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; full profile, ~13 taps, off-skin</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Update Profile</div>
+        <div class="nsub">Enter your details.</div>
+        <div class="skinflat">Full Name</div>
+        <div class="skinflat">Email</div>
+        <div class="skinflat">Gender</div>
+        <div class="skinflat">Address (Area and State)</div>
+        <div class="skinflat">State</div>
+        <div class="skinflat">City</div>
+        <div class="skinflat">Postcode</div>
+        <div class="muted">A long flat form of free-floating boxes, everything required before entry. The single biggest drop-off point in the funnel.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; essentials only, on-skin</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Just a few details</div>
+        <div class="nsub">So we can set up your account.</div>
+        <div class="grp">
+          <div class="row"><div class="rl">Full name</div><div class="rv empty">Siti Rahman</div></div>
+          <div class="row"><div class="rl">Email</div><div class="rv empty">you@email.com</div></div>
+          <div class="row"><div class="rl">Phone</div><div class="rv">+60 12-345 6789<span class="lock">&#128274; verified</span></div></div>
+          <div class="row"><div class="rl">Referral code<span class="opt">Optional</span></div><div class="rv empty">Enter code</div></div>
+        </div>
+        <div class="lighter"><span>&#128205;</span> Your location is asked when you make your first request.</div>
+        <div class="tc"><span class="tcb">&#10003;</span><div>I agree to <b>Sifututor's</b> Terms and Conditions.</div></div>
+        <div class="sp"></div>
+        <div class="cta">Get started</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">What this is (Step 2.5 reassess)</div>
+  <div class="note good"><b>Applied:</b> all six screens re-skinned to the parent language (inset cards on GhostWhite, #243cb3, the tokens); the OTP fix ported (step counter, reassurance, coherent resend, edit exit); the intro copy restored and GetStarted folded into the last slide (6 screens to 5); the UpdateProfile wall split (essentials in fast, location deferred to the first request); the referral field restored; the "Login" title fixed to a sign-up label; the "SifuTutor's" casing fixed; dead code removed.</div>
+  <div class="note flag"><b>Kept on purpose:</b> Splash, Register, and the OTP step stay as distinct steps. The full profile is not deleted, just deferred: location is captured at the first request (C1) and can be completed anytime in the profile. No field is cut, the wall is re-timed.</div>
+
+  <div class="sech">Notes for Hafiz</div>
+  <div class="note spec"><b>Confirm (Priority 9):</b> the minimum profile the matching engine needs at signup, so the split is safe (we propose name + email + the verified phone now; address/location at the first request). The referral code already posts to the backend; the input just needs restoring.</div>
+  <div class="note good"><b>Zero-backend now:</b> the entire re-skin, the OTP fix, the intro copy, folding GetStarted, restoring the referral input, and the casing/dead-code fixes. Only the wall-split timing depends on confirming the matching minimum.</div>
+
+  <div class="foot">Scope: Cluster A of the all-screens consistency sweep, the onboarding + auth front door. Next clusters: B Profile + account hub, C Content + Notifications, D Referral, E Static.</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Content + Notifications · on-skin, fixed, merged</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{background:#fff}
+  body{margin:0;padding:24px 16px;font-family:-apple-system,system-ui,"Segoe UI",sans-serif;color:#18181b;--tint:#243cb3;--grey:#F2F2F7}
+  .doc{max-width:980px;margin:0 auto}
+  .head{background:#243cb3;color:#fff;border-radius:16px;padding:24px 26px}
+  .head .t{font-size:23px;font-weight:800;letter-spacing:-.3px}
+  .head .s{font-size:12.5px;opacity:.92;margin-top:6px;line-height:1.55}
+  .intro{background:#eef1fb;border:1px solid rgba(36,60,179,.2);border-radius:13px;padding:16px 20px;margin:16px 0 8px;font-size:12.5px;line-height:1.6;color:#3a3a52}.intro b{color:#243cb3}
+  .sech{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--tint);margin:32px 0 4px}
+  .secs{font-size:12.5px;color:#52525b;margin-bottom:14px;line-height:1.55}.secs b{color:#1a5c38}
+  .pair{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+  .col{flex:1;min-width:0}
+  .cl{font-size:10px;font-weight:800;text-align:center;padding:4px 6px;border-radius:6px;margin-bottom:8px}
+  .cl.b{background:#fdeaea;color:#b42318}.cl.a{background:#e6eaf9;color:var(--tint)}
+  .ph{border-radius:26px;padding:13px 12px 9px;width:280px;max-width:100%;margin:0 auto;aspect-ratio:402/874;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.1)}
+  .ph.bf{background:#fff;border:1px solid #e2e2e6}.ph.af{background:var(--grey)}
+  .ph::after{content:"";flex-shrink:0;width:38%;height:5px;border-radius:99px;background:rgba(0,0,0,.2);margin:11px auto 0}
+  .sb{display:flex;justify-content:space-between;font-size:8.5px;font-weight:700;margin-bottom:11px}
+  .sp{flex:1 1 auto}
+  .nt{font-size:16px;font-weight:800;letter-spacing:-.2px;margin-bottom:11px}
+  .seclbl{font-size:8px;font-weight:800;color:#9a9aa0;margin:2px 2px 7px;text-transform:uppercase;letter-spacing:.5px}
+  .flatnoti{padding:9px 8px;border-bottom:1px solid #ececef;display:flex;align-items:center;gap:8px}
+  .flatnoti.unread{background:#E8EFFF}
+  .ni{width:30px;height:30px;border-radius:7px;background:#eef1fb;color:#243cb3;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .nii{flex:1;min-width:0}.nit{font-size:10.5px;font-weight:700}.nim{font-size:9px;color:#52525b;margin-top:1px}.nid{font-size:8px;color:#9a9aa0;margin-top:1px}
+  .arr{color:#c8c8cc;font-weight:800;font-size:12px}
+  .inboxrow{background:#fff;border-radius:11px;padding:10px 11px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:8px;display:flex;align-items:center;gap:9px}
+  .inboxrow.unread{background:#f5f8ff;border:1px solid rgba(36,60,179,.18)}
+  .dot{width:8px;height:8px;border-radius:99px;background:#243cb3;flex-shrink:0}
+  .icchip{width:26px;height:26px;border-radius:7px;background:#eef1fb;color:#243cb3;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .iri{flex:1;min-width:0}.irt{font-size:10.5px;font-weight:800}.irm{font-size:8.5px;color:#71717a;margin-top:1px}.ird{font-size:7.5px;color:#9a9aa0;margin-top:2px}
+  .artcard{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden;margin-bottom:9px}
+  .artimg{height:72px;background:linear-gradient(135deg,#e6eaf9,#eef1fb);display:flex;align-items:center;justify-content:center;font-size:26px}
+  .artb{padding:9px 11px}.artt{font-size:11px;font-weight:800}.artd{font-size:8px;color:#9a9aa0;margin-top:3px}
+  .flatart{padding:9px 8px;border-bottom:1px solid #ececef}.flatart .fat{font-size:10.5px;font-weight:700}.flatart .fad{font-size:8px;color:#9a9aa0;margin-top:2px}
+  .badnav{font-size:8px;color:#b42318;background:#fdeaea;border-radius:6px;padding:5px 7px;margin-top:5px;font-weight:700;display:inline-block}
+  .goodnav{font-size:8px;color:#1f7a44;background:#eef7f1;border-radius:6px;padding:5px 7px;margin-top:5px;font-weight:700;display:inline-block}
+  .muted{font-size:8.5px;color:#a8a8ae;text-align:center;line-height:1.5;font-style:italic;margin-top:8px}
+  .note{font-size:11.5px;line-height:1.55;color:#52525b;border-radius:9px;padding:11px 14px;margin-bottom:9px}.note b{color:#3a3a52}
+  .note.flag{background:#eef1fb;border:1px solid rgba(36,60,179,.22)}
+  .note.good{background:#eef7f1;border:1px solid rgba(31,122,68,.3)}
+  .foot{margin-top:12px;font-size:13px;font-weight:700;color:#fff;background:#475569;border-radius:12px;padding:14px 18px;line-height:1.5}
+  @media (max-width:760px){ .pair{flex-direction:column;gap:26px;align-items:center} .ph{width:330px} .head .t{font-size:20px} }
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="head"><div class="t">Content + Notifications &middot; on-skin, fixed, merged</div><div class="s">Cluster C of the secondary sweep. The notifications inbox and the content feeds, re-skinned, with the silent notification-routing bug fixed and the two duplicate content surfaces merged. For Hafiz &middot; 26 June 2026.</div></div>
+
+  <div class="intro">The inbox and feeds move onto the design-system skin (inset rows, one shared pattern). Two real fixes: the <b>notification that goes nowhere</b> (a tutor-request notification routed to a tab name that does not exist) now navigates, and the <b>two near-identical content surfaces</b> (News + Blogs) merge into one "News &amp; Articles" feed sharing one detail screen. All zero-backend.</div>
+
+  <div class="sech">1 &middot; Notifications, on-skin and routing fixed</div>
+  <div class="secs">Today the rows are full-width with a heavy blue wash, and a tutor-request notification silently does nothing when tapped (it routes to a tab named "TutorRequest" that does not exist). The redesign uses inset rows with a quiet unread dot, and every notification opens the right screen.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; full-width rows, a dead tap</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Notifications</div>
+        <div class="seclbl">Recent</div>
+        <div class="flatnoti unread"><span class="ni">&#128100;</span><div class="nii"><div class="nit">A tutor applied for Adam</div><div class="nim">Review their profile</div><div class="nid">26-Jun-2026 | 9:20</div><span class="badnav">&#10005; tap does nothing</span></div><span class="arr">&#8249;</span></div>
+        <div class="flatnoti unread"><span class="ni">&#128179;</span><div class="nii"><div class="nit">Payment received</div><div class="nim">Invoice PINV-3201 paid</div><div class="nid">25-Jun-2026 | 14:02</div></div><span class="arr">&#8249;</span></div>
+        <div class="flatnoti"><span class="ni">&#128197;</span><div class="nii"><div class="nit">Class reminder</div><div class="nim">Adam, Maths, today 5pm</div><div class="nid">25-Jun-2026 | 08:00</div></div><span class="arr">&#8249;</span></div>
+        <div class="sp"></div>
+        <div class="muted">Full-width rows, a heavy blue wash. The "tutor applied" tap routes to a non-existent tab, so it silently fails.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; inset rows, every tap lands</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Notifications</div>
+        <div class="seclbl">Recent</div>
+        <div class="inboxrow unread"><span class="dot"></span><span class="icchip">&#128100;</span><div class="iri"><div class="irt">A tutor applied for Adam</div><div class="irm">Tap to review</div><div class="ird">26 Jun &middot; 9:20</div></div><span class="arr">&#8250;</span></div>
+        <div class="inboxrow unread"><span class="dot"></span><span class="icchip">&#128179;</span><div class="iri"><div class="irt">Payment received</div><div class="irm">Invoice PINV-3201 paid</div><div class="ird">25 Jun &middot; 14:02</div></div><span class="arr">&#8250;</span></div>
+        <div class="inboxrow"><span class="icchip">&#128197;</span><div class="iri"><div class="irt">Class reminder</div><div class="irm">Adam, Maths, today 5pm</div><div class="ird">25 Jun &middot; 08:00</div></div><span class="arr">&#8250;</span></div>
+        <div class="goodnav" style="text-align:center;display:block;margin-top:4px">&#10003; every notification now opens the right screen</div>
+        <div class="sp"></div>
+        <div class="muted">Inset rows, a quiet unread dot, one shared pattern with News. The routing bug + the dead-tap fallback fixed.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">2 &middot; News and Blogs, merged into one feed</div>
+  <div class="secs">Today News is a list (a bottom tab) and Blogs is a separate grid (from Home), with two identical detail screens. The redesign merges them into one on-skin "News &amp; Articles" feed sharing one detail.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; two content surfaces</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">News</div>
+        <div class="flatart"><div class="fat">SPM tips for parents</div><div class="fad">24-Jun-2026 | 10:00</div></div>
+        <div class="flatart"><div class="fat">How tutoring works</div><div class="fad">20-Jun-2026 | 09:30</div></div>
+        <div class="flatart"><div class="fat">Top tutors this month</div><div class="fad">18-Jun-2026 | 12:00</div></div>
+        <div class="sp"></div>
+        <div class="muted">A News list here, a separate Blogs grid reached from Home, and two duplicate detail screens. Two content surfaces doing the same job, off-skin.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; one "News &amp; Articles"</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">News &amp; Articles</div>
+        <div class="artcard"><div class="artimg">&#128240;</div><div class="artb"><div class="artt">SPM tips for parents</div><div class="artd">24 Jun 2026</div></div></div>
+        <div class="artcard"><div class="artimg">&#128218;</div><div class="artb"><div class="artt">How Sifututor matching works</div><div class="artd">20 Jun 2026</div></div></div>
+        <div class="sp"></div>
+        <div class="muted">One content surface instead of two, on-skin cards, one shared detail screen behind them.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">What this is (Step 2.5 reassess)</div>
+  <div class="note good"><b>Applied:</b> all five screens re-skinned to the design-system language; one shared inset-row pattern for News + Notifications; the two duplicate detail screens unified into one content-detail (the HTML body brought onto the Ink ramp); News + Blogs merged into one "News &amp; Articles" feed; the notification routing fixed (the request-tab bug + a fallback for unrecognised types + the leftover tutor route names cleaned).</div>
+  <div class="note flag"><b>Kept on purpose:</b> Notifications stays its own inbox (distinct job from content). The Recent/Older grouping stays. The content detail keeps its HTML article rendering, just on-skin.</div>
+
+  <div class="sech">Notes for Hafiz</div>
+  <div class="note good"><b>Zero-backend:</b> the entire cluster ships against today's data. The routing fix is a client navigation fix, the merge is a client consolidation, and the re-skin is token-only. No backend dependency.</div>
+
+  <div class="foot">Scope: Cluster C of the all-screens sweep, content + notifications. Last cluster: D Referral + E Static.</div>
+</div>
+</body>
+</html>

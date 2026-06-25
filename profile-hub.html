@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profile + account hub · grouped, fixed, on-skin</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{background:#fff}
+  body{margin:0;padding:24px 16px;font-family:-apple-system,system-ui,"Segoe UI",sans-serif;color:#18181b;--tint:#243cb3;--grey:#F2F2F7}
+  .doc{max-width:980px;margin:0 auto}
+  .head{background:#243cb3;color:#fff;border-radius:16px;padding:24px 26px}
+  .head .t{font-size:23px;font-weight:800;letter-spacing:-.3px}
+  .head .s{font-size:12.5px;opacity:.92;margin-top:6px;line-height:1.55}
+  .intro{background:#eef1fb;border:1px solid rgba(36,60,179,.2);border-radius:13px;padding:16px 20px;margin:16px 0 8px;font-size:12.5px;line-height:1.6;color:#3a3a52}.intro b{color:#243cb3}
+  .sech{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--tint);margin:32px 0 4px}
+  .secs{font-size:12.5px;color:#52525b;margin-bottom:14px;line-height:1.55}.secs b{color:#1a5c38}
+  .pair{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+  .col{flex:1;min-width:0}
+  .cl{font-size:10px;font-weight:800;text-align:center;padding:4px 6px;border-radius:6px;margin-bottom:8px}
+  .cl.b{background:#fdeaea;color:#b42318}.cl.a{background:#e6eaf9;color:var(--tint)}.cl.s{background:#eef7f1;color:#1f7a44}
+  .ph{border-radius:26px;padding:13px 12px 9px;width:280px;max-width:100%;margin:0 auto;aspect-ratio:402/874;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.1)}
+  .ph.bf{background:#fff;border:1px solid #e2e2e6}.ph.af{background:var(--grey)}
+  .ph::after{content:"";flex-shrink:0;width:38%;height:5px;border-radius:99px;background:rgba(0,0,0,.2);margin:11px auto 0}
+  .sb{display:flex;justify-content:space-between;font-size:8.5px;font-weight:700;margin-bottom:11px}
+  .sp{flex:1 1 auto}
+  .nt{font-size:16px;font-weight:800;letter-spacing:-.2px;margin-bottom:11px}
+  .idcard{background:linear-gradient(125deg,#243cb3,#3a52c8);color:#fff;border-radius:14px;padding:12px;margin-bottom:12px;display:flex;align-items:flex-start;gap:11px}
+  .idcard.flat{background:#0961F5}
+  .av{width:44px;height:44px;border-radius:99px;background:rgba(255,255,255,.25);color:#fff;font-size:17px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .idi{flex:1;min-width:0}.idn{font-size:13.5px;font-weight:800}.ide{font-size:8.5px;opacity:.9;margin-top:1px}
+  .idj{font-size:9px;opacity:.97;margin-top:7px;background:rgba(255,255,255,.16);border-radius:7px;padding:6px 8px;font-weight:600;line-height:1.4}
+  .idchips{display:flex;gap:5px;margin-top:6px}
+  .idchip{font-size:7.5px;font-weight:700;background:rgba(255,255,255,.2);border-radius:99px;padding:2px 7px}
+  .navlbl{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#9a9aa0;margin:9px 2px 6px}
+  .navsec{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden;margin-bottom:10px}
+  .navrow{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid #f0f0f3}.navrow:last-child{border-bottom:none}
+  .icchip{width:25px;height:25px;border-radius:7px;background:#eef1fb;color:#243cb3;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .nrt{flex:1;font-size:11px;font-weight:700;color:#18181b}
+  .chev{color:#c8c8cc;font-weight:800;font-size:13px}
+  .newtag{font-size:7px;font-weight:800;color:#1f7a44;background:#eef7f1;border-radius:99px;padding:1px 6px;margin-left:5px}
+  .flatrow{padding:8px 0;font-size:10.5px;color:#3f3f46;border-bottom:1px solid #ececef;font-weight:600}
+  .scard{background:#fff;border-radius:12px;padding:10px 12px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:9px;display:flex;align-items:center;gap:10px}
+  .scav{width:34px;height:34px;border-radius:9px;background:#eef1fb;color:#243cb3;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .sci{flex:1;min-width:0}.sct{font-size:11.5px;font-weight:800}.scm{font-size:9px;color:#71717a;margin-top:2px}
+  .scard.flat{cursor:default}.scrow{font-size:9.5px;color:#52525b;margin-top:3px}.scrow b{color:#18181b}
+  .addrow{background:#eef1fb;border:1px dashed rgba(36,60,179,.45);border-radius:12px;padding:11px 12px;display:flex;align-items:center;gap:9px;color:#243cb3;font-size:11px;font-weight:800;margin-bottom:9px}
+  .acctrow{background:#fff;border-radius:11px;padding:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:9px}
+  .acth{font-size:11px;font-weight:800}.actm{font-size:9px;color:#71717a;margin-top:3px;line-height:1.4}
+  .acth.red{color:#b42318}
+  .muted{font-size:8.5px;color:#a8a8ae;text-align:center;line-height:1.5;font-style:italic;margin-top:8px}
+  .note{font-size:11.5px;line-height:1.55;color:#52525b;border-radius:9px;padding:11px 14px;margin-bottom:9px}.note b{color:#3a3a52}
+  .note.flag{background:#eef1fb;border:1px solid rgba(36,60,179,.22)}
+  .note.spec{background:#fff7e6;border:1px solid rgba(245,158,11,.3)}
+  .note.good{background:#eef7f1;border:1px solid rgba(31,122,68,.3)}
+  .foot{margin-top:12px;font-size:13px;font-weight:700;color:#fff;background:#475569;border-radius:12px;padding:14px 18px;line-height:1.5}
+  @media (max-width:760px){ .pair{flex-direction:column;gap:26px;align-items:center} .ph{width:330px} .head .t{font-size:20px} }
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="head"><div class="t">Profile + account hub &middot; grouped, fixed, on-skin</div><div class="s">Cluster B of the secondary sweep. The 5th-tab hub plus the profile, children, and add-child screens, brought onto the design-system skin, with two broken flows fixed and an honest pause. For Hafiz &middot; 26 June 2026.</div></div>
+
+  <div class="intro">The flat account list becomes grouped inset cards on the design-system skin, gains a <b>Settings</b> entry, and keeps the rich identity card (the child's learning journey, the parent's version of an achievement header). Two real fixes: <b>adding a child is reachable</b> again, and the misleading <b>"Deactivate" that secretly deletes</b> becomes an honest pause (keep your data, return anytime) sitting apart from a clearly-labelled delete.</div>
+
+  <div class="sech">1 &middot; The hub, flat list to grouped cards</div>
+  <div class="secs">Today it is a flat list of plain rows with no Settings and no affordances. The redesign groups it into inset cards with HIG rows, adds Settings, promotes Refer, and elevates the identity card.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; flat list, no Settings</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Profile</div>
+        <div class="idcard flat"><div class="av">S</div><div class="idi"><div class="idn">Siti Rahman</div><div class="ide">siti@email.com</div><div class="idj">This Week's Learning Time: 3h</div><div class="idchips"><span class="idchip">Maths</span><span class="idchip">Science</span></div></div></div>
+        <div class="navlbl">Dashboard</div>
+        <div class="flatrow">My Profile</div><div class="flatrow">Notification</div><div class="flatrow">Invoice</div>
+        <div class="navlbl">Students</div>
+        <div class="flatrow">Student List</div><div class="flatrow">Student Report</div>
+        <div class="sp"></div>
+        <div class="acth red" style="font-size:10px">Deactivate / Disable</div>
+        <div class="muted">Plain rows, no chevrons, no Settings, and "Deactivate" actually permanently deletes the account.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; grouped cards + Settings</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Profile</div>
+        <div class="idcard"><div class="av">S</div><div class="idi"><div class="idn">Siti Rahman</div><div class="idj">Adam is doing well &middot; 3h this week &middot; Maths 6 &#8594; 8</div></div></div>
+        <div class="navlbl">Account</div>
+        <div class="navsec">
+          <div class="navrow"><span class="icchip">&#128100;</span><span class="nrt">My profile</span><span class="chev">&#8250;</span></div>
+          <div class="navrow"><span class="icchip">&#128118;</span><span class="nrt">My children</span><span class="chev">&#8250;</span></div>
+          <div class="navrow"><span class="icchip">&#9881;</span><span class="nrt">Settings<span class="newtag">New</span></span><span class="chev">&#8250;</span></div>
+        </div>
+        <div class="navlbl">Support</div>
+        <div class="navsec">
+          <div class="navrow"><span class="icchip">&#127873;</span><span class="nrt">Refer &amp; earn</span><span class="chev">&#8250;</span></div>
+          <div class="navrow"><span class="icchip">&#10067;</span><span class="nrt">Help &amp; FAQ</span><span class="chev">&#8250;</span></div>
+        </div>
+        <div class="sp"></div>
+        <div class="muted">Inset cards, HIG rows, Settings added, Refer promoted, the identity card now shows the child's journey.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">2 &middot; Students, the broken flow fixed</div>
+  <div class="secs">Today the cards are dead-ends, there is no way to add a child, and "Pref. Tutor" actually shows the child's gender. The redesign makes cards tappable, adds an Add entry, and fixes the label.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; dead-end cards, no Add</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Student List</div>
+        <div class="scard flat"><div class="scav" style="background:#f0f0f3;color:#9a9aa0">&#128100;</div><div class="sci"><div class="sct">Adam Lim</div><div class="scrow">Date of Birth: <b>12-Mar-2010</b></div><div class="scrow">Pref. Tutor: <b>Male</b></div><div class="scrow">Special Needs: None</div></div></div>
+        <div class="sp"></div>
+        <div class="muted">Not tappable (no edit/remove). No Add button anywhere. "Pref. Tutor" is mislabelled, it is the child's gender.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; tappable, Add reachable</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">My children</div>
+        <div class="scard"><div class="scav">A</div><div class="sci"><div class="sct">Adam Lim</div><div class="scm">Age 16 &middot; Male &middot; no special needs</div></div><span class="chev">&#8250;</span></div>
+        <div class="scard"><div class="scav">L</div><div class="sci"><div class="sct">Lia Lim</div><div class="scm">Age 11 &middot; Female &middot; no special needs</div></div><span class="chev">&#8250;</span></div>
+        <div class="addrow"><span style="font-size:14px">&#43;</span> Add a child</div>
+        <div class="sp"></div>
+        <div class="muted">Cards tappable (view/edit), an Add entry restored, gender labelled correctly.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">3 &middot; An honest pause (not a secret delete)</div>
+  <div class="secs">The "Deactivate / Disable" row performs a permanent delete today. Settings now offers a real pause that keeps the parent's data, with delete clearly separate.</div>
+  <div class="pair">
+    <div class="col" style="max-width:300px;margin:0 auto">
+      <div class="cl s">SETTINGS &middot; Account</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Account</div>
+        <div class="acctrow"><div class="acth">Pause my account</div><div class="actm">Take a break. Your children, history, and reports are kept, and you can return anytime.</div></div>
+        <div class="acctrow"><div class="acth red">Delete account</div><div class="actm">Permanently remove your account and data. This cannot be undone.</div></div>
+        <div class="sp"></div>
+        <div class="muted">Two distinct actions, honestly labelled. Pause keeps everything; delete is clearly the destructive one.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div style="font-size:12.5px;line-height:1.65;color:#3a3a52">
+        <p style="margin:0 0 10px"><b>Why this matters.</b> A parent who wants a break should not have to delete everything. Today the only exit is a permanent delete dressed up as "Deactivate", which is misleading and loses the customer for good.</p>
+        <p style="margin:0 0 10px"><b>What it needs (Hafiz Priority 10):</b> a real account pause state on the backend (keep the data, suspend billing and matching, allow reactivation). Delete stays as-is.</p>
+        <p style="margin:0"><b>Commercial:</b> a pause is a retention save; a parent on a break is far more likely to return than one who deleted. Honest labelling also protects trust.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">What this is (Step 2.5 reassess)</div>
+  <div class="note good"><b>Applied:</b> all four screens re-skinned to the design-system language; the flat hub becomes grouped inset cards with a new Settings row and a promoted Refer; the identity card elevated to show the child's journey; adding a child made reachable; student cards made tappable; the "Deactivate"-is-delete fixed into an honest pause + a separate delete; the "Pref. Tutor"-shows-gender mislabel, the "Want to Ad" typo, and the leftover tutor-app naming cleaned.</div>
+  <div class="note flag"><b>Kept on purpose:</b> all five screens stay (hub, profile-edit, children, add-child, camera), each a distinct job. No merges. The rich identity card is preserved and elevated, not stripped.</div>
+
+  <div class="sech">Notes for Hafiz</div>
+  <div class="note spec"><b>Backend, Priority 10:</b> a real account pause state (keep data, suspend billing + matching, allow reactivation), distinct from delete. The add-a-child and edit-a-child endpoints already exist; the gaps are UI entry points, not backend.</div>
+  <div class="note good"><b>Zero-backend now:</b> the entire re-skin, the grouped hub + Settings entry, the Add-child entry, tappable student cards, the label/typo fixes, and the tutor-app naming cleanup. Only the pause state needs backend.</div>
+
+  <div class="foot">Scope: Cluster B of the all-screens sweep, the profile + account hub. Next clusters: C Content + Notifications, D Referral, E Static.</div>
+</div>
+</body>
+</html>
