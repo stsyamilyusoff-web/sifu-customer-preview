@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parent billing · sharpen the already-redesigned bill</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{background:#fff}
+  body{margin:0;padding:24px 16px;font-family:-apple-system,system-ui,"Segoe UI",sans-serif;color:#18181b;--tint:#243cb3;--grey:#F2F2F7}
+  .doc{max-width:980px;margin:0 auto}
+  .head{background:#243cb3;color:#fff;border-radius:16px;padding:24px 26px}
+  .head .t{font-size:23px;font-weight:800;letter-spacing:-.3px}
+  .head .s{font-size:12.5px;opacity:.92;margin-top:6px;line-height:1.55}
+  .intro{background:#eef1fb;border:1px solid rgba(36,60,179,.2);border-radius:13px;padding:16px 20px;margin:16px 0 8px;font-size:12.5px;line-height:1.6;color:#3a3a52}
+  .intro b{color:#243cb3}
+  .sech{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--tint);margin:32px 0 4px}
+  .secs{font-size:12.5px;color:#52525b;margin-bottom:14px;line-height:1.55}.secs b{color:#1a5c38}
+  .pair{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+  .col{flex:1;min-width:0}
+  .cl{font-size:10px;font-weight:800;text-align:center;padding:4px 6px;border-radius:6px;margin-bottom:8px}
+  .cl.b{background:#fdeaea;color:#b42318}.cl.a{background:#e6eaf9;color:var(--tint)}.cl.s{background:#eef7f1;color:#1f7a44}
+  .ph{border-radius:26px;padding:13px 12px 9px;width:280px;max-width:100%;margin:0 auto;aspect-ratio:402/874;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.1)}
+  .ph.bf{background:#fff;border:1px solid #e2e2e6}
+  .ph.af{background:var(--grey)}
+  .ph::after{content:"";flex-shrink:0;width:38%;height:5px;border-radius:99px;background:rgba(0,0,0,.2);margin:11px auto 0}
+  .sb{display:flex;justify-content:space-between;font-size:8.5px;font-weight:700;margin-bottom:11px}
+  .sp{flex:1 1 auto}
+  .nt{font-size:16px;font-weight:800;letter-spacing:-.2px;margin-bottom:3px}
+  .nsub{font-size:10px;color:#71717a;margin-bottom:13px;line-height:1.4}
+  .dhero{background:#fff;border-radius:12px;padding:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:11px}
+  .dhr{display:flex;justify-content:space-between;align-items:flex-start}
+  .dhn{font-size:11px;font-weight:800}.dhm{font-size:8.5px;color:#71717a;margin-top:2px}
+  .dhv{font-size:19px;font-weight:800;color:#243cb3}
+  .badge{font-size:7.5px;font-weight:800;border-radius:99px;padding:2px 8px}
+  .badge.un{background:#fff7e6;color:#92400e}.badge.paid{background:#eef7f1;color:#1f7a44}
+  .sect{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden;margin-bottom:11px}
+  .sh{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#9a9aa0;padding:9px 12px 4px}
+  .row{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid #f0f0f3;font-size:10.5px}
+  .row:last-child{border-bottom:none}
+  .rl{color:#71717a;flex:1}.rv{font-weight:700;white-space:nowrap}
+  .ded{color:#b42318}.ded .rv{color:#b42318}
+  .credit{color:#1f7a44}.credit .rl small{display:block;font-size:8px;color:#71717a;font-weight:400;font-style:italic;margin-top:1px}.credit .rv{color:#1f7a44}
+  .total{font-weight:800;font-size:12px;background:#f7f8fc}
+  .bridge{display:flex;align-items:center;gap:8px;background:#eef7f1;border:1px solid rgba(31,122,68,.25);border-radius:10px;padding:10px 12px;margin-bottom:11px}
+  .brw{font-size:15px;flex-shrink:0}.brt{font-size:9.5px;color:#1f7a44;font-weight:700;line-height:1.4}
+  .cta{background:var(--tint);color:#fff;text-align:center;font-size:13px;font-weight:700;padding:13px;border-radius:999px}
+  .ghost{background:#fff;border:1.5px solid #d8d8de;color:#52525b;text-align:center;font-size:12px;font-weight:700;padding:11px;border-radius:999px;margin-top:8px}
+  .disbtn{background:#f6f6f8;border:1.5px solid #ececef;color:#c4c4c8;text-align:center;font-size:11px;font-weight:700;padding:11px;border-radius:999px;margin-top:8px}
+  .alt{font-size:10px;color:#71717a;text-align:center;margin-top:9px;font-weight:600}
+  .muted{font-size:8.5px;color:#a8a8ae;text-align:center;line-height:1.5;font-style:italic;margin-top:8px}
+  .older{background:#fff7e6;border:1px solid rgba(245,158,11,.4);border-radius:11px;padding:12px;margin-bottom:11px}
+  .olh{font-size:11px;font-weight:800;color:#92400e}.ols{font-size:9px;color:#a16207;margin-top:5px;line-height:1.45}
+  .oli{background:#fff;border-radius:8px;padding:9px 11px;margin-top:10px;display:flex;justify-content:space-between;align-items:center}
+  .olin{font-size:10px;font-weight:800}.olim{font-size:8px;color:#b42318;margin-top:1px;font-weight:700}
+  .ihero{background:linear-gradient(125deg,#243cb3,#3a52c8);color:#fff;border-radius:13px;padding:14px;margin-bottom:11px}
+  .ihl{font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;opacity:.85}
+  .ihv{font-size:22px;font-weight:800;margin-top:3px}
+  .ihp{display:flex;gap:6px;margin-top:9px}
+  .pip{font-size:7.5px;font-weight:800;border-radius:99px;padding:3px 8px;background:rgba(255,255,255,.2)}
+  .globalpay{background:linear-gradient(125deg,#1f7a44,#2f9d5b);color:#fff;border-radius:13px;padding:14px;margin-bottom:11px}
+  .gpl{font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;opacity:.9}
+  .gpv{font-size:20px;font-weight:800;margin-top:3px}.gpm{font-size:9px;opacity:.92;margin-top:2px}
+  .gpb{background:#fff;color:#1f7a44;text-align:center;font-size:11px;font-weight:800;border-radius:99px;padding:10px;margin-top:10px}
+  .gcard{background:#fff;border-radius:12px;padding:11px 12px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:9px}
+  .gch{display:flex;justify-content:space-between;align-items:baseline}
+  .gct{font-size:11px;font-weight:800}.gcm{font-size:8.5px;color:#71717a;margin-top:1px}
+  .gcv{font-size:12px;font-weight:800;color:#243cb3}
+  .payall{background:#eef1fb;color:#243cb3;text-align:center;font-size:9.5px;font-weight:800;border-radius:99px;padding:7px;margin-top:8px}
+  .flat{background:#fff;border-radius:10px;padding:11px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:9px}
+  .flatt{background:#243cb3;color:#fff;border-radius:10px;padding:12px;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center}
+  .flatr{display:flex;justify-content:space-between;font-size:10px;padding:5px 0;color:#52525b}.flatr b{color:#18181b;font-weight:700}
+  .note{font-size:11.5px;line-height:1.55;color:#52525b;border-radius:9px;padding:11px 14px;margin-bottom:9px}.note b{color:#3a3a52}
+  .note.flag{background:#eef1fb;border:1px solid rgba(36,60,179,.22)}
+  .note.spec{background:#fff7e6;border:1px solid rgba(245,158,11,.3)}
+  .note.good{background:#eef7f1;border:1px solid rgba(31,122,68,.3)}
+  .foot{margin-top:12px;font-size:13px;font-weight:700;color:#fff;background:#475569;border-radius:12px;padding:14px 18px;line-height:1.5}
+  @media (max-width:760px){ .pair{flex-direction:column;gap:26px;align-items:center} .ph{width:330px} .head .t{font-size:20px} }
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="head"><div class="t">Parent billing &middot; sharpen the already-redesigned bill</div><div class="s">C3 of the customer-app redesign. The invoice redesign (hero cards, group-by-request, receipt feed, Pay-All) is already merged to main. This is a targeted clarity and trust pass on that live surface, not a re-skin. For Hafiz &middot; 25 June 2026.</div></div>
+
+  <div class="intro">Billing is <b>already redesigned</b>, so we build ON the live language. The win is the gaps the redesign did not solve: <b>explain the commitment-fee credit</b> (today an unexplained red line), <b>fix the opaque older-invoice block</b>, add a <b>global "pay everything"</b> across requests, surface the <b>due date</b>, bridge to C2 (<b>"paying unblocks your class"</b>), and <b>declutter</b> the bill. Price stays as today (no commission breakdown). Plus a brand bug: PDFs say "Siftutor" (missing a "u").</div>
+
+  <div class="sech">1 &middot; The bill, explained</div>
+  <div class="secs">Same hero-card layout, sharpened: the commitment-fee credit is explained, a due date appears, the bill drops restated request data, and a line ties it to the class it unblocks.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; an unexplained red line, no due date</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Invoice Detail</div>
+        <div class="nsub">PINV-3201</div>
+        <div class="dhero"><div class="dhr"><div><div class="dhn">PINV-3201 &middot; Form 4 Maths</div><div class="dhm">Adam &middot; first invoice</div></div><span class="badge un">Unpaid</span></div><div class="dhv" style="margin-top:8px">RM310</div></div>
+        <div class="sect"><div class="sh">Details</div>
+          <div class="row"><div class="rl">Student</div><div class="rv">Adam</div></div>
+          <div class="row"><div class="rl">Gender &middot; Age</div><div class="rv">Male &middot; 16</div></div>
+          <div class="row"><div class="rl">Special Need</div><div class="rv">None</div></div>
+          <div class="row"><div class="rl">Sessions</div><div class="rv">4</div></div>
+        </div>
+        <div class="sect"><div class="sh">Payment</div>
+          <div class="row"><div class="rl">Sub Total</div><div class="rv">RM360</div></div>
+          <div class="row ded"><div class="rl">Commitment fee adjustment</div><div class="rv">&minus; RM50</div></div>
+          <div class="row total"><div class="rl">Total Amount</div><div class="rv">RM310</div></div>
+        </div>
+        <div class="cta">Pay Now</div>
+        <div class="muted">The red "adjustment" is unexplained. No due date. The bill restates Gender / Special Need. Nothing links it to the class it unblocks.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; explained, dated, decluttered</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Invoice</div>
+        <div class="nsub">PINV-3201 &middot; Form 4 Maths for Adam</div>
+        <div class="dhero"><div class="dhr"><div><div class="dhn">RM310 due</div><div class="dhm">Due 30 June 2026 &middot; first invoice</div></div><span class="badge un">Unpaid</span></div></div>
+        <div class="bridge"><span class="brw">&#128274;</span><div class="brt">Paying this unblocks Adam's class verification.</div></div>
+        <div class="sect"><div class="sh">What you are paying for</div>
+          <div class="row"><div class="rl">Form 4 Maths</div><div class="rv">4 sessions &middot; 1h 30m</div></div>
+        </div>
+        <div class="sect"><div class="sh">Payment</div>
+          <div class="row"><div class="rl">Sub Total</div><div class="rv">RM360</div></div>
+          <div class="row credit"><div class="rl">Commitment fee credit<small>Your one-time RM50 fee, applied here</small></div><div class="rv">&minus; RM50</div></div>
+          <div class="row total"><div class="rl">Total to pay</div><div class="rv">RM310</div></div>
+        </div>
+        <div class="sp"></div>
+        <div class="cta">Pay RM310</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">2 &middot; The older-invoice block, made clear</div>
+  <div class="secs">Today the block is an amber line with a permanently-disabled "continue". The fix explains the why and makes paying the oldest the obvious next step.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; opaque, "continue" disabled</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Invoice Detail</div>
+        <div class="nsub">PINV-3208</div>
+        <div class="older"><div class="olh">&#9888; Request TREQ-687 &middot; earlier invoice unpaid</div><div class="ols">Tap to review and pay it first.</div></div>
+        <div class="cta dim" style="background:#c3c8e3">Pay Now</div>
+        <div class="disbtn">Continue with this (disabled)</div>
+        <div class="sp"></div>
+        <div class="muted">Why is it blocked? Buried in a sheet. "Continue" is permanently off. The only path is to hunt for the older bill.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; clear why + oldest-first CTA</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Pay your earliest invoice first</div>
+        <div class="nsub">Form 4 Maths &middot; TREQ-687</div>
+        <div class="older"><div class="olh">Why first?</div><div class="ols">We collect oldest-first so your billing stays in order. Clear this one and the next unlocks.</div>
+          <div class="oli"><div><div class="olin">PINV-3105 &middot; RM360</div><div class="olim">5 days overdue</div></div><span class="badge un">Unpaid</span></div>
+        </div>
+        <div class="sp"></div>
+        <div class="cta">Pay PINV-3105 first &middot; RM360</div>
+        <div class="alt">Then your newer invoice unlocks</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">3 &middot; One tap to pay everything</div>
+  <div class="secs">Today Pay-All is per request: a parent with 3 requests pays 3 separate bundles. A top-level "pay everything outstanding" clears them in one go (needs a backend multi-request bundle).</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; per-request Pay-All only</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Invoice</div>
+        <div class="nsub">Pending</div>
+        <div class="ihero"><div class="ihl">Total outstanding</div><div class="ihv">RM930</div><div class="ihp"><span class="pip">1 overdue</span><span class="pip">2 due soon</span></div></div>
+        <div class="gcard"><div class="gch"><div><div class="gct">Form 4 Maths &middot; Adam</div><div class="gcm">Aisha &middot; Online</div></div><div class="gcv">RM310</div></div><div class="payall">Pay All &middot; RM310</div></div>
+        <div class="gcard"><div class="gch"><div><div class="gct">Form 2 Science &middot; Lia</div><div class="gcm">Rajesh &middot; Online</div></div><div class="gcv">RM310</div></div><div class="payall">Pay All &middot; RM310</div></div>
+        <div class="sp"></div>
+        <div class="muted">Three requests means three separate Pay-All taps and three card entries. No single button.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; global "pay everything"</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Invoice</div>
+        <div class="nsub">Pending</div>
+        <div class="globalpay"><div class="gpl">Total outstanding</div><div class="gpv">RM930</div><div class="gpm">Across 3 requests &middot; 1 overdue</div><div class="gpb">Pay everything &middot; RM930</div></div>
+        <div class="gcard"><div class="gch"><div><div class="gct">Form 4 Maths &middot; Adam</div><div class="gcm">Aisha &middot; Online</div></div><div class="gcv">RM310</div></div><div class="payall">Pay this one &middot; RM310</div></div>
+        <div class="gcard"><div class="gch"><div><div class="gct">Form 2 Science &middot; Lia</div><div class="gcm">Rajesh &middot; Online</div></div><div class="gcv">RM310</div></div><div class="payall">Pay this one &middot; RM310</div></div>
+        <div class="sp"></div>
+        <div class="muted">One hero CTA clears all of it; per-request pay stays as the second option.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">4 &middot; The one leftover old screen, re-skinned</div>
+  <div class="secs">The commitment-fee receipt is the only billing screen still in the old flat layout. Bring it onto the hero-card / section language for consistency.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; old flat layout</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Receipts</div>
+        <div class="flatt"><div style="font-size:10px">25 June 2026</div><span class="badge paid" style="background:rgba(255,255,255,.25);color:#fff">Paid</span></div>
+        <div class="flat"><div class="flatr"><span>Payer Name</span><b>Siti R.</b></div><div class="flatr"><span>Payer Email</span><b>siti@&hellip;</b></div></div>
+        <div class="flat"><div class="flatr"><span>Commitment Fee</span><b>RM50</b></div></div>
+        <div class="sp"></div>
+        <div class="muted">Plain rows, no hero, inconsistent with every other billing screen.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; matches the rest</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Receipt</div>
+        <div class="nsub">Commitment fee</div>
+        <div class="dhero"><div class="dhr"><div><div class="dhn">Commitment fee</div><div class="dhm">Paid 25 June 2026</div></div><span class="badge paid">Paid</span></div><div class="dhv" style="margin-top:8px">RM50</div></div>
+        <div class="sect"><div class="sh">Payer</div>
+          <div class="row"><div class="rl">Name</div><div class="rv">Siti R.</div></div>
+          <div class="row"><div class="rl">Email</div><div class="rv">siti@mail.com</div></div>
+        </div>
+        <div class="bridge"><span class="brw">&#10003;</span><div class="brt">Credited toward your first invoice.</div></div>
+        <div class="sp"></div>
+        <div class="ghost">Share receipt</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">What this is, and is not (Step 2.5 reassess)</div>
+  <div class="note good"><b>Applied:</b> explain the commitment-fee credit; surface a due date; bridge to C2 ("paying unblocks your class"); declutter the bill (cut Gender / Special Need / requirements); fix the older-invoice block with a clear why + oldest-first CTA; add a global "pay everything across requests"; re-skin the lone old commitment-fee receipt.</div>
+  <div class="note flag"><b>Kept on purpose (the guardrail):</b> we do NOT re-skin the hero cards, group cards, receipt feed, or Pay-All; the team already redesigned those and they are good. We sharpen, not replace. Price stays as today (no commission breakdown, per your call).</div>
+
+  <div class="sech">Notes for Hafiz</div>
+  <div class="note spec"><b>Backend, Priority 6:</b> a global multi-request pay-all bundle; the older-invoice acknowledgement path (or confirm oldest-first is the hard rule); a due date in the parent payload; return waived commitment fees as receipts; an SST / e-invoice line if compliant invoices are required. Full list in <code>01-requirements/parent-questions-for-hafiz.md</code>.</div>
+  <div class="note spec"><b>Brand bug (quick fix):</b> invoice PDFs and the support email read "Siftutor" / "hello@siftutor.my" (missing a "u"). The brand is Sifututor; the app elsewhere uses sifututor.my. Parents get the wrong brand on every invoice.</div>
+  <div class="note good"><b>Zero-backend now:</b> the credit explanation, the due-date display (once in the payload), the C2 bridge copy, the decluttered bill, the older-invoice clarity, and the receipt re-skin. The global pay-all lights up when the backend bundle lands.</div>
+
+  <div class="foot">Scope: C3 is the parent's billing surface, built on the already-merged invoice redesign. Next in sequence: C4 Reports (the trust aha), then C5 Home.</div>
+</div>
+</body>
+</html>

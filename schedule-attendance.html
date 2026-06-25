@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parent schedule + attendance · trust at the money gate</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{background:#fff}
+  body{margin:0;padding:24px 16px;font-family:-apple-system,system-ui,"Segoe UI",sans-serif;color:#18181b;--tint:#243cb3;--grey:#F2F2F7}
+  .doc{max-width:980px;margin:0 auto}
+  .head{background:#243cb3;color:#fff;border-radius:16px;padding:24px 26px}
+  .head .t{font-size:23px;font-weight:800;letter-spacing:-.3px}
+  .head .s{font-size:12.5px;opacity:.92;margin-top:6px;line-height:1.55}
+  .intro{background:#eef1fb;border:1px solid rgba(36,60,179,.2);border-radius:13px;padding:16px 20px;margin:16px 0 8px;font-size:12.5px;line-height:1.6;color:#3a3a52}
+  .intro b{color:#243cb3}
+  .sech{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--tint);margin:32px 0 4px}
+  .secs{font-size:12.5px;color:#52525b;margin-bottom:14px;line-height:1.55}.secs b{color:#1a5c38}
+  .pair{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+  .col{flex:1;min-width:0}
+  .cl{font-size:10px;font-weight:800;text-align:center;padding:4px 6px;border-radius:6px;margin-bottom:8px}
+  .cl.b{background:#fdeaea;color:#b42318}.cl.a{background:#e6eaf9;color:var(--tint)}.cl.s{background:#eef7f1;color:#1f7a44}
+  .ph{border-radius:26px;padding:13px 12px 9px;width:280px;max-width:100%;margin:0 auto;aspect-ratio:402/874;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.1)}
+  .ph.bf{background:#fff;border:1px solid #e2e2e6}
+  .ph.af{background:var(--grey)}
+  .ph::after{content:"";flex-shrink:0;width:38%;height:5px;border-radius:99px;background:rgba(0,0,0,.2);margin:11px auto 0}
+  .sb{display:flex;justify-content:space-between;font-size:8.5px;font-weight:700;margin-bottom:11px}
+  .sp{flex:1 1 auto}
+  .nt{font-size:16px;font-weight:800;letter-spacing:-.2px;margin-bottom:3px}
+  .nsub{font-size:10px;color:#71717a;margin-bottom:13px;line-height:1.4}
+  .grp{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden;margin-bottom:12px}
+  .row{display:flex;align-items:center;gap:8px;padding:10px 13px;border-bottom:1px solid #f0f0f3}
+  .row:last-child{border-bottom:none}
+  .rl{font-size:11px;font-weight:600;color:#18181b;flex:1;min-width:0}
+  .rv{font-size:11px;color:#18181b;font-weight:700;white-space:nowrap}
+  .chev{color:#c8c8cc;font-weight:800;font-size:13px;margin-left:2px}
+  .cta{background:var(--tint);color:#fff;text-align:center;font-size:13px;font-weight:700;padding:13px;border-radius:999px}
+  .cta.dim{background:#c3c8e3}
+  .cta.green{background:#1f7a44}
+  .ghost{background:#fff;border:1.5px solid #d8d8de;color:#52525b;text-align:center;font-size:12px;font-weight:700;padding:11px;border-radius:999px;margin-top:8px}
+  .alt{font-size:10px;color:#71717a;text-align:center;margin-top:9px;font-weight:600}
+  .toast{background:#1f7a44;color:#fff;font-size:9.5px;font-weight:800;border-radius:8px;padding:9px;text-align:center;margin-bottom:11px}
+  .focal{background:linear-gradient(125deg,#243cb3,#3a52c8);color:#fff;border-radius:13px;padding:13px;margin-bottom:13px}
+  .feb{font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;opacity:.85}
+  .fct{font-size:15px;font-weight:800;margin-top:4px}.fcm{font-size:10px;opacity:.92;margin-top:3px}
+  .needs{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+  .nh{font-size:11px;font-weight:800;color:#b42318}.nlink{font-size:9.5px;color:#243cb3;font-weight:700}
+  .arow{background:#fff;border-radius:11px;padding:10px 12px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:8px}
+  .at{font-size:11.5px;font-weight:800}.am{font-size:9px;color:#71717a;margin-top:2px}
+  .crow{background:#fff;border-radius:11px;padding:10px 12px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:8px;display:flex;align-items:center;gap:9px}
+  .ci2{flex:1;min-width:0}.cn2{font-size:11.5px;font-weight:800}.cm2{font-size:9px;color:#71717a;margin-top:2px}
+  .pill{font-size:8px;font-weight:800;border-radius:99px;padding:3px 8px;white-space:nowrap}
+  .pill.done{background:#eef7f1;color:#1f7a44}.pill.up{background:#eef1fb;color:#243cb3}.pill.act{background:#fdeaea;color:#b42318}.pill.raw{background:#f1f1f3;color:#71717a}
+  .snote{background:#fff;border-left:3px solid #1f7a44;border-radius:8px;padding:10px 12px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .snh{font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#1f7a44;margin-bottom:4px}
+  .snt{font-size:10.5px;font-weight:700;color:#18181b;line-height:1.4}.sntag{display:inline-block;font-size:8px;font-weight:800;color:#1f7a44;background:#eef7f1;border-radius:99px;padding:2px 7px;margin-top:6px;margin-right:4px}
+  .proof{display:flex;gap:8px;margin-bottom:11px}
+  .pf{flex:1;background:#e9e9ee;border-radius:9px;height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#9a9aa0;font-size:8px;font-weight:700;gap:3px}
+  .pf .pic{font-size:15px}
+  .paychip{display:flex;align-items:center;gap:8px;background:#fff7e6;border:1px solid rgba(245,158,11,.35);border-radius:10px;padding:10px 12px;margin-bottom:11px}
+  .pcw{font-size:14px}.pci{flex:1}.pcn{font-size:10.5px;font-weight:800;color:#92400e}.pcs{font-size:8.5px;color:#a16207;margin-top:1px}
+  .errwall{background:#fdeaea;border:1px solid rgba(180,35,24,.3);border-radius:10px;padding:12px;text-align:center}
+  .ewt{font-size:11px;font-weight:800;color:#b42318}.ews{font-size:9px;color:#9b2c20;margin-top:4px;line-height:1.45;font-family:ui-monospace,monospace}
+  .mail{background:#fff;border-radius:10px;padding:11px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .mlr{display:flex;justify-content:space-between;font-size:9.5px;padding:6px 0;border-bottom:1px solid #f0f0f3;color:#71717a}.mlr b{color:#18181b;font-weight:700}
+  .mlbody{font-size:9px;color:#c4c4c8;font-style:italic;padding:14px 0;text-align:center}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+  .dchip{font-size:9.5px;font-weight:700;border-radius:99px;padding:7px 11px;background:#fff;border:1.5px solid #d8d8de;color:#52525b}
+  .dchip.on{background:#eef1fb;border-color:#243cb3;color:#243cb3}
+  .note2{font-size:9.5px;color:#b8b8be;background:#fff;border:1px solid #ececef;border-radius:9px;padding:11px;margin-bottom:10px}
+  .banner{background:linear-gradient(120deg,#eef1fb,#e6eaf9);border:1px solid rgba(36,60,179,.2);border-radius:12px;padding:12px 13px;display:flex;align-items:center;gap:11px}
+  .bemoji{font-size:20px;flex-shrink:0}
+  .bt{flex:1;font-size:10.5px;line-height:1.4;color:#3a3a52}.bt b{color:#18181b;font-size:11.5px}
+  .bc{background:#243cb3;color:#fff;font-size:10px;font-weight:800;border-radius:99px;padding:8px 14px;white-space:nowrap}
+  .muted{font-size:8.5px;color:#a8a8ae;text-align:center;line-height:1.5;font-style:italic;margin-top:8px}
+  .note{font-size:11.5px;line-height:1.55;color:#52525b;border-radius:9px;padding:11px 14px;margin-bottom:9px}.note b{color:#3a3a52}
+  .note.flag{background:#eef1fb;border:1px solid rgba(36,60,179,.22)}
+  .note.spec{background:#fff7e6;border:1px solid rgba(245,158,11,.3)}
+  .note.good{background:#eef7f1;border:1px solid rgba(31,122,68,.3)}
+  .foot{margin-top:12px;font-size:13px;font-weight:700;color:#fff;background:#475569;border-radius:12px;padding:14px 18px;line-height:1.5}
+  @media (max-width:760px){ .pair{flex-direction:column;gap:26px;align-items:center} .ph{width:330px} .head .t{font-size:20px} }
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="head"><div class="t">Parent schedule + attendance &middot; trust at the money gate</div><div class="s">C2 of the customer-app redesign. The parent sees upcoming classes and approves a completed class, the tap that pays the tutor and bills the next month. This is not a tap problem; it is a clarity and trust problem. For Hafiz &middot; 25 June 2026.</div></div>
+
+  <div class="intro">The Approve tap is the <b>business engine</b>: it releases the tutor's pay and mints the next invoice. Yet today the parent taps Approve, confirms, and only then hits a raw error wall if the invoice is unpaid, and they approve money having never seen what was taught. The fixes use data that <b>already exists</b> in the backend: surface the <b>invoice + amount before the tap</b>, show the tutor's <b>session note</b> at the gate, <b>unify</b> the three inconsistent class views and relabel "attended" to "Needs your approval", add a <b>next-class</b> focal card, and make <b>dispute</b> a structured in-app flow.</div>
+
+  <div class="sech">1 &middot; The Calendar becomes the Classes hub</div>
+  <div class="secs">Today the money gate is buried in a stack screen while the Calendar tab does not surface it at all, and "attended" reads as <i>done</i>. The redesign promotes the approve-queue and a next-class focal onto the one classes surface.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; status reads "done", no approve here</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Calendar</div>
+        <div class="nsub">Today &middot; 25 June 2026</div>
+        <div class="crow"><div class="ci2"><div class="cn2">Adam &middot; Form 4 Maths</div><div class="cm2">5:00 PM &middot; Online</div></div><span class="pill raw">attended</span></div>
+        <div class="crow"><div class="ci2"><div class="cn2">Adam &middot; Form 4 Maths</div><div class="cm2">Tomorrow 5:00 PM</div></div><span class="pill raw">scheduled</span></div>
+        <div class="sp"></div>
+        <div class="muted">"attended" reads as finished, not "needs your approval". No approve action on this tab; the money gate lives on a separate buried screen.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; next class + approve-queue surfaced</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Classes</div>
+        <div class="nsub">Today &middot; 25 June 2026</div>
+        <div class="focal"><div class="feb">Next class</div><div class="fct">Tomorrow, 5:00 PM</div><div class="fcm">Form 4 Maths with Aisha &middot; Online</div></div>
+        <div class="needs"><span class="nh">&#9888; Needs your approval (1)</span><span class="nlink">Review &amp; approve &#8250;</span></div>
+        <div class="arow"><div class="at">Adam &middot; Form 4 Maths</div><div class="am">Today 5:00 PM &middot; tap to review the class</div></div>
+        <div class="crow"><div class="ci2"><div class="cn2">Adam &middot; Form 4 Maths</div><div class="cm2">Tomorrow 5:00 PM &middot; Online</div></div><span class="pill up">Upcoming</span></div>
+        <div class="sp"></div>
+        <div class="muted">One classes surface: a next-class focal, the approve-queue pinned on top, clear labels.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">2 &middot; The money gate (the hero)</div>
+  <div class="secs">The fix: surface the invoice + amount BEFORE the tap, show the tutor's session note, keep the proof photos, and give the right call to action. No more post-tap wall.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; tap Approve, hit a raw wall</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Class Attendance</div>
+        <div class="nsub">Pending</div>
+        <div class="grp">
+          <div class="row"><div class="rl">Student</div><div class="rv">Adam</div></div>
+          <div class="row"><div class="rl">Subject</div><div class="rv">Form 4 Maths</div></div>
+          <div class="row"><div class="rl">Tutor</div><div class="rv">Aisha</div></div>
+          <div class="row"><div class="rl">Time</div><div class="rv">5:00 - 6:30 PM</div></div>
+        </div>
+        <div class="cta">Approve</div>
+        <div class="errwall" style="margin-top:11px"><div class="ewt">&#10005; Approve failed</div><div class="ews">"Payment is required before class verification. Please ensure the invoice is paid."</div></div>
+        <div class="sp"></div>
+        <div class="muted">No invoice, no amount, no Pay button. The parent commits, then bounces off a raw English error.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; pay-state + session note, no wall</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Review this class</div>
+        <div class="nsub">Adam &middot; Form 4 Maths with Aisha &middot; Today 5:00 - 6:30 PM</div>
+        <div class="snote"><div class="snh">What Adam learned today</div><div class="snt">Quadratic equations: factorising and the formula.</div><span class="sntag">&#9679; Engaged well</span><span class="sntag">No concerns</span></div>
+        <div class="proof"><div class="pf"><span class="pic">&#128247;</span>Clock-in proof</div><div class="pf"><span class="pic">&#128247;</span>Clock-out proof</div></div>
+        <div class="paychip"><span class="pcw">&#128179;</span><div class="pci"><div class="pcn">Invoice PINV-3201 &middot; RM360</div><div class="pcs">Unpaid &middot; pay to approve this class</div></div></div>
+        <div class="sp"></div>
+        <div class="cta">Pay RM360 and approve</div>
+        <div class="ghost">Dispute this class</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="secs" style="margin-top:18px">First class of a request is approvable for free (payment is due before the next). That is now signposted, instead of a silent exemption:</div>
+  <div class="pair">
+    <div class="col" style="max-width:300px;margin:0 auto">
+      <div class="cl s">FIRST CLASS &middot; approve free</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Review this class</div>
+        <div class="nsub">Adam &middot; Form 4 Maths with Aisha &middot; first class</div>
+        <div class="snote"><div class="snh">What Adam learned today</div><div class="snt">Intro assessment and quadratic basics.</div><span class="sntag">&#9679; Engaged well</span></div>
+        <div class="proof"><div class="pf"><span class="pic">&#128247;</span>Clock-in proof</div><div class="pf"><span class="pic">&#128247;</span>Clock-out proof</div></div>
+        <div class="paychip" style="background:#eef7f1;border-color:rgba(31,122,68,.3)"><span class="pcw">&#10003;</span><div class="pci"><div class="pcn" style="color:#1f7a44">First class, approve for free</div><div class="pcs" style="color:#3f6b50">Your first invoice is due before the next class</div></div></div>
+        <div class="sp"></div>
+        <div class="cta green">Approve</div>
+      </div>
+    </div>
+    <div class="col">
+      <div style="font-size:12.5px;line-height:1.65;color:#3a3a52">
+        <p style="margin:0 0 10px"><b>What changed.</b> The pay-gate is surfaced on the card, not enforced as a surprise. Unpaid means "Pay RM360 and approve" as one action; the first class shows a clear "approve free" and explains the invoice is due before the next class.</p>
+        <p style="margin:0 0 10px"><b>The session note.</b> The tutor already writes what was taught, the engagement, and any concerns. The parent has never seen it. Now it sits at the gate, so the parent approves with real context, not just clock times.</p>
+        <p style="margin:0"><b>Needs (Hafiz Priority 5):</b> the attendance payload must return the linked invoice (number, amount, status) and the session note. Both exist server-side today.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">3 &middot; Dispute becomes a structured in-app flow</div>
+  <div class="secs">Today "Dispute" opens a blank email with no class context and no in-app record. The redesign keeps it in-app, tied to the class, with a reason.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; a blank email</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">New Message</div>
+        <div class="nsub">Mail</div>
+        <div class="mail">
+          <div class="mlr">To<b>hello@sifututor.my</b></div>
+          <div class="mlr">Subject<span style="color:#c4c4c8">(empty)</span></div>
+          <div class="mlbody">Blank. No class. No reason.<br>The parent types it all from scratch.</div>
+        </div>
+        <div class="sp"></div>
+        <div class="muted">Drops the parent out of the app into a blank email. No class context, no in-app record, no structure for staff.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; in-app, tied to the class</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Report an issue</div>
+        <div class="nsub">Form 4 Maths &middot; Adam &middot; Today 5:00 PM &middot; PINV-3201</div>
+        <div class="secs" style="font-size:10px;margin:2px 0 8px;color:#71717a">What was the issue?</div>
+        <div class="chips"><span class="dchip on">Tutor did not show</span><span class="dchip">Wrong duration</span><span class="dchip">Quality concern</span><span class="dchip">Other</span></div>
+        <div class="note2">Add a note for the team (optional)&hellip;</div>
+        <div class="sp"></div>
+        <div class="cta">Submit to the team</div>
+        <div class="alt">The class stays pending while we look into it</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">4 &middot; The commercial moment (Rule 16)</div>
+  <div class="secs">A just-approved class plus a good session note is the warmest moment in the whole app. That is where the C1 "add a subject" cross-sell belongs.</div>
+  <div class="pair">
+    <div class="col" style="max-width:300px;margin:0 auto">
+      <div class="cl s">AFTER APPROVE &middot; warm cross-sell</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="toast">&#10003; Class approved &middot; thank you</div>
+        <div class="nt">Adam is doing well in Maths</div>
+        <div class="nsub">Aisha noted strong engagement today.</div>
+        <div class="banner"><div class="bemoji">&#128218;</div><div class="bt"><b>Add a subject for Adam?</b><br>Many Form 4 Maths students also take Add Maths.</div><div class="bc">Add</div></div>
+        <div class="sp"></div>
+        <div class="alt">Clearly optional, dismiss anytime</div>
+      </div>
+    </div>
+    <div class="col">
+      <div style="font-size:12.5px;line-height:1.65;color:#3a3a52">
+        <p style="margin:0 0 10px"><b>Commercial pass.</b> Founder: the approve tap is the revenue engine, so de-risking it protects revenue directly. Sales: the pay-gate is a conversion moment (surfaced well, on-time payment rises), and post-approve is the warmest cross-sell. Marketing: the session note is a trust and shareable asset. Analyst: track approval rate, time-to-approve, on-time payment, attach-rate.</p>
+        <p style="margin:0"><b>Guard.</b> The cross-sell is dismissible and never blocks the flow; and Approve must not become so frictionless that the proof review is skipped. Trust at the gate holds.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">Consolidation (Step 2.5 reassess)</div>
+  <div class="note good"><b>Applied:</b> (1) promote the approve-queue and a next-class focal onto the Calendar (now the one "Classes" hub), so the money gate is no longer buried in a stack screen; (2) one class-row pattern and one status vocabulary across Calendar / Home / the queue; (3) surface invoice + session note at the gate; (4) structured in-app dispute.</div>
+  <div class="note flag"><b>Kept on purpose (the guardrail):</b> the full attendance queue (Pending + Past archive + search) stays as its own screen, one tap from the promoted entry, not crammed onto the Calendar. The proof photos stay in a focused modal, not inlined onto every card (that would bloat the list). Right-sized, not minimised.</div>
+
+  <div class="sech">Notes for Hafiz</div>
+  <div class="note spec"><b>Backend, Priority 5:</b> extend the parent attendance/class payload with the linked invoice (number, amount, paid/unpaid) AND the session note (topics / engagement / concerns). Both exist server-side and are simply not returned to the app. Plus a parent dispute endpoint (the backend has a dispute path the app never calls). Full list in <code>01-requirements/parent-questions-for-hafiz.md</code>.</div>
+  <div class="note good"><b>Zero-backend now:</b> the unify + relabel, the next-class focal, the first-class signpost framing, the error translation, and surfacing the proof can ship against today's data; the invoice + session note surfacing light up when the payload extends.</div>
+
+  <div class="foot">Scope: C2 is the parent's class schedule and the attendance-approve money gate. Next in sequence: your call on C3 (billing) vs C4 (reports), which we deferred until after C2.</div>
+</div>
+</body>
+</html>

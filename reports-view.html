@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parent reports view · the trust artifact, 0 taps</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{background:#fff}
+  body{margin:0;padding:24px 16px;font-family:-apple-system,system-ui,"Segoe UI",sans-serif;color:#18181b;--tint:#243cb3;--grey:#F2F2F7}
+  .doc{max-width:980px;margin:0 auto}
+  .head{background:#243cb3;color:#fff;border-radius:16px;padding:24px 26px}
+  .head .t{font-size:23px;font-weight:800;letter-spacing:-.3px}
+  .head .s{font-size:12.5px;opacity:.92;margin-top:6px;line-height:1.55}
+  .intro{background:#eef1fb;border:1px solid rgba(36,60,179,.2);border-radius:13px;padding:16px 20px;margin:16px 0 8px;font-size:12.5px;line-height:1.6;color:#3a3a52}.intro b{color:#243cb3}
+  .sech{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--tint);margin:32px 0 4px}
+  .secs{font-size:12.5px;color:#52525b;margin-bottom:14px;line-height:1.55}.secs b{color:#1a5c38}
+  .pair{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+  .col{flex:1;min-width:0}
+  .cl{font-size:10px;font-weight:800;text-align:center;padding:4px 6px;border-radius:6px;margin-bottom:8px}
+  .cl.b{background:#fdeaea;color:#b42318}.cl.a{background:#e6eaf9;color:var(--tint)}.cl.s{background:#eef7f1;color:#1f7a44}
+  .ph{border-radius:26px;padding:13px 12px 9px;width:280px;max-width:100%;margin:0 auto;aspect-ratio:402/874;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.1)}
+  .ph.bf{background:#fff;border:1px solid #e2e2e6}.ph.af{background:var(--grey)}
+  .ph::after{content:"";flex-shrink:0;width:38%;height:5px;border-radius:99px;background:rgba(0,0,0,.2);margin:11px auto 0}
+  .sb{display:flex;justify-content:space-between;font-size:8.5px;font-weight:700;margin-bottom:11px}
+  .sp{flex:1 1 auto}
+  .nt{font-size:16px;font-weight:800;letter-spacing:-.2px;margin-bottom:3px}
+  .nsub{font-size:10px;color:#71717a;margin-bottom:13px;line-height:1.4}
+  .searchbox{background:#fff;border-radius:9px;padding:9px 11px;font-size:9.5px;color:#b8b8be;margin-bottom:11px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .flat2{background:#f6f6f8;border-radius:8px;padding:9px 10px;margin-bottom:6px;font-size:9.5px;color:#52525b}.flat2 b{font-weight:700;color:#18181b}
+  .hubg{margin-bottom:12px}
+  .hgh{font-size:11.5px;font-weight:800;margin-bottom:7px;display:flex;align-items:center;gap:6px}
+  .hav{width:20px;height:20px;border-radius:99px;background:#243cb3;color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .hcard{background:#fff;border-radius:10px;padding:10px 11px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:7px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .hci{min-width:0}.hct{font-size:10.5px;font-weight:700}.hcm{font-size:8.5px;color:#9a9aa0;margin-top:2px}
+  .hbadge{font-size:7.5px;font-weight:800;border-radius:99px;padding:2px 7px;white-space:nowrap;flex-shrink:0}
+  .hbadge.ev{background:#eef1fb;color:#243cb3}.hbadge.pr{background:#eef7f1;color:#1f7a44}
+  .hdr{font-size:17px;font-weight:800}.hsub{font-size:9.5px;color:#71717a;margin:3px 0 11px}.vb{color:#1f7a44;font-weight:700}
+  .warm{font-size:10.5px;color:#3f3f46;line-height:1.5;font-style:italic;background:#fff;border-radius:10px;padding:11px;box-shadow:0 1px 2px rgba(0,0,0,.04);margin-bottom:9px}
+  .sec{background:#fff;border-radius:10px;padding:11px;margin-bottom:9px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .sl{font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#243cb3;margin-bottom:6px}
+  .bl{font-size:10px;color:#3f3f46;line-height:1.45;margin-bottom:5px;display:flex;gap:6px}.bl:last-child{margin-bottom:0}
+  .ok{color:#1f7a44;font-weight:800;flex-shrink:0}.bdot{color:#243cb3;font-weight:800;flex-shrink:0}
+  .score{display:flex;align-items:center;justify-content:space-between;background:#eef1fb;border-radius:9px;padding:8px 11px;margin-top:8px}
+  .scn{font-size:9.5px;font-weight:800;color:#243cb3}.scd2{font-size:8px;color:#71717a}
+  .scv{font-size:21px;font-weight:800;color:#243cb3}.scv span{font-size:11px;color:#9aa0c0}
+  .means{font-size:9.5px;color:#18181b;line-height:1.5;background:#eef7f1;border-radius:10px;padding:10px;margin-bottom:9px;font-weight:500}
+  .chk{font-size:9px;color:#1a5c38;font-weight:700;background:#eef7f1;border-radius:7px;padding:8px;margin-top:7px}
+  .closeln{font-size:9.5px;color:#3f3f46;font-style:italic;text-align:center;margin:2px 0 9px;line-height:1.45}
+  .rate{background:#fff;border-radius:12px;padding:11px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:9px}
+  .rrl{font-size:10.5px;font-weight:800;text-align:center;margin-bottom:7px}
+  .stars{font-size:21px;color:#f5a623;text-align:center;letter-spacing:5px;margin-bottom:9px}
+  .ratecta{background:var(--tint);color:#fff;text-align:center;font-size:12px;font-weight:700;padding:11px;border-radius:999px}
+  .rnote{font-size:8px;color:#9a9aa0;text-align:center;margin-top:6px}
+  .accord{background:#fff;border-radius:10px;padding:11px 12px;display:flex;justify-content:space-between;align-items:center;font-size:10px;font-weight:700;color:#71717a;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .qb{background:#fff;border-radius:8px;padding:9px 10px;margin-bottom:6px;font-size:9.5px;color:#52525b;line-height:1.4;box-shadow:0 1px 2px rgba(0,0,0,.04)}.qb b{color:#18181b}
+  .trend{background:#eef7f1;border-radius:9px;padding:10px;margin-bottom:9px;text-align:center}
+  .trv{font-size:12px;font-weight:800;color:#1a5c38}.trd{font-size:8.5px;color:#3f6b50;margin-top:2px}
+  .luna{font-size:8.5px;color:#52525b;background:#f3eefe;border:1px solid #e0d4fb;border-radius:8px;padding:7px 9px;margin-bottom:9px;line-height:1.4}.lb{font-weight:800;color:#6b3fd1}
+  .muted{font-size:8.5px;color:#a8a8ae;text-align:center;line-height:1.5;font-style:italic;margin-top:8px}
+  .stage{font-size:8px;font-weight:800;color:#6b3fd1;background:#f3eefe;border-radius:99px;padding:2px 7px;display:inline-block;margin-bottom:8px}
+  .note{font-size:11.5px;line-height:1.55;color:#52525b;border-radius:9px;padding:11px 14px;margin-bottom:9px}.note b{color:#3a3a52}
+  .note.flag{background:#eef1fb;border:1px solid rgba(36,60,179,.22)}
+  .note.spec{background:#fff7e6;border:1px solid rgba(245,158,11,.3)}
+  .note.good{background:#eef7f1;border:1px solid rgba(31,122,68,.3)}
+  .foot{margin-top:12px;font-size:13px;font-weight:700;color:#fff;background:#475569;border-radius:12px;padding:14px 18px;line-height:1.5}
+  @media (max-width:760px){ .pair{flex-direction:column;gap:26px;align-items:center} .ph{width:330px} .head .t{font-size:20px} }
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="head"><div class="t">Parent reports view &middot; the trust artifact, 0 taps</div><div class="s">C4 of the customer-app redesign. The evaluation report is the parent's first proof after class 1 and the foundation of the continue-decision. The parent-view design is already drafted (the Deliver wave); C4 adopts it, grounds it, and adds the hub + the 0-tap landing. For Hafiz &middot; 25 June 2026.</div></div>
+
+  <div class="intro">No fields are cut (all are shared with the admin portal and the tutor app), so the win is <b>reframing the render</b>, the <b>reports hub</b>, and the <b>0-tap aha</b>. We adopt the drafted evaluation trust artifact and progress trend, and ship in two stages: <b>Stage 1 now</b> reframes the layout from the existing free-text answers; <b>Stage 2</b> layers the structured levels and Luna's synthesis (the score is tutor free-text today, and the level labels are not stored, so the full artifact needs structured input or Luna).</div>
+
+  <div class="sech">1 &middot; The reports hub</div>
+  <div class="secs">Today it is one flat, mixed, unsorted list of all children and both report types, with a search that filters on keys the data does not contain (so it never matches). The fix groups by child, sorts newest-first, and labels the report type in plain language.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; flat mixed list, broken search</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Student Report</div>
+        <div class="searchbox">&#128269; Search (does not match)</div>
+        <div class="flat2"><b>Maths</b> &middot; Adam &middot; evaluation Report &middot; 24 Jun</div>
+        <div class="flat2"><b>Science</b> &middot; Lia &middot; evaluation Report &middot; 20 Jun</div>
+        <div class="flat2"><b>Maths</b> &middot; Adam &middot; progress Report &middot; 12 Jun</div>
+        <div class="flat2"><b>Science</b> &middot; Lia &middot; progress Report &middot; 8 Jun</div>
+        <div class="sp"></div>
+        <div class="muted">"evaluation Report" lowercased; no grouping; not sorted by date; the search box never matches (wrong keys).</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; grouped by child, newest first</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Reports</div>
+        <div class="searchbox">&#128269; Search by child or subject</div>
+        <div class="hubg"><div class="hgh"><span class="hav">A</span> Adam</div>
+          <div class="hcard"><div class="hci"><div class="hct">Maths</div><div class="hcm">24 Jun &middot; with Aisha</div></div><span class="hbadge ev">First-class evaluation</span></div>
+          <div class="hcard"><div class="hci"><div class="hct">Maths</div><div class="hcm">12 Jun</div></div><span class="hbadge pr">Progress &middot; 24 classes</span></div>
+        </div>
+        <div class="hubg"><div class="hgh"><span class="hav">L</span> Lia</div>
+          <div class="hcard"><div class="hci"><div class="hct">Science</div><div class="hcm">20 Jun &middot; with Rajesh</div></div><span class="hbadge ev">First-class evaluation</span></div>
+        </div>
+        <div class="sp"></div>
+        <div class="muted">Grouped by child, newest-first, human badges, working search.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">2 &middot; The evaluation report, 0 taps to the proof</div>
+  <div class="secs">Today everything is collapsed: reading a full evaluation is up to 7 taps. The redesign lands the adopted trust artifact ABOVE the accordion, so the proof needs 0 taps; the raw question-and-answer stays below for anyone who wants it.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; collapsed accordion, ~7 taps</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Evaluation Report</div>
+        <div class="nsub">Adam Lim &middot; Maths &middot; 24 Jun</div>
+        <div class="accord" style="margin-bottom:7px">KNOWLEDGE <span class="bdot">&#9662;</span></div>
+        <div class="accord" style="margin-bottom:7px">UNDERSTANDING <span class="bdot">&#9662;</span></div>
+        <div class="accord" style="margin-bottom:7px">CRITICAL THINKING <span class="bdot">&#9662;</span></div>
+        <div class="accord" style="margin-bottom:7px">OBSERVATION <span class="bdot">&#9662;</span></div>
+        <div class="accord">ADDITIONAL ASSESSMENT <span class="bdot">&#9662;</span></div>
+        <div class="muted">Everything collapsed. Tap each of 5 cards to read. Behind them: raw sentences and a bare "6". No synthesis, no reason to continue.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; the trust artifact lands first</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <span class="stage">Stage 1 &middot; from today's free-text</span>
+        <div class="hdr">Adam's first class</div>
+        <div class="hsub">Maths &middot; with Aisha Rahman <span class="vb">&#10003; Verified</span> &middot; 24 Jun</div>
+        <div class="warm">"It was lovely meeting Adam today. He settled in quickly and was not shy to try, even on the harder questions."</div>
+        <div class="sec"><div class="sl">Where Adam is starting</div>
+          <div class="bl"><span class="ok">&#10003;</span> Knowledge: the basics of fractions are secure.</div>
+          <div class="bl"><span class="bdot">&middot;</span> Building independent problem-solving.</div>
+          <div class="score"><div><div class="scn">Starting point today</div><div class="scd2">we will track this together</div></div><div class="scv">6<span>/10</span></div></div>
+        </div>
+        <div class="means">A solid base and the right attitude. The main thing to build is his confidence on his own, and that is very fixable. By around lesson 4, I expect his 6 to start moving up, and I will show you.</div>
+        <div class="rate" style="margin-top:9px"><div class="rrl">How was Adam's first class?</div><div class="stars">&#9734; &#9734; &#9734; &#9734; &#9734;</div><div class="ratecta">Submit rating</div></div>
+        <div class="accord">Full report (the raw answers) <span class="bdot">&#9662;</span></div>
+        <div class="sp"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">3 &middot; The progress report, the movement up front</div>
+  <div class="secs">The recurring report (every 12 classes) answers one question: is my child improving? Today it cannot. The adopted design leads with the trend and a verdict. Stage 1 = the tutor writes the verdict; Stage 2 = Luna drafts it for the tutor to review.</div>
+  <div class="pair">
+    <div class="col" style="max-width:300px;margin:0 auto">
+      <div class="cl a">AFTER &middot; trend + verdict (adopted)</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="hdr">Adam's progress</div>
+        <div class="hsub">Maths &middot; with Aisha <span class="vb">&#10003;</span> &middot; after 24 classes</div>
+        <div class="trend"><div class="trv">Understanding 6 &#8594; 8</div><div class="trd">Independence goal met</div></div>
+        <div class="luna"><span class="lb">&#10024; Stage 2: written by Luna</span>, reviewed by Aisha. Stage 1: Aisha writes it.</div>
+        <div class="warm">"Over his first 24 classes, Adam has moved from needing step-by-step guidance to solving most problems on his own. He is ready for exam-style questions."</div>
+        <div class="sec"><div class="sl">Next 12 classes</div><div class="bl"><span class="bdot">&middot;</span> Past-year exam questions, keeping the spoken-reasoning habit.</div><div class="chk">Target: his 8 holds on harder questions by class 36.</div></div>
+        <div class="sp"></div>
+      </div>
+    </div>
+    <div class="col">
+      <div style="font-size:12.5px;line-height:1.65;color:#3a3a52">
+        <p style="margin:0 0 10px"><b>Why the trend matters.</b> A recurring report exists to answer "is my child improving?". Today both reports are the same flat accordion with a bare score, so the parent cannot tell up from down. Leading with "Understanding 6 to 8" and the verdict is the whole value.</p>
+        <p style="margin:0 0 10px"><b>The data exists.</b> Prior reports for the same child and subject are queryable; the trend just needs reading across reports, which the app never does today.</p>
+        <p style="margin:0"><b>Staging.</b> The layout ships now with the tutor writing the verdict; Luna's auto-draft layers in later. The review screen does not change, only the draft's source.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">What this is, and is not (Step 2.5 reassess)</div>
+  <div class="note good"><b>Applied:</b> adopt the drafted evaluation trust artifact and progress trend; fix the hub (group by child, sort newest-first, human badges, working search); land the synthesis above the accordion (0 taps to the proof); keep the raw answers behind a "Full report" expand; add the neutral rating; delete ~1,700 dead lines and fix the mislabel / index-slip / PDF bugs.</div>
+  <div class="note flag"><b>Kept on purpose (the guardrail):</b> the raw question-and-answer accordion stays (some parents want the detail, and the data is shared with admin), just demoted below the synthesis. No fields cut. The narrative voice is the tutor's, never flattened to checkboxes.</div>
+
+  <div class="sech">Notes for Hafiz</div>
+  <div class="note spec"><b>Backend, Priority 7:</b> render the parent-facing report (reframed from the free-text; score as a baseline; human report-type label); Stage 2 structured levels or Luna for the bullets and synthesis; the progress trend (read across reports); sort and group the hub; the rating. Full list in <code>01-requirements/parent-questions-for-hafiz.md</code>.</div>
+  <div class="note good"><b>Zero-backend now (Stage 1):</b> the hub grouping and sort, the human badges, the 0-tap layout from the existing free-text, the "Full report" demotion, and the dead-code and bug cleanup. The bullets, the structured levels, and Luna are Stage 2.</div>
+
+  <div class="foot">Scope: C4 is the parent's report VIEW, adopting the Deliver wave's parent-facing designs and adding the hub + the 0-tap landing. The tutor-input side stays with the tutor chat. Next in sequence: C5 Home.</div>
+</div>
+</body>
+</html>

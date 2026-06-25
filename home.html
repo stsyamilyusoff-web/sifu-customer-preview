@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parent Home · supported, updated, and operationally firm</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{background:#fff}
+  body{margin:0;padding:24px 16px;font-family:-apple-system,system-ui,"Segoe UI",sans-serif;color:#18181b;--tint:#243cb3;--grey:#F2F2F7}
+  .doc{max-width:980px;margin:0 auto}
+  .head{background:#243cb3;color:#fff;border-radius:16px;padding:24px 26px}
+  .head .t{font-size:23px;font-weight:800;letter-spacing:-.3px}
+  .head .s{font-size:12.5px;opacity:.92;margin-top:6px;line-height:1.55}
+  .intro{background:#eef1fb;border:1px solid rgba(36,60,179,.2);border-radius:13px;padding:16px 20px;margin:16px 0 8px;font-size:12.5px;line-height:1.6;color:#3a3a52}.intro b{color:#243cb3}
+  .sech{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--tint);margin:32px 0 4px}
+  .secs{font-size:12.5px;color:#52525b;margin-bottom:14px;line-height:1.55}.secs b{color:#1a5c38}
+  .pair{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+  .col{flex:1;min-width:0}
+  .cl{font-size:10px;font-weight:800;text-align:center;padding:4px 6px;border-radius:6px;margin-bottom:8px}
+  .cl.b{background:#fdeaea;color:#b42318}.cl.a{background:#e6eaf9;color:var(--tint)}.cl.s{background:#eef7f1;color:#1f7a44}
+  .ph{border-radius:26px;padding:13px 12px 9px;width:280px;max-width:100%;margin:0 auto;aspect-ratio:402/874;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.1)}
+  .ph.bf{background:#fff;border:1px solid #e2e2e6}.ph.af{background:var(--grey)}
+  .ph::after{content:"";flex-shrink:0;width:38%;height:5px;border-radius:99px;background:rgba(0,0,0,.2);margin:11px auto 0}
+  .sb{display:flex;justify-content:space-between;font-size:8.5px;font-weight:700;margin-bottom:11px}
+  .sp{flex:1 1 auto}
+  .greet{font-size:16px;font-weight:800}.greets{font-size:9px;color:#71717a;margin:1px 0 12px}
+  .jhero{background:linear-gradient(125deg,#243cb3,#3a52c8);color:#fff;border-radius:14px;padding:13px;margin-bottom:10px}
+  .jhl{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;opacity:.85}
+  .jht{font-size:15px;font-weight:800;margin-top:3px}
+  .jchips{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+  .jchip{font-size:7.5px;font-weight:700;background:rgba(255,255,255,.22);border-radius:99px;padding:3px 8px}
+  .jnext{font-size:9px;margin-top:9px;background:rgba(255,255,255,.14);border-radius:8px;padding:8px 9px;font-weight:600}
+  .secline{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#9a9aa0;margin:3px 0 7px}
+  .overdue{background:#fdecec;border:1.5px solid #f0a8a8;border-radius:12px;padding:10px 11px;margin-bottom:9px;display:flex;align-items:center;gap:9px}
+  .ovw{font-size:16px;flex-shrink:0}
+  .ovi{flex:1;min-width:0}.ovt{font-size:10.5px;font-weight:800;color:#b42318}.ovm{font-size:8px;color:#9b2c20;margin-top:1px;line-height:1.3}
+  .ovb{background:#b42318;color:#fff;font-size:9px;font-weight:800;border-radius:99px;padding:7px 12px;white-space:nowrap}
+  .needrow{background:#fff;border-radius:11px;padding:10px 11px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:8px;display:flex;align-items:center;gap:9px}
+  .nrw{font-size:15px;flex-shrink:0}
+  .nri{flex:1;min-width:0}.nrt{font-size:10px;font-weight:800}.nrm{font-size:8px;color:#71717a;margin-top:1px}
+  .nrb{background:#243cb3;color:#fff;font-size:9px;font-weight:800;border-radius:99px;padding:7px 12px;white-space:nowrap}
+  .rptcard{background:#eef7f1;border:1px solid rgba(31,122,68,.25);border-radius:11px;padding:10px 11px;margin-bottom:8px;display:flex;align-items:center;gap:9px}
+  .rci{flex:1;min-width:0}.rct{font-size:10px;font-weight:800;color:#1a5c38}.rcm{font-size:8px;color:#3f6b50;margin-top:1px}
+  .rcb{font-size:14px;color:#1f7a44;flex-shrink:0}
+  .demote{font-size:8px;color:#a8a8ae;text-align:center;font-style:italic;background:#fff;border-radius:8px;padding:8px;margin-top:2px}
+  .bslider{background:linear-gradient(120deg,#f5a623,#f7c456);color:#fff;border-radius:11px;padding:17px 12px;text-align:center;font-size:10px;font-weight:800;margin-bottom:9px}
+  .bcta{background:#eef1fb;border-radius:11px;padding:13px;text-align:center;margin-bottom:9px}.bctat{font-size:12px;font-weight:800;color:#243cb3}.bctas{font-size:8px;color:#71717a;margin-top:3px}
+  .bnavy{background:#1a2240;color:#fff;border-radius:10px;padding:9px 11px;font-size:9px;font-weight:700;margin-bottom:7px}
+  .binv{background:#fff;border-radius:10px;padding:9px 11px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:7px;display:flex;justify-content:space-between;font-size:9px}.binv b{font-weight:800}
+  .muted{font-size:8.5px;color:#a8a8ae;text-align:center;line-height:1.5;font-style:italic;margin-top:8px}
+  .twocard{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+  .pcard{flex:1;min-width:230px;background:#fff;border:1px solid #e9e9ee;border-radius:13px;padding:16px}
+  .pct{font-size:13px;font-weight:800;color:#243cb3}.pcb{font-size:11.5px;color:#52525b;line-height:1.6;margin-top:7px}
+  .note{font-size:11.5px;line-height:1.55;color:#52525b;border-radius:9px;padding:11px 14px;margin-bottom:9px}.note b{color:#3a3a52}
+  .note.flag{background:#eef1fb;border:1px solid rgba(36,60,179,.22)}
+  .note.spec{background:#fff7e6;border:1px solid rgba(245,158,11,.3)}
+  .note.good{background:#eef7f1;border:1px solid rgba(31,122,68,.3)}
+  .foot{margin-top:12px;font-size:13px;font-weight:700;color:#fff;background:#475569;border-radius:12px;padding:14px 18px;line-height:1.5}
+  @media (max-width:760px){ .pair{flex-direction:column;gap:26px;align-items:center} .ph{width:330px} .head .t{font-size:20px} }
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="head"><div class="t">Parent Home &middot; supported, updated, and operationally firm</div><div class="s">C5 of the customer-app redesign, the aggregator. A parent spending thousands on their child cares deeply, so Home must make them feel supported and updated on the journey, while firmly flagging overdue payments (non-negotiable). For Hafiz &middot; 25 June 2026.</div></div>
+
+  <div class="intro">Objective (founder): the parent should feel <b>supported, trusted, and updated on the journey</b>, and the platform must <b>notify about classes and payments and flag overdue firmly</b>. So Home is not a cold action list and not a marketing wall. It <b>leads with the child's journey and the felt value of the spend</b>, then surfaces the operational needs, with <b>overdue unmissable but framed around keeping classes running</b>, not shaming. It repoints at the redesigned spokes and fills the biggest gap: a fresh report now appears on Home.</div>
+
+  <div class="sech">Home, before and after</div>
+  <div class="secs">Today Home opens on a promo slider and a generic "Request Now" before any of the parent's real work or any sense of how their child is doing. The redesign opens on the child's journey, then the operational needs.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; marketing first, no journey, no report</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="greet">Welcome!</div><div class="greets">Siti Rahman</div>
+        <div class="bslider">&#127881; PROMO BANNER</div>
+        <div class="bcta"><div class="bctat">Create Tutor Request</div><div class="bctas">Your child's tutor is just one tap away</div></div>
+        <div class="bnavy">Class Reminder &middot; TODAY &middot; 5:00 PM Maths</div>
+        <div class="binv"><span>Invoice Due</span><span><b>RM310</b></span></div>
+        <div class="sp"></div>
+        <div class="muted">A promo and a generic CTA above the fold. No sense of how the child is doing. No report. The money-gate and an overdue bill sit buried at a fixed depth, un-prioritised.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; journey first, then what needs you</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="greet">Good morning, Siti</div><div class="greets">Here is how Adam is doing</div>
+        <div class="jhero"><div class="jhl">Adam's journey</div><div class="jht">Adam is doing well</div>
+          <div class="jchips"><span class="jchip">Maths &middot; 24 classes</span><span class="jchip">Understanding 6 &#8594; 8</span><span class="jchip">On track</span></div>
+          <div class="jnext">&#128197; Next class tomorrow 5:00 PM with Aisha &#10003; Verified</div>
+        </div>
+        <div class="secline">Needs you</div>
+        <div class="overdue"><span class="ovw">&#9888;</span><div class="ovi"><div class="ovt">RM310 overdue</div><div class="ovm">Please clear it to keep Adam's classes running.</div></div><span class="ovb">Pay now</span></div>
+        <div class="needrow"><span class="nrw">&#9989;</span><div class="nri"><div class="nrt">Approve Friday's class</div><div class="nrm">With Aisha &middot; so she can be paid</div></div><span class="nrb">Review</span></div>
+        <div class="rptcard"><span style="font-size:15px">&#10024;</span><div class="rci"><div class="rct">New report ready for Adam</div><div class="rcm">His first-class evaluation</div></div><span class="rcb">&#8250;</span></div>
+        <div class="sp"></div>
+        <div class="demote">News, blogs, and promos move below the fold.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">The balance: warm, and firm where it must be</div>
+  <div class="secs">Two design pillars, held together: the felt value of the spend, and the non-negotiable of getting paid.</div>
+  <div class="twocard">
+    <div class="pcard"><div class="pct">Supported &middot; trusted &middot; updated</div><div class="pcb">Home opens on the child's journey, not a promo. A progress snapshot ("Adam is doing well, Understanding 6 to 8, on track"), the next class with the verified tutor, and a fresh report surfaced the moment it lands. The parent feels their investment working and stays in the loop. This is the felt value of spending thousands on their child.</div></div>
+    <div class="pcard"><div class="pct">Operationally firm (overdue)</div><div class="pcb">Overdue payments are flagged clearly and unmissably (the founder's non-negotiable), but framed around continuity ("clear it to keep Adam's classes running"), tying to the real consequence (an unpaid invoice blocks the next class), never shaming. Firm, respectful, and honest. The platform gets paid; the parent keeps their dignity.</div></div>
+  </div>
+
+  <div class="sech">What this is (Step 2.5 reassess)</div>
+  <div class="note good"><b>Applied:</b> a journey-first Home; a "what needs you" zone with the overdue flag (firm + supportive), the approve money-gate, and the new-report miniature (the biggest gap filled); repointed spokes (C1 matching-status when there is an open request, C3 the explained money block); marketing demoted below the fold. The orphaned `HomeStatsRow` is revived as the journey/triage layer.</div>
+  <div class="note flag"><b>Kept on purpose (the guardrail):</b> Home stays a launchpad, not a second copy of each surface. The journey snapshot and the "needs you" items LINK to the full screens (the schedule, the bill, the report); they do not reproduce them. Calm and prioritised, never an anxiety pile of red items. One firm overdue flag, not a wall of them.</div>
+
+  <div class="sech">Notes for Hafiz</div>
+  <div class="note spec"><b>Backend, Priority 8:</b> add the latest report summary and the latest open-request status to `home-data` (so the report and request miniatures render); trim `home-data` (drop the unused `refundinvoices` + `notifications`). The "what needs you" priority and the journey snapshot compute client-side from the existing payload. Full list in <code>01-requirements/parent-questions-for-hafiz.md</code>.</div>
+  <div class="note good"><b>Zero-backend now:</b> the journey-first reorder, the "needs you" zone, the overdue framing, demoting marketing, reviving HomeStatsRow, and removing the dead commented machinery still firing API calls. The report + request miniatures light up when the payload extends.</div>
+
+  <div class="foot">Scope: C5 Home is the LAST customer-app surface, the aggregator of C1-C4. With it, the parent journey is mapped, audited, mocked, and reassessed end to end: request, choose (designed), schedule and approve, pay, read the report, and a Home that holds it together.</div>
+</div>
+</body>
+</html>

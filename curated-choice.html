@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parent curated-choice · pick in-app, not in WhatsApp</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{background:#fff}
+  body{margin:0;padding:24px 16px;font-family:-apple-system,system-ui,"Segoe UI",sans-serif;color:#18181b;--tint:#243cb3;--grey:#F2F2F7}
+  .doc{max-width:860px;margin:0 auto}
+  .head{background:#243cb3;color:#fff;border-radius:16px;padding:24px 26px}
+  .head .t{font-size:23px;font-weight:800;letter-spacing:-.3px}
+  .head .s{font-size:12.5px;opacity:.92;margin-top:6px;line-height:1.55}
+  .intro{background:#eef1fb;border:1px solid rgba(36,60,179,.2);border-radius:13px;padding:16px 20px;margin:16px 0 8px;font-size:12.5px;line-height:1.6;color:#3a3a52}
+  .intro b{color:#243cb3}
+  .sech{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--tint);margin:30px 0 4px}
+  .secs{font-size:12.5px;color:#52525b;margin-bottom:14px;line-height:1.55}.secs b{color:#1a5c38}
+  .pair{display:flex;gap:16px;align-items:flex-start}
+  .col{flex:1;min-width:0}
+  .cl{font-size:10px;font-weight:800;text-align:center;padding:4px;border-radius:6px;margin-bottom:8px}
+  .cl.b{background:#f1f1f3;color:#71717a}.cl.a{background:#e6eaf9;color:var(--tint)}
+  .ph{border-radius:26px;padding:13px 12px 9px;width:280px;max-width:100%;margin:0 auto;aspect-ratio:402/874;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.1)}
+  .ph.bf{background:#fff;border:1px solid #e2e2e6}
+  .ph.af{background:var(--grey)}
+  .ph::after{content:"";flex-shrink:0;width:38%;height:5px;border-radius:99px;background:rgba(0,0,0,.2);margin:11px auto 0}
+  .sb{display:flex;justify-content:space-between;font-size:8.5px;font-weight:700;margin-bottom:11px}
+  .sp{flex:1 1 auto}
+  .rq{background:var(--tint);color:#fff;border-radius:11px;padding:12px 13px;margin-bottom:14px}
+  .rqt{font-size:14px;font-weight:800}.rqm{font-size:10px;opacity:.9;margin-top:3px}
+  .cnt{font-size:12px;font-weight:700;color:#18181b;background:#f6f6f8;border-radius:8px;padding:10px;text-align:center;margin-bottom:12px}
+  .promise{font-size:11px;color:#71717a;text-align:center;line-height:1.6;background:#fff8e8;border-radius:8px;padding:14px}
+  .muted{font-size:9px;color:#b0b0b6;text-align:center;line-height:1.5;font-style:italic;margin-top:8px}
+  .curh{font-size:16px;font-weight:800}.curs{font-size:10px;color:#71717a;margin:2px 0 12px}
+  .tc{background:#fff;border-radius:12px;padding:9px;margin-bottom:9px;display:flex;align-items:center;gap:9px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .tv{width:42px;height:42px;border-radius:9px;background:linear-gradient(135deg,#243cb3,#3a52c8);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+  .ti{flex:1;min-width:0}
+  .tn{font-size:12px;font-weight:800;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+  .vb{font-size:8px;color:#1f7a44}
+  .trb{font-size:7.5px;font-weight:800;color:#92400e;background:#fff7e6;border-radius:99px;padding:1px 6px}
+  .trb2{font-size:7.5px;font-weight:800;color:#3730a3;background:#eef1fb;border-radius:99px;padding:1px 6px}
+  .tm{font-size:9.5px;color:#243cb3;font-weight:600;margin-top:2px}
+  .ts{font-size:9px;color:#9a9aa0;margin-top:1px}
+  .cv{color:#c4c4c8;font-weight:800;font-size:16px}
+  .reassure{font-size:10px;color:#1f7a44;background:#eef7f1;border-radius:8px;padding:10px;text-align:center;font-weight:600;margin-top:4px}
+  .t1{font-size:18px;font-weight:800;line-height:1.2}
+  .sub{font-size:10.5px;color:#71717a;margin:5px 0 14px;line-height:1.4}
+  .mc{background:#fff;border-radius:12px;padding:12px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:13px}
+  .av{width:40px;height:40px;border-radius:99px;background:#c4c4c8;color:#fff;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.av.on{background:var(--tint)}
+  .mn{font-size:13px;font-weight:800}.mt{font-size:10px;color:#92400e;font-weight:600;margin-top:2px}.mt2{font-size:10px;color:#71717a;margin-top:2px}
+  .verified{background:#eef7f1;border:1px solid rgba(31,122,68,.25);border-radius:11px;padding:12px}
+  .vh{font-size:12px;font-weight:800;color:#1f7a44}.vbd{font-size:10px;color:#3f6b50;margin-top:4px;line-height:1.5}
+  .cta{background:var(--tint);color:#fff;text-align:center;font-size:14px;font-weight:700;padding:14px;border-radius:999px}
+  .alt{font-size:10.5px;color:#71717a;text-align:center;margin-top:11px;font-weight:600}
+  .stars{font-size:28px;color:#f5a623;text-align:center;letter-spacing:6px;margin-bottom:13px}
+  .reason{background:#fff;border-radius:11px;padding:12px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .rl{font-size:10px;font-weight:700;color:#3f3f46}.rbb{font-size:10px;color:#b0b0b6;margin-top:5px}
+  .note{font-size:11.5px;line-height:1.55;color:#52525b;border-radius:9px;padding:11px 14px;margin-bottom:9px}
+  .note.flag{background:#eef1fb;border:1px solid rgba(36,60,179,.22)}
+  .note.spec{background:#fff7e6;border:1px solid rgba(245,158,11,.3)}
+  .note.good{background:#eef7f1;border:1px solid rgba(31,122,68,.3)}
+  .foot{margin-top:10px;font-size:13px;font-weight:700;color:#fff;background:#475569;border-radius:12px;padding:14px 18px;line-height:1.5}
+  @media (max-width:680px){ .pair{flex-direction:column;gap:24px} .ph{width:320px} .head .t{font-size:20px} }
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="head"><div class="t">Parent curated-choice &middot; pick in-app, not in WhatsApp</div><div class="s">After a request, the parent picks from a curated shortlist of verified tutors, confirms, and reviews each class. North Star: replace the manual WhatsApp hand-pick with a prompt in-app choice, which lifts matches and applications. For Hafiz &middot; 24 June 2026.</div></div>
+
+  <div class="intro">The model is curated parent-choice: the admin <b>verifies</b> every tutor, the platform <b>shortlists</b> 3-5 that fit, the parent <b>picks</b>, and after each class leaves a <b>neutral review</b>. There is <b>no trial class</b>. The de-risk is the verification gate plus the review: a low review quietly flags a dissatisfied parent for the team to follow up and re-match. Today the parent app shows only a tutor count and "Profiles on the way!", with a half-built applicant card that was never wired in. This wave finishes that job.</div>
+
+  <div class="sech">Screen 1 &middot; The curated shortlist</div>
+  <div class="secs">Today a parent sees only a COUNT. The redesign shows 3-5 verified tutor showcase cards that fit the request. The tutor showcase (its own wave) is the card that plugs in here.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; a count + a promise</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="rq"><div class="rqt">Form 4 Maths</div><div class="rqm">PJ &middot; In-person &middot; RM60/hr</div></div>
+        <div class="cnt">4 Tutors Applied</div>
+        <div class="promise">&#128075; Great! Tutors applied.<br>Profiles on the way!</div>
+        <div class="sp"></div>
+        <div class="muted">No list. No profiles. No choice. The backend matches one tutor for you.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; choose from a curated shortlist</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="curh">Curated for you</div>
+        <div class="curs">4 verified tutors that fit Form 4 Maths in PJ</div>
+        <div class="tc"><div class="tv">&#9654;</div><div class="ti"><div class="tn">Aisha R. <span class="vb">&#10003;</span> <span class="trb">&#127941; All-Star</span></div><div class="tm">120 classes &middot; 94% approval</div><div class="ts">Maths, Add Maths &middot; BM, English</div></div><div class="cv">&#8250;</div></div>
+        <div class="tc"><div class="tv">&#9654;</div><div class="ti"><div class="tn">Rajesh K. <span class="vb">&#10003;</span> <span class="trb2">Advanced</span></div><div class="tm">86 classes &middot; 91% approval</div><div class="ts">Maths, Physics &middot; English, Tamil</div></div><div class="cv">&#8250;</div></div>
+        <div class="tc"><div class="tv">&#9654;</div><div class="ti"><div class="tn">Mei L. <span class="vb">&#10003;</span> <span class="trb">&#127941; All-Star</span></div><div class="tm">200 classes &middot; 96% approval</div><div class="ts">Maths, Add Maths &middot; BM, Mandarin</div></div><div class="cv">&#8250;</div></div>
+        <div class="reassure">&#128274; Every tutor is Sifututor-verified</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">Screen 2 &middot; Choose + confirm (no trial)</div>
+  <div class="secs">Tapping a card opens the full showcase (its own wave), where Choose lives. Confirm is one light screen that sets the "verified, we connect you" expectation. No trial class.</div>
+  <div class="pair">
+    <div class="col" style="max-width:300px;margin:0 auto">
+      <div class="cl a">CONFIRM</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="t1">Confirm your choice</div>
+        <div class="sub">For Form 4 Maths in PJ</div>
+        <div class="mc"><div class="av">A</div><div><div class="mn">Aisha Rahman <span class="vb">&#10003;</span></div><div class="mt">&#127941; All-Star &middot; 120 classes &middot; 94%</div></div></div>
+        <div class="verified"><div class="vh">&#10003; Verified by Sifututor</div><div class="vbd">Identity, qualifications, and documents all checked. We connect you with Aisha to schedule your first class.</div></div>
+        <div class="sp"></div>
+        <div class="cta">Confirm Aisha</div>
+        <div class="alt">Back to shortlist</div>
+      </div>
+    </div>
+    <div class="col">
+      <div style="font-size:12.5px;line-height:1.65;color:#3a3a52">
+        <p style="margin:0 0 10px"><b>Why no trial.</b> Sifututor does not promote a trial class. The quality gate is the verification, every shortlisted tutor is already checked, so the parent picks a vetted tutor and the confirm simply sets expectations.</p>
+        <p style="margin:0 0 10px"><b>If a tutor is not the right fit,</b> the parent does not hit a "request a re-match" button. They just leave their normal post-class review (Screen 3), and a low review is what flags them for the team to follow up and re-match. The de-risk is passive and costs the parent zero extra taps.</p>
+        <p style="margin:0"><b>Tap-count:</b> shortlist, open a showcase, Choose, Confirm = about 3 taps, versus scrolling a WhatsApp thread.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">Screen 3 &middot; The post-class review (neutral)</div>
+  <div class="secs">After each class, a neutral review. This is the de-risk AND the social proof, one ask doing two jobs. The copy is neutral on purpose, no "is something wrong?" and no "wasn't it great?".</div>
+  <div class="pair">
+    <div class="col" style="max-width:300px;margin:0 auto">
+      <div class="cl a">REVIEW</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="t1">How was your class with Aisha?</div>
+        <div class="sub">Your review helps other parents choose.</div>
+        <div class="mc"><div class="av on">A</div><div><div class="mn">Aisha Rahman</div><div class="mt2">Form 4 Maths &middot; today</div></div></div>
+        <div class="stars">&#9734; &#9734; &#9734; &#9734; &#9734;</div>
+        <div class="reason"><div class="rl">Share more (optional)</div><div class="rbb">What went well, what could be better&hellip;</div></div>
+        <div class="sp"></div>
+        <div class="cta">Submit review</div>
+      </div>
+    </div>
+    <div class="col">
+      <div style="font-size:12.5px;line-height:1.65;color:#3a3a52">
+        <p style="margin:0 0 10px"><b>Behind the scenes (not shown to the parent):</b> a low review flags this parent for the team to follow up and re-match. The team acts; the parent is never asked a leading question.</p>
+        <p style="margin:0 0 10px"><b>The same review</b> builds Aisha's track record on her showcase, filling the "reviews after the first class" line we left as a placeholder. This is the post-class rating system we had flagged as a separate next piece, it lives here.</p>
+        <p style="margin:0"><b>Tap-count:</b> tap a rating, submit = about 2 taps.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">Notes for Hafiz</div>
+  <div class="note good"><b>The neat property:</b> one neutral review does double duty, the dissatisfaction signal (the de-risk) AND the showcase social proof. No trial, no negative prompt, no extra taps for an unhappy parent.</div>
+  <div class="note spec"><b>Backend dependencies:</b> (1) a shortlist endpoint returning the curated `shortlist_tutors[]` in the request detail; (2) a choose/select-tutor endpoint + a SHORTLISTED state; (3) a reviews/ratings table + a post-class review prompt, with the low-score flag routed to the team; (4) a re-match action on the team side.</div>
+  <div class="note flag"><b>Open questions:</b> the review threshold that flags a parent for follow-up; whether reviews show publicly on the showcase or stay internal at first; the team's re-match turnaround.</div>
+
+  <div class="foot">Scope: this is the parent's choose-and-review surface. It depends on the tutor showcase (its own wave, already designed) for the card, and it introduces the review that the tutor profile wanted. The pieces now meet.</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parent request flow · fewer taps, smarter defaults</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{background:#fff}
+  body{margin:0;padding:24px 16px;font-family:-apple-system,system-ui,"Segoe UI",sans-serif;color:#18181b;--tint:#243cb3;--grey:#F2F2F7}
+  .doc{max-width:980px;margin:0 auto}
+  .head{background:#243cb3;color:#fff;border-radius:16px;padding:24px 26px}
+  .head .t{font-size:23px;font-weight:800;letter-spacing:-.3px}
+  .head .s{font-size:12.5px;opacity:.92;margin-top:6px;line-height:1.55}
+  .intro{background:#eef1fb;border:1px solid rgba(36,60,179,.2);border-radius:13px;padding:16px 20px;margin:16px 0 8px;font-size:12.5px;line-height:1.6;color:#3a3a52}
+  .intro b{color:#243cb3}
+  .sech{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--tint);margin:32px 0 4px}
+  .secs{font-size:12.5px;color:#52525b;margin-bottom:14px;line-height:1.55}.secs b{color:#1a5c38}
+  .pair{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap}
+  .col{flex:1;min-width:0}
+  .cl{font-size:10px;font-weight:800;text-align:center;padding:4px 6px;border-radius:6px;margin-bottom:8px}
+  .cl.b{background:#fdeaea;color:#b42318}.cl.a{background:#e6eaf9;color:var(--tint)}.cl.s{background:#eef7f1;color:#1f7a44}
+  .ph{border-radius:26px;padding:13px 12px 9px;width:280px;max-width:100%;margin:0 auto;aspect-ratio:402/874;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.1)}
+  .ph.bf{background:#fff;border:1px solid #e2e2e6}
+  .ph.af{background:var(--grey)}
+  .ph::after{content:"";flex-shrink:0;width:38%;height:5px;border-radius:99px;background:rgba(0,0,0,.2);margin:11px auto 0}
+  .sb{display:flex;justify-content:space-between;font-size:8.5px;font-weight:700;margin-bottom:11px}
+  .sp{flex:1 1 auto}
+  .nt{font-size:16px;font-weight:800;letter-spacing:-.2px;margin-bottom:3px}
+  .nsub{font-size:10px;color:#71717a;margin-bottom:13px;line-height:1.4}
+  .dots{display:flex;gap:5px;margin-bottom:13px}
+  .dot{height:4px;border-radius:9px;background:#d8d8de;flex:1}.dot.on{background:var(--tint)}
+  .seg{display:flex;background:#e9e9ee;border-radius:9px;padding:3px;gap:3px;margin-bottom:13px}
+  .segb{flex:1;text-align:center;font-size:11px;font-weight:700;padding:8px;border-radius:7px;color:#71717a}
+  .segb.on{background:#fff;color:#18181b;box-shadow:0 1px 3px rgba(0,0,0,.13)}
+  .card2{border:1.5px solid #e2e2e6;border-radius:11px;padding:11px 12px;font-size:11px;font-weight:700;color:#3f3f46;margin-bottom:9px;display:flex;justify-content:space-between;align-items:center}
+  .grp{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden;margin-bottom:12px}
+  .row{display:flex;align-items:center;gap:8px;padding:10px 13px;border-bottom:1px solid #f0f0f3}
+  .row:last-child{border-bottom:none}
+  .rl{font-size:11px;font-weight:600;color:#18181b;flex:1;min-width:0}
+  .rl small{display:block;font-size:8px;color:#9a9aa0;font-weight:500;font-style:italic;margin-top:1px}
+  .rv{font-size:11px;color:#18181b;font-weight:700;white-space:nowrap}
+  .rv.empty{color:#b8b8be;font-weight:500}
+  .chev{color:#c8c8cc;font-weight:800;font-size:13px;margin-left:2px}
+  .sug{font-size:7.5px;font-weight:800;color:#92400e;background:#fff7e6;border-radius:99px;padding:1px 6px;margin-left:5px;white-space:nowrap}
+  .def{font-size:7.5px;font-weight:800;color:#3730a3;background:#eef1fb;border-radius:99px;padding:1px 6px;margin-left:5px;white-space:nowrap}
+  .req{font-size:7.5px;font-weight:800;color:#b42318;background:#fdeaea;border-radius:99px;padding:1px 6px;margin-left:5px;white-space:nowrap}
+  .chosen{background:#fff;border-radius:11px;padding:10px 12px;display:flex;align-items:center;gap:9px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:9px}
+  .ck{width:22px;height:22px;border-radius:99px;background:#1f7a44;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:800}
+  .ci{flex:1;min-width:0}.cn{font-size:11.5px;font-weight:800}.cs{font-size:8.5px;color:#9a9aa0;margin-top:1px}
+  .chg{font-size:9.5px;color:#243cb3;font-weight:700;white-space:nowrap}
+  .price{background:#eef1fb;border:1px solid rgba(36,60,179,.18);border-radius:11px;padding:11px 13px;margin-bottom:12px}
+  .prow{display:flex;justify-content:space-between;align-items:baseline}
+  .pl{font-size:10px;color:#71717a;font-weight:600}
+  .pv{font-size:17px;font-weight:800;color:#243cb3}
+  .psub{font-size:8.5px;color:#71717a;margin-top:3px}
+  .cta{background:var(--tint);color:#fff;text-align:center;font-size:13px;font-weight:700;padding:13px;border-radius:999px}
+  .cta.dim{background:#c3c8e3}
+  .alt{font-size:10px;color:#71717a;text-align:center;margin-top:9px;font-weight:600}
+  .reassure{font-size:9.5px;color:#1f7a44;background:#eef7f1;border-radius:8px;padding:9px;text-align:center;font-weight:600;margin-top:9px;line-height:1.45}
+  .toast{background:#1f7a44;color:#fff;font-size:9.5px;font-weight:800;border-radius:8px;padding:9px;text-align:center;margin-bottom:11px}
+  .status{background:#eef1fb;border:1px solid rgba(36,60,179,.2);border-radius:10px;padding:12px;text-align:center;margin-bottom:10px}
+  .stt{font-size:12px;font-weight:800;color:#243cb3}.sts{font-size:9px;color:#52525b;margin-top:3px;line-height:1.45}
+  .facts{background:#fff;border-radius:11px;padding:2px 12px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:9px}
+  .kv{display:flex;justify-content:space-between;font-size:10px;padding:7px 0;border-bottom:1px solid #f0f0f3}.kv:last-child{border:none}
+  .kk{color:#71717a}.kvv{font-weight:700}
+  .expand{background:#fff;border-radius:9px;padding:11px 12px;display:flex;justify-content:space-between;align-items:center;font-size:10.5px;font-weight:600;color:#52525b;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:9px}
+  .cnt{font-size:11px;font-weight:700;color:#18181b;background:#f6f6f8;border-radius:8px;padding:10px;text-align:center;margin-bottom:10px}
+  .promise{font-size:10px;color:#92400e;text-align:center;line-height:1.55;background:#fff8e8;border-radius:8px;padding:11px}
+  .muted{font-size:8.5px;color:#a8a8ae;text-align:center;line-height:1.5;font-style:italic;margin-top:8px}
+  .ledger{background:#fff;border-radius:12px;padding:18px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .lrow{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+  .lrow:last-child{margin-bottom:0}
+  .lrl{font-size:11.5px;font-weight:700;color:#3f3f46;width:185px;flex-shrink:0}
+  .lrl small{display:block;font-size:9px;color:#9a9aa0;font-weight:500;font-style:normal}
+  .lbar{height:17px;border-radius:5px;flex-shrink:0}
+  .lnum{font-size:13px;font-weight:800}
+  .moves{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+  .move{flex:1;min-width:180px;background:#f7f8fc;border:1px solid #e7e9f4;border-radius:11px;padding:12px 14px}
+  .mvt{font-size:11.5px;font-weight:800;color:#243cb3}.mvb{font-size:10.5px;color:#52525b;margin-top:4px;line-height:1.5}
+  .note{font-size:11.5px;line-height:1.55;color:#52525b;border-radius:9px;padding:11px 14px;margin-bottom:9px}
+  .note b{color:#3a3a52}
+  .note.flag{background:#eef1fb;border:1px solid rgba(36,60,179,.22)}
+  .note.spec{background:#fff7e6;border:1px solid rgba(245,158,11,.3)}
+  .note.good{background:#eef7f1;border:1px solid rgba(31,122,68,.3)}
+  .foot{margin-top:12px;font-size:13px;font-weight:700;color:#fff;background:#475569;border-radius:12px;padding:14px 18px;line-height:1.5}
+  .xsell{background:#fff;border:1px dashed rgba(36,60,179,.4);border-radius:11px;padding:10px 12px;margin-bottom:11px}
+  .xh{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#243cb3;margin-bottom:7px}
+  .xrow{display:flex;align-items:center;gap:8px}
+  .xck{width:18px;height:18px;border-radius:5px;background:#243cb3;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:800}
+  .xi{flex:1;min-width:0}.xn{font-size:11px;font-weight:800}.xs{font-size:8px;color:#71717a;margin-top:1px}
+  .xr{font-size:9px;color:#71717a;font-weight:700;white-space:nowrap}
+  .banner{background:linear-gradient(120deg,#eef1fb,#e6eaf9);border:1px solid rgba(36,60,179,.2);border-radius:12px;padding:12px 13px;display:flex;align-items:center;gap:11px;max-width:430px}
+  .bemoji{font-size:20px;flex-shrink:0}
+  .bt{flex:1;font-size:10.5px;line-height:1.4;color:#3a3a52}.bt b{color:#18181b;font-size:11.5px}
+  .bc{background:#243cb3;color:#fff;font-size:10px;font-weight:800;border-radius:99px;padding:8px 14px;white-space:nowrap}
+  @media (max-width:760px){ .pair{flex-direction:column;gap:26px;align-items:center} .ph{width:330px} .head .t{font-size:20px} .lrl{width:130px} }
+</style>
+</head>
+<body>
+<div class="doc">
+  <div class="head"><div class="t">Parent request flow &middot; fewer taps, smarter defaults</div><div class="s">C1 of the customer-app redesign, after the full reassess. The funnel a parent walks to request a tutor. North Star: get a verified, fitting tutor matched fast, so more requests are completed and the parent keeps paying. For Hafiz &middot; 25 June 2026.</div></div>
+
+  <div class="intro">The funnel is <b>honest</b>: every field feeds the price, the matching, the schedule, or the address. So this is a <b>tap cut</b>, not a field cut. After the reassess, the online path goes from <b>5 screens to 2</b> and about <b>19 taps to about 11</b>: the student step folds into screen 1, the separate Review screen folds into the schedule screen, the success screen becomes a toast, and the two request-detail screens become one. A returning parent re-requesting for the same child drops to about <b>3 taps</b> once the backend exposes "repeat my last request" (the parallel Hafiz ask).</div>
+
+  <div class="sech">The tap story</div>
+  <div class="secs">Same request, three paths. The win for new parents is zero-backend; the win for returning parents needs one small backend addition.</div>
+  <div class="ledger">
+    <div class="lrow"><div class="lrl">New request, today<small>online, 1 child &middot; 5 screens</small></div><div class="lbar" style="width:190px;background:#ef4444"></div><div class="lnum" style="color:#b42318">~19 taps</div></div>
+    <div class="lrow"><div class="lrl">New request, redesigned<small>online &middot; 2 screens &middot; zero backend</small></div><div class="lbar" style="width:110px;background:#243cb3"></div><div class="lnum" style="color:#243cb3">~11 taps</div></div>
+    <div class="lrow"><div class="lrl">Repeat for the same child<small>needs the Hafiz "repeat" ask</small></div><div class="lbar" style="width:30px;background:#1f7a44"></div><div class="lnum" style="color:#1f7a44">~3 taps</div></div>
+    <div class="moves">
+      <div class="move"><div class="mvt">Pre-select + auto-pick</div><div class="mvb">Online is already the default, so pre-select it. Auto-pick the child when the parent has one. That folds the whole student screen away.</div></div>
+      <div class="move"><div class="mvt">Surface the hidden defaults</div><div class="mvb">Sessions (4), duration (1h 30m), and plan (Long-Term) already default, but invisibly. Show them as "Suggested", and default tutor gender to "Any".</div></div>
+      <div class="move"><div class="mvt">Merge Review into Schedule</div><div class="mvb">The separate Review screen becomes an inline live price at the bottom of the schedule screen. One Submit.</div></div>
+      <div class="move"><div class="mvt">Success becomes a toast</div><div class="mvb">The thin success screen becomes a toast that lands the parent on the request detail, where the real status lives.</div></div>
+    </div>
+  </div>
+
+  <div class="sech">The funnel: 5 screens to 2 (online)</div>
+  <div class="secs">The student pick folds into screen 1. For in-person, a third "Where" screen captures the class address (pre-filled from the parent's profile); online skips it.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; screen 1, then a separate student screen</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Create Tutor Request</div>
+        <div class="nsub">Select Mode &middot; Pick 1</div>
+        <div class="card2">Online <span class="chev">&#9711;</span></div>
+        <div class="card2">In-Person <span class="chev">&#9711;</span></div>
+        <div class="grp"><div class="row"><div class="rl">Select Level</div><div class="rv empty">Choose</div><div class="chev">&#8250;</div></div></div>
+        <div class="sp"></div>
+        <div class="cta dim">Create Tutor Request</div>
+        <div class="muted">Mode needs a tap even though Online is the default. Picking the student is a whole separate screen after this.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; "What + who", step 1 of 2</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">What does your child need?</div>
+        <div class="nsub">Step 1 of 2</div>
+        <div class="dots"><div class="dot on"></div><div class="dot"></div></div>
+        <div class="seg"><div class="segb on">Online</div><div class="segb">In-Person</div></div>
+        <div class="grp">
+          <div class="row"><div class="rl">Level</div><div class="rv empty">Choose</div><div class="chev">&#8250;</div></div>
+          <div class="row"><div class="rl">Subject</div><div class="rv empty">Choose</div><div class="chev">&#8250;</div></div>
+        </div>
+        <div class="chosen"><span class="ck">&#10003;</span><div class="ci"><div class="cn">Adam</div><div class="cs">Added automatically &middot; your only child</div></div><span class="chg">Change</span></div>
+        <div class="reassure">Online and Adam are pre-filled. For In-Person you add the class address next.</div>
+        <div class="sp"></div>
+        <div class="cta">Continue</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">Screen 2 &middot; When + confirm (Review folded in)</div>
+  <div class="secs">The heaviest screen, now the last one. The hidden defaults are surfaced as "Suggested", gender defaults to "Any", and the price + Submit live inline (the old separate Review screen). The parent sets only days and time.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; 6 blank dropdowns + a separate Review screen</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">New Tutor Request</div>
+        <div class="dots"><div class="dot on"></div><div class="dot on"></div><div class="dot"></div></div>
+        <div class="grp">
+          <div class="row"><div class="rl">Sessions per month</div><div class="rv empty">Select</div><div class="chev">&#8250;</div></div>
+          <div class="row"><div class="rl">Class duration</div><div class="rv empty">Select</div><div class="chev">&#8250;</div></div>
+          <div class="row"><div class="rl">Tutor gender</div><div class="rv empty">Select</div><div class="chev">&#8250;</div></div>
+          <div class="row"><div class="rl">Subscription</div><div class="rv empty">Select</div><div class="chev">&#8250;</div></div>
+          <div class="row"><div class="rl">Preferred days</div><div class="rv empty">Select</div><div class="chev">&#8250;</div></div>
+          <div class="row"><div class="rl">Preferred time</div><div class="rv empty">Select</div><div class="chev">&#8250;</div></div>
+        </div>
+        <div class="sp"></div>
+        <div class="cta">Next</div>
+        <div class="muted">Three of these already have a default, but it is invisible, so the parent opens every one. Then a separate Review screen repeats it all before Submit.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; "When + confirm", step 2 of 2</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">When works best?</div>
+        <div class="nsub">Step 2 of 2 &middot; Form 4 Maths for Adam</div>
+        <div class="dots"><div class="dot on"></div><div class="dot on"></div></div>
+        <div class="grp">
+          <div class="row"><div class="rl">Sessions</div><div class="rv">4 / month<span class="sug">Suggested</span></div><div class="chev">&#8250;</div></div>
+          <div class="row"><div class="rl">Duration</div><div class="rv">1h 30m<span class="sug">Suggested</span></div><div class="chev">&#8250;</div></div>
+          <div class="row"><div class="rl">Plan</div><div class="rv">Long-Term<span class="sug">Suggested</span></div><div class="chev">&#8250;</div></div>
+          <div class="row"><div class="rl">Tutor gender</div><div class="rv">Any tutor<span class="def">Default</span></div><div class="chev">&#8250;</div></div>
+          <div class="row"><div class="rl">Days</div><div class="rv empty">Pick days<span class="req">Needed</span></div><div class="chev">&#8250;</div></div>
+          <div class="row"><div class="rl">Time</div><div class="rv empty">Pick time<span class="req">Needed</span></div><div class="chev">&#8250;</div></div>
+        </div>
+        <div class="price"><div class="prow"><span class="pl">Monthly fee</span><span class="pv">RM360</span></div><div class="psub">Form 4 Maths &middot; 4 sessions &middot; 1h 30m &middot; Online</div></div>
+        <div class="sp"></div>
+        <div class="cta">Submit request</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">After submit: a toast onto ONE detail screen</div>
+  <div class="secs">The thin success screen becomes a toast. The two detail screens (open + completed) become one that adapts by state. For an open request it leads with matching status; the full recap sits behind "View full details". The applicant tally is gone from the parent view (kept internal for staff).</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; thin success screen + a tally</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt" style="text-align:center;margin-top:8px">Request submitted!</div>
+        <div class="promise" style="margin-top:10px">&#128075; Great! Tutors applied.<br>Check the Tutor Request page in 24 hours for a <b>list of applying tutors</b>.</div>
+        <div class="cnt" style="margin-top:14px">Detail screen: &ldquo;4 Tutors Applied&rdquo;</div>
+        <div class="sp"></div>
+        <div class="muted">A thin gif screen with stale "browse applicants" copy, then a separate detail screen showing an applicant tally the parent cannot act on.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; toast, then the unified detail</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="toast">&#10003; Request submitted</div>
+        <div class="nt">Form 4 Maths</div>
+        <div class="nsub">For Adam &middot; Online</div>
+        <div class="status"><div class="stt">Matching in progress</div><div class="sts">Verified tutors are responding. We will assign your best-fit within 24 hours.</div></div>
+        <div class="facts">
+          <div class="kv"><span class="kk">Schedule</span><span class="kvv">Mon &amp; Wed &middot; 5pm</span></div>
+          <div class="kv"><span class="kk">Sessions</span><span class="kvv">4 / month</span></div>
+          <div class="kv"><span class="kk">Monthly fee</span><span class="kvv">RM360</span></div>
+        </div>
+        <div class="expand"><span>View full details</span><span class="chev">&#8250;</span></div>
+        <div class="sp"></div>
+        <div class="cta">Pay commitment fee</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">Repeat my last request (the backend-gated stretch)</div>
+  <div class="secs">The biggest tap-saver for the retention core: a returning parent re-requesting for the same child. Pre-load the last request, review, submit. Needs the Hafiz "repeat" ask (Priority 1) to expose prior-request fields.</div>
+  <div class="pair">
+    <div class="col" style="max-width:300px;margin:0 auto">
+      <div class="cl s">STRETCH &middot; about 3 taps</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Request again?</div>
+        <div class="nsub">From your last request</div>
+        <div class="grp">
+          <div class="row"><div class="rl">Subject<small>From your last request</small></div><div class="rv">Form 4 Maths</div></div>
+          <div class="row"><div class="rl">Student</div><div class="rv">Adam</div></div>
+          <div class="row"><div class="rl">Schedule</div><div class="rv">Mon &amp; Wed &middot; 5pm</div></div>
+          <div class="row"><div class="rl">Plan</div><div class="rv">4 / month</div></div>
+        </div>
+        <div class="xsell"><div class="xh">Suggested for Adam</div><div class="xrow"><span class="xck">&#10003;</span><div class="xi"><div class="xn">Add Maths &middot; Form 4</div><div class="xs">Many Form 4 Maths students take this too</div></div><span class="xr">Remove</span></div></div>
+        <div class="price"><div class="prow"><span class="pl">Monthly fee</span><span class="pv">RM720</span></div><div class="psub">Form 4 Maths RM360 + Add Maths RM360</div></div>
+        <div class="sp"></div>
+        <div class="cta">Use these details</div>
+        <div class="alt">Edit before submitting</div>
+      </div>
+    </div>
+    <div class="col">
+      <div style="font-size:12.5px;line-height:1.65;color:#3a3a52">
+        <p style="margin:0 0 10px"><b>Why it matters.</b> Returning parents are the retention core. A re-request that takes 3 taps instead of 19 removes the friction from the most valuable, highest-frequency case.</p>
+        <p style="margin:0 0 10px"><b>What it needs.</b> The list endpoint already returns the request rows; it needs the schedule and preference fields included, or a "duplicate this request" action that pre-loads the funnel. No new data, just re-reading what the parent submitted.</p>
+        <p style="margin:0 0 10px"><b>Cross-sell (founder direction):</b> a suggested extra subject is pre-selected, but itemised in the price and one-tap removable. Transparent, not a sneaky add (the guard).</p>
+        <p style="margin:0"><b>Tap-count:</b> open "Request again", Use these details, Submit = about 3 taps.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sech">Cross-sell: a reusable "add a subject" banner</div>
+  <div class="secs">Founder direction: suggest an additional subject at warm moments to lift subjects per parent. On "Request again?" the suggestion is pre-selected (above); the same banner drops into other surfaces. Always a clearly-removable suggestion, neutral copy, never a sneaky add.</div>
+  <div class="banner"><div class="bemoji">&#128218;</div><div class="bt"><b>Add a subject for Adam?</b><br>Many Form 4 Maths students also get help in Add Maths.</div><div class="bc">Add</div></div>
+  <div style="font-size:11.5px;line-height:1.65;color:#3a3a52;margin-top:13px">
+    <p style="margin:0 0 8px"><b>Where it appears:</b> Home, the request detail, and after a strong progress report (the warmest moment).</p>
+    <p style="margin:0 0 8px"><b>Commercial pass (Rule 16):</b> Founder, lifts subjects per parent + GMV at near-zero cost. Sales, cross-sell at peak intent. Marketing, position around the child and A/B the placement. Analyst, track attach-rate; guard metric = primary-request completion must not drop.</p>
+    <p style="margin:0"><b>Needs (Hafiz Priority 4):</b> a source for the suggested subject. A curriculum-adjacency map ships now; a corpus "often requested together" model later.</p>
+  </div>
+
+  <div class="sech">What the reassess changed (Step 2.5, founder-approved)</div>
+  <div class="note good"><b>Applied:</b> (1) fold the student step into screen 1 and make "Where" in-person-only, so the online funnel is 2 screens; (2) merge the Review screen into the schedule screen as an inline price; (3) collapse the success screen into a toast onto the request detail; (4) unify the open and completed detail screens into one state-adaptive screen, leading with status and tucking the full recap behind "View full details".</div>
+  <div class="note flag"><b>Kept on purpose (the guardrail):</b> "What + who" and "When + confirm" stay separate. Cramming the whole funnel onto one screen crosses two mental models and over one and a half scrolls. Right-sized, not just minimised.</div>
+
+  <div class="sech">Notes for Hafiz</div>
+  <div class="note spec"><b>Backend, parallel track (founder approved):</b> "repeat my last request" needs prior-request fields on <code>GET parent/tutor-requests</code> or a clone endpoint. The single biggest tap-saver. Full list in <code>01-requirements/parent-questions-for-hafiz.md</code>.</div>
+  <div class="note flag"><b>Verified, not a blocker:</b> matching runs on a scheduled job, so requests reach tutors (on a cron, not instantly). Confirm the cadence supports the "within 24 hours" copy. The realtime "new ticket" toast to the admin portal is commented out on the parent path, so staff get no live pop-up for app-submitted requests.</div>
+  <div class="note good"><b>Zero-backend wins ship now:</b> the 2-screen funnel, surfaced defaults, gender default, the success toast, the unified detail, and the reframed tally. None of these need backend.</div>
+
+  <div class="foot">Scope: C1 is the parent's request-creation funnel plus the request list and the unified request detail. It hands off to the curated-choice surface (already designed, backend-gated). Next in sequence: C2, schedule and attendance.</div>
+</div>
+</body>
+</html>
