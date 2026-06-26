@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Content + Notifications · on-skin, fixed, merged</title>
+<title>Content + Notifications · five screens, one skin, fixed routing, merged feed</title>
 <style>
   *{box-sizing:border-box}
   html,body{background:#fff}
@@ -47,29 +47,55 @@
   .note.flag{background:#eef1fb;border:1px solid rgba(36,60,179,.22)}
   .note.good{background:#eef7f1;border:1px solid rgba(31,122,68,.3)}
   .foot{margin-top:12px;font-size:13px;font-weight:700;color:#fff;background:#475569;border-radius:12px;padding:14px 18px;line-height:1.5}
+  /* small skin-consistent helpers added for this cluster */
+  .seg{display:flex;background:#e8e8ed;border-radius:9px;padding:2px;margin-bottom:11px}
+  .segp{flex:1;text-align:center;font-size:9px;font-weight:700;padding:6px 4px;border-radius:7px;color:#71717a}
+  .segp.on{background:#fff;color:#18181b;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+  .pill{font-size:7px;font-weight:800;color:#fff;background:#243cb3;border-radius:99px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+  .detimg{border-radius:12px;background:linear-gradient(135deg,#e6eaf9,#eef1fb);display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+  .dethead{font-size:13px;font-weight:800;line-height:1.25;margin-bottom:4px}
+  .detsub{font-size:9.5px;color:#52525b;line-height:1.4;margin-bottom:4px}
+  .detmeta{font-size:8px;color:#9a9aa0;margin-bottom:9px}
+  .detp{font-size:9px;color:#3f3f46;line-height:1.6;margin-bottom:7px}
+  .grid2{display:flex;gap:8px;flex-wrap:wrap}
+  .gcard{width:calc(50% - 4px);background:#fff;border-radius:11px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden;margin-bottom:8px}
+  .gimg{height:58px;background:linear-gradient(135deg,#e6eaf9,#eef1fb);display:flex;align-items:center;justify-content:center;font-size:20px}
+  .gb{padding:7px 9px}.gt{font-size:9px;font-weight:700;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.gd{font-size:7px;color:#9a9aa0;margin-top:3px}
+  .raw{flex:1;background:#fafafa;border:1px dashed #d8d8de;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:0 18px}
+  .rawt{font-size:10px;color:#9a9aa0;font-weight:600;line-height:1.4}
+  .err{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;text-align:center;padding:0 16px}
+  .errico{width:46px;height:46px;border-radius:99px;background:#eef1fb;color:#243cb3;font-size:22px;display:flex;align-items:center;justify-content:center}
+  .errt{font-size:11px;font-weight:800;color:#3f3f46}
+  .errs{font-size:8.5px;color:#9a9aa0;line-height:1.45}
+  .errbtn{font-size:9px;font-weight:700;color:#fff;background:#243cb3;border-radius:999px;padding:7px 20px;margin-top:2px}
+  .emp{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;text-align:center;padding:0 22px}
+  .empico{font-size:34px;opacity:.5}
+  .empt{font-size:11px;font-weight:800;color:#71717a}
+  .emps{font-size:8.5px;color:#a8a8ae;line-height:1.45}
   @media (max-width:760px){ .pair{flex-direction:column;gap:26px;align-items:center} .ph{width:330px} .head .t{font-size:20px} }
 </style>
 </head>
 <body>
 <div class="doc">
-  <div class="head"><div class="t">Content + Notifications &middot; on-skin, fixed, merged</div><div class="s">Cluster C of the secondary sweep. The notifications inbox and the content feeds, re-skinned, with the silent notification-routing bug fixed and the two duplicate content surfaces merged. For Hafiz &middot; 26 June 2026.</div></div>
+  <div class="head"><div class="t">Content + Notifications &middot; five screens, one skin, fixed routing, merged feed</div><div class="s">Cluster C of the secondary sweep. The notifications inbox and the four content screens, each before and after, brought onto the parent design language that already lives in the app's code, plus the routing fix and one merge. For Hafiz &middot; 26 June 2026.</div></div>
 
-  <div class="intro">The inbox and feeds move onto the design-system skin (inset rows, one shared pattern). Two real fixes: the <b>notification that goes nowhere</b> (a tutor-request notification routed to a tab name that does not exist) now navigates, and the <b>two near-identical content surfaces</b> (News + Blogs) merge into one "News &amp; Articles" feed sharing one detail screen. All zero-backend.</div>
+  <div class="intro">The inbox and feeds are still on the old look (full-width blue-wash rows, two near-identical detail screens, bare error text). This brings all five onto one language and fixes two real bugs: the <b>notification that goes nowhere</b> (a tutor-request notification routes to a tab name that does not exist, so the tap silently fails) now navigates, and the <b>two duplicate content surfaces</b> (News and Blogs, whose detail screens differ only by image size and a field name) merge into one "News &amp; Articles" feed sharing one detail screen. Each screen below is its own before/after pair. All zero-backend.</div>
 
-  <div class="sech">1 &middot; Notifications, on-skin and routing fixed</div>
-  <div class="secs">Today the rows are full-width with a heavy blue wash, and a tutor-request notification silently does nothing when tapped (it routes to a tab named "TutorRequest" that does not exist). The redesign uses inset rows with a quiet unread dot, and every notification opens the right screen.</div>
+  <!-- 1 NOTIFICATIONS -->
+  <div class="sech">1 &middot; Notifications</div>
+  <div class="secs">The inbox, grouped Recent / Older. Today rows are full-width with a heavy blue wash, and two taps lead nowhere: a <b>tutor-request</b> notification routes to <code style="font-size:11px">BottomNav &gt; "TutorRequest"</code>, a tab that does not exist (the tab is <b>Requests</b>), and any <b>unrecognised sender</b> falls through with no handler. The redesign uses inset rows with a quiet unread dot, fixes the request route, and adds a safe fallback so every tap lands.</div>
   <div class="pair">
     <div class="col">
-      <div class="cl b">BEFORE &middot; full-width rows, a dead tap</div>
+      <div class="cl b">BEFORE &middot; full-width rows, two dead taps</div>
       <div class="ph bf">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="nt">Notifications</div>
         <div class="seclbl">Recent</div>
-        <div class="flatnoti unread"><span class="ni">&#128100;</span><div class="nii"><div class="nit">A tutor applied for Adam</div><div class="nim">Review their profile</div><div class="nid">26-Jun-2026 | 9:20</div><span class="badnav">&#10005; tap does nothing</span></div><span class="arr">&#8249;</span></div>
-        <div class="flatnoti unread"><span class="ni">&#128179;</span><div class="nii"><div class="nit">Payment received</div><div class="nim">Invoice PINV-3201 paid</div><div class="nid">25-Jun-2026 | 14:02</div></div><span class="arr">&#8249;</span></div>
-        <div class="flatnoti"><span class="ni">&#128197;</span><div class="nii"><div class="nit">Class reminder</div><div class="nim">Adam, Maths, today 5pm</div><div class="nid">25-Jun-2026 | 08:00</div></div><span class="arr">&#8249;</span></div>
+        <div class="flatnoti unread"><span class="ni">&#128100;</span><div class="nii"><div class="nit">A tutor applied for Adam</div><div class="nim">Review their profile</div><div class="nid">26-Jun-2026 |  9:20</div><span class="badnav">&#10005; routes to "TutorRequest", silent fail</span></div><span class="arr">&#8249;</span></div>
+        <div class="flatnoti unread"><span class="ni">&#128179;</span><div class="nii"><div class="nit">Payment received</div><div class="nim">Invoice PINV-3201 paid</div><div class="nid">25-Jun-2026 |  14:02</div></div><span class="arr">&#8249;</span></div>
+        <div class="flatnoti"><span class="ni">&#128221;</span><div class="nii"><div class="nit">Welcome to Sifututor</div><div class="nim">Tips to get started</div><div class="nid">24-Jun-2026 |  08:00</div><span class="badnav">&#10005; unknown sender, no handler</span></div><span class="arr">&#8249;</span></div>
         <div class="sp"></div>
-        <div class="muted">Full-width rows, a heavy blue wash. The "tutor applied" tap routes to a non-existent tab, so it silently fails.</div>
+        <div class="muted">Full-width rows on a heavy blue wash. "Tutor applied" routes to a non-existent tab and "Welcome" has no matching sender, so both taps silently do nothing.</div>
       </div>
     </div>
     <div class="col">
@@ -78,52 +104,169 @@
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="nt">Notifications</div>
         <div class="seclbl">Recent</div>
-        <div class="inboxrow unread"><span class="dot"></span><span class="icchip">&#128100;</span><div class="iri"><div class="irt">A tutor applied for Adam</div><div class="irm">Tap to review</div><div class="ird">26 Jun &middot; 9:20</div></div><span class="arr">&#8250;</span></div>
+        <div class="inboxrow unread"><span class="dot"></span><span class="icchip">&#128100;</span><div class="iri"><div class="irt">A tutor applied for Adam</div><div class="irm">Tap to review the request</div><div class="ird">26 Jun &middot; 9:20</div></div><span class="arr">&#8250;</span></div>
         <div class="inboxrow unread"><span class="dot"></span><span class="icchip">&#128179;</span><div class="iri"><div class="irt">Payment received</div><div class="irm">Invoice PINV-3201 paid</div><div class="ird">25 Jun &middot; 14:02</div></div><span class="arr">&#8250;</span></div>
-        <div class="inboxrow"><span class="icchip">&#128197;</span><div class="iri"><div class="irt">Class reminder</div><div class="irm">Adam, Maths, today 5pm</div><div class="ird">25 Jun &middot; 08:00</div></div><span class="arr">&#8250;</span></div>
-        <div class="goodnav" style="text-align:center;display:block;margin-top:4px">&#10003; every notification now opens the right screen</div>
+        <div class="inboxrow"><span class="icchip">&#128221;</span><div class="iri"><div class="irt">Welcome to Sifututor</div><div class="irm">Tips to get started</div><div class="ird">24 Jun &middot; 08:00</div></div><span class="arr">&#8250;</span></div>
+        <div class="goodnav" style="text-align:center;display:block;margin-top:4px">&#10003; request routes to Requests, unknown senders open the inbox detail</div>
         <div class="sp"></div>
-        <div class="muted">Inset rows, a quiet unread dot, one shared pattern with News. The routing bug + the dead-tap fallback fixed.</div>
+        <div class="muted">Inset rows, a quiet unread dot, one shared pattern with the feed. The request route points at the real Requests tab, and any unrecognised type opens a plain detail view instead of failing.</div>
       </div>
     </div>
   </div>
 
-  <div class="sech">2 &middot; News and Blogs, merged into one feed</div>
-  <div class="secs">Today News is a list (a bottom tab) and Blogs is a separate grid (from Home), with two identical detail screens. The redesign merges them into one on-skin "News &amp; Articles" feed sharing one detail.</div>
+  <!-- 2 NEWS -->
+  <div class="sech">2 &middot; News (feed)</div>
+  <div class="secs">The News list, a bottom tab. Today rows are full-width blue-wash list items, and when the request fails the whole screen is a single line of grey text ("Something went wrong"). The redesign moves it onto on-skin cards and merges it with Blogs into one feed (the toggle below switches News / Blogs without leaving the screen), with a real error state.</div>
   <div class="pair">
     <div class="col">
-      <div class="cl b">BEFORE &middot; two content surfaces</div>
+      <div class="cl b">BEFORE &middot; blue-wash list, bare error on failure</div>
       <div class="ph bf">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="nt">News</div>
-        <div class="flatart"><div class="fat">SPM tips for parents</div><div class="fad">24-Jun-2026 | 10:00</div></div>
-        <div class="flatart"><div class="fat">How tutoring works</div><div class="fad">20-Jun-2026 | 09:30</div></div>
-        <div class="flatart"><div class="fat">Top tutors this month</div><div class="fad">18-Jun-2026 | 12:00</div></div>
+        <div class="flatart" style="background:#E8EFFF"><div class="fat">SPM revision tips for parents</div><div class="fad">24-Jun-2026 |  10:00</div></div>
+        <div class="flatart" style="background:#E8EFFF"><div class="fat">How tutor matching works</div><div class="fad">20-Jun-2026 |  09:30</div></div>
+        <div class="flatart"><div class="fat">New tutors joined this month</div><div class="fad">18-Jun-2026 |  12:00</div></div>
+        <div class="badnav" style="text-align:center;display:block;margin-top:6px">on a load error the whole screen is one grey line: "Something went wrong"</div>
         <div class="sp"></div>
-        <div class="muted">A News list here, a separate Blogs grid reached from Home, and two duplicate detail screens. Two content surfaces doing the same job, off-skin.</div>
+        <div class="muted">A News list here, a separate Blogs grid reached from Home, two duplicate detail screens behind them. Off-skin rows, and a failed load shows only bare text with a tiny Retry.</div>
       </div>
     </div>
     <div class="col">
-      <div class="cl a">AFTER &middot; one "News &amp; Articles"</div>
+      <div class="cl a">AFTER &middot; one "News &amp; Articles" feed, on-skin cards</div>
       <div class="ph af">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="nt">News &amp; Articles</div>
-        <div class="artcard"><div class="artimg">&#128240;</div><div class="artb"><div class="artt">SPM tips for parents</div><div class="artd">24 Jun 2026</div></div></div>
+        <div class="seg"><span class="segp on">News</span><span class="segp">Articles</span></div>
+        <div class="artcard"><div class="artimg">&#128240;</div><div class="artb"><div class="artt">SPM revision tips for parents</div><div class="artd">24 Jun 2026</div></div></div>
         <div class="artcard"><div class="artimg">&#128218;</div><div class="artb"><div class="artt">How Sifututor matching works</div><div class="artd">20 Jun 2026</div></div></div>
         <div class="sp"></div>
-        <div class="muted">One content surface instead of two, on-skin cards, one shared detail screen behind them.</div>
+        <div class="muted">One content surface instead of two, on-skin cards, a quiet News / Articles toggle, and one shared detail screen behind every card.</div>
       </div>
     </div>
   </div>
 
+  <!-- 3 NEWSDETAILS -->
+  <div class="sech">3 &middot; NewsDetails</div>
+  <div class="secs">The article reader for a News item: title, sub-header, date, a wide image, then the HTML body. Today it is off-skin (free text on GhostWhite) and is a near-copy of the Blogs detail (screen 5), differing only by image height and the field name. The redesign keeps the HTML body but on-skin, and this becomes the <b>one shared detail</b> both News and Articles open.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; off-skin reader, duplicate of Blogs detail</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div style="font-size:11px;color:#666;margin-bottom:9px">&#8249; News Detail</div>
+        <div style="font-size:14px;font-weight:600;line-height:1.25;margin-bottom:5px">SPM revision tips for parents</div>
+        <div style="font-size:10px;color:#52525b;margin-bottom:4px">A simple plan to support your child through exam season.</div>
+        <div style="font-size:8px;color:#9a9aa0;margin-bottom:9px">24-Jun-2026 |  10:00</div>
+        <div style="height:78px;background:#E8EDF2;border-radius:0;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:9px;opacity:.6">&#128247;</div>
+        <div class="detp">Set a fixed revision time each evening so study becomes a habit rather than a scramble.</div>
+        <div class="detp">Past papers matter more than re-reading notes. Work through one paper a week with your tutor.</div>
+        <div class="badnav" style="text-align:center;display:block">same layout as "Blogs Detail", only image height + field name differ</div>
+        <div class="sp"></div>
+        <div class="muted">Free text on GhostWhite, a full-bleed image. Byte-for-byte the Blogs detail except the image is taller there and the field is "news_image" not "blog_image".</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; on-skin reader, the one shared detail</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div style="font-size:11px;color:#243cb3;font-weight:700;margin-bottom:9px">&#8249; Back</div>
+        <div class="detimg" style="height:84px;font-size:26px">&#128240;</div>
+        <span class="pill" style="margin:0 0 6px;color:#243cb3;background:#eef1fb;display:inline-block">News</span>
+        <div class="dethead">SPM revision tips for parents</div>
+        <div class="detsub">A simple plan to support your child through exam season.</div>
+        <div class="detmeta">24 Jun 2026</div>
+        <div class="detp">Set a fixed revision time each evening so study becomes a habit rather than a scramble.</div>
+        <div class="detp">Past papers matter more than re-reading notes. Work through one paper a week with your tutor.</div>
+        <div class="sp"></div>
+        <div class="muted">The same HTML article body, now on the design-system reader. A small tag marks News or Articles, and this one screen serves both feeds.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 LATESTBLOG -->
+  <div class="sech">4 &middot; LatestBlog</div>
+  <div class="secs">The Blogs grid, reached from Home (a separate surface from the News tab doing the same job). Today it is a two-column card grid, and each title is hard-truncated at 16 characters mid-word ("How tutoring wo.."). The redesign folds this into the merged feed: it becomes the <b>Articles</b> segment of "News &amp; Articles", with titles that wrap cleanly instead of cutting.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; separate grid, titles cut at 16 chars</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div style="font-size:11px;color:#666;margin-bottom:9px">&#8249; Latest Blogs</div>
+        <div class="grid2">
+          <div class="gcard"><div class="gimg">&#128218;</div><div class="gb"><div class="gt">How tutoring wo..</div><div class="gd">20-Jun-2026 |  09:30</div></div></div>
+          <div class="gcard"><div class="gimg">&#10024;</div><div class="gb"><div class="gt">Choosing the ri..</div><div class="gd">17-Jun-2026 |  14:10</div></div></div>
+          <div class="gcard"><div class="gimg">&#128214;</div><div class="gb"><div class="gt">Building a study..</div><div class="gd">14-Jun-2026 |  11:00</div></div></div>
+          <div class="gcard"><div class="gimg">&#127891;</div><div class="gb"><div class="gt">Talking to your ..</div><div class="gd">11-Jun-2026 |  16:20</div></div></div>
+        </div>
+        <div class="badnav" style="text-align:center;display:block">titles hard-cut at 16 chars, mid-word</div>
+        <div class="sp"></div>
+        <div class="muted">A second content surface, separate from News, with the same kind of content. Titles are sliced to 16 characters and end in ".." so most read as fragments.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; the Articles segment of the merged feed</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">News &amp; Articles</div>
+        <div class="seg"><span class="segp">News</span><span class="segp on">Articles</span></div>
+        <div class="artcard"><div class="artimg">&#128218;</div><div class="artb"><div class="artt">How tutoring works for your child</div><div class="artd">20 Jun 2026</div></div></div>
+        <div class="artcard"><div class="artimg">&#10024;</div><div class="artb"><div class="artt">Choosing the right tutor</div><div class="artd">17 Jun 2026</div></div></div>
+        <div class="sp"></div>
+        <div class="muted">No longer a separate screen. Blogs live as the "Articles" segment of the one feed, full titles that wrap, and they open the same shared detail.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 ROUTETOBLOGSDETAILS -->
+  <div class="sech">5 &middot; RouteToBlogsDetails</div>
+  <div class="secs">The article reader for a Blogs item. It is the near-duplicate of NewsDetails (screen 3): the only differences are a taller image and the <code style="font-size:11px">blog_image</code> field. When the image fails it shows a faded placeholder, but the body still renders raw HTML with no on-skin styling. The redesign retires this screen into the one shared reader, so there is a single article detail.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; near-identical reader, raw HTML body</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div style="font-size:11px;color:#666;margin-bottom:9px">&#8249; Blogs Detail</div>
+        <div style="font-size:14px;font-weight:600;line-height:1.25;margin-bottom:5px">How tutoring works for your child</div>
+        <div style="font-size:10px;color:#52525b;margin-bottom:4px">What to expect from your first month with a tutor.</div>
+        <div style="font-size:8px;color:#9a9aa0;margin-bottom:9px">20-Jun-2026 |  09:30</div>
+        <div style="height:104px;background:#E8EDF2;border-radius:0;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:9px;opacity:.6">&#128218;</div>
+        <div class="detp">A tutor learns your child's level in the first session, then sets a weekly plan.</div>
+        <div class="detp">Expect a short progress note after each class so you always know how things are going.</div>
+        <div class="badnav" style="text-align:center;display:block">a second copy of the article reader, taller image, "blog_image"</div>
+        <div class="sp"></div>
+        <div class="muted">The same reader as NewsDetails with a 300-tall image instead of a 16:9 one and a different field name. Two screens maintained for one job.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; retired into the one shared reader</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div style="font-size:11px;color:#243cb3;font-weight:700;margin-bottom:9px">&#8249; Back</div>
+        <div class="detimg" style="height:84px;font-size:26px">&#128218;</div>
+        <span class="pill" style="margin:0 0 6px;color:#243cb3;background:#eef1fb;display:inline-block">Article</span>
+        <div class="dethead">How tutoring works for your child</div>
+        <div class="detsub">What to expect from your first month with a tutor.</div>
+        <div class="detmeta">20 Jun 2026</div>
+        <div class="detp">A tutor learns your child's level in the first session, then sets a weekly plan.</div>
+        <div class="detp">Expect a short progress note after each class so you always know how things are going.</div>
+        <div class="goodnav" style="text-align:center;display:block;margin-top:4px">&#10003; same screen as NewsDetails, only the tag changes</div>
+        <div class="sp"></div>
+        <div class="muted">No separate Blogs reader. An Article opens the exact screen a News item does, on one consistent image size and on-skin body. The tag is the only difference.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REASSESS -->
   <div class="sech">What this is (Step 2.5 reassess)</div>
-  <div class="note good"><b>Applied:</b> all five screens re-skinned to the design-system language; one shared inset-row pattern for News + Notifications; the two duplicate detail screens unified into one content-detail (the HTML body brought onto the Ink ramp); News + Blogs merged into one "News &amp; Articles" feed; the notification routing fixed (the request-tab bug + a fallback for unrecognised types + the leftover tutor route names cleaned).</div>
-  <div class="note flag"><b>Kept on purpose:</b> Notifications stays its own inbox (distinct job from content). The Recent/Older grouping stays. The content detail keeps its HTML article rendering, just on-skin.</div>
+  <div class="note good"><b>Applied:</b> all five screens re-skinned to the design-system language; one shared inset-row pattern for Notifications and the feed; News and Blogs merged into one "News &amp; Articles" feed (News / Articles segment); the two duplicate detail screens (NewsDetails + RouteToBlogsDetails) unified into one content reader; the notification routing fixed (the request notification now points at the real Requests tab, and unrecognised senders open a plain inbox-detail fallback instead of a dead tap); the 16-character title truncation replaced with clean wrapping; real loading / empty / error states on the feed; "Sifututor" cased right.</div>
+  <div class="note flag"><b>Kept on purpose:</b> Notifications stays its own inbox (a distinct job from browsing content), with the Recent / Older grouping and the read / unread states. The article reader keeps its rich HTML article rendering, just on-skin. No content is removed, only two duplicate screens collapse into one.</div>
 
+  <!-- NOTES -->
   <div class="sech">Notes for Hafiz</div>
-  <div class="note good"><b>Zero-backend:</b> the entire cluster ships against today's data. The routing fix is a client navigation fix, the merge is a client consolidation, and the re-skin is token-only. No backend dependency.</div>
+  <div class="note good"><b>Zero-backend:</b> the whole cluster ships against today's data. The routing fix is a client navigation change (correct tab name plus a fallback branch), the merge is a client consolidation of two screens that already read similar fields, and the re-skin is token-only. No backend dependency.</div>
+  <div class="note flag"><b>One thing to confirm:</b> News and Blogs come from two endpoints (NEWS and BLOGS). The merged feed simply calls both and tags each item by source, so no API change is needed. If a single combined endpoint is ever preferred, that is a later optimisation, not a blocker.</div>
 
-  <div class="foot">Scope: Cluster C of the all-screens sweep, content + notifications. Last cluster: D Referral + E Static.</div>
+  <div class="foot">Scope: Cluster C of the all-screens sweep, content + notifications (5 screens, before and after). Next clusters: D Referral, E Static.</div>
 </div>
 <script src="review-widget.js"></script>
 </body>

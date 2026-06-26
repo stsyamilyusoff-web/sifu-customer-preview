@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Parent request flow · fewer taps, smarter defaults</title>
+<title>Parent request flow · all eight screens, one skin, fewer taps</title>
 <style>
   *{box-sizing:border-box}
   html,body{background:#fff}
@@ -99,9 +99,9 @@
 </head>
 <body>
 <div class="doc">
-  <div class="head"><div class="t">Parent request flow &middot; fewer taps, smarter defaults</div><div class="s">C1 of the customer-app redesign, after the full reassess. The funnel a parent walks to request a tutor. North Star: get a verified, fitting tutor matched fast, so more requests are completed and the parent keeps paying. For Hafiz &middot; 25 June 2026.</div></div>
+  <div class="head"><div class="t">Parent request flow &middot; all eight screens, one skin, fewer taps</div><div class="s">C1 of the customer-app redesign. Every screen of the request and matching funnel, each as its own before and after, on the parent design language already in the app's code. Three real defects are shown in the BEFORE and fixed in the AFTER. For Hafiz &middot; 26 June 2026.</div></div>
 
-  <div class="intro">The funnel is <b>honest</b>: every field feeds the price, the matching, the schedule, or the address. So this is a <b>tap cut</b>, not a field cut. After the reassess, the online path goes from <b>5 screens to 2</b> and about <b>19 taps to about 11</b>: the student step folds into screen 1, the separate Review screen folds into the schedule screen, the success screen becomes a toast, and the two request-detail screens become one. A returning parent re-requesting for the same child drops to about <b>3 taps</b> once the backend exposes "repeat my last request" (the parallel Hafiz ask).</div>
+  <div class="intro">The funnel is <b>honest</b>: every field feeds the price, the matching, the schedule, or the address, so this is a <b>tap cut</b>, not a field cut. Three real defects are addressed here: (1) the five steps keep state only in memory, so a backgrounded app <b>wipes a half-filled request</b>; (2) the detail screen hard-codes "Matching in progress, within 24 hours" no matter the real status, which can contradict the applied-tutor count on the same screen; (3) switching mode <b>silently clears the chosen subject</b> with no hint. The AFTER applies the consistency floor: the tokens, brand blue, "Sifututor" cased right, neutral copy, real loading and empty states, a draft that survives a restart, a status that reflects reality, and smart defaults that name their source.</div>
 
   <div class="sech">The tap story</div>
   <div class="secs">Same request, three paths. The win for new parents is zero-backend; the win for returning parents needs one small backend addition.</div>
@@ -111,27 +111,68 @@
     <div class="lrow"><div class="lrl">Repeat for the same child<small>needs the Hafiz "repeat" ask</small></div><div class="lbar" style="width:30px;background:#1f7a44"></div><div class="lnum" style="color:#1f7a44">~3 taps</div></div>
     <div class="moves">
       <div class="move"><div class="mvt">Pre-select + auto-pick</div><div class="mvb">Online is already the default, so pre-select it. Auto-pick the child when the parent has one. That folds the whole student screen away.</div></div>
-      <div class="move"><div class="mvt">Surface the hidden defaults</div><div class="mvb">Sessions (4), duration (1h 30m), and plan (Long-Term) already default, but invisibly. Show them as "Suggested", and default tutor gender to "Any".</div></div>
-      <div class="move"><div class="mvt">Merge Review into Schedule</div><div class="mvb">The separate Review screen becomes an inline live price at the bottom of the schedule screen. One Submit.</div></div>
-      <div class="move"><div class="mvt">Success becomes a toast</div><div class="mvb">The thin success screen becomes a toast that lands the parent on the request detail, where the real status lives.</div></div>
+      <div class="move"><div class="mvt">Surface the hidden defaults</div><div class="mvb">Sessions (4), duration (1h 30m), and plan (Long-Term) already default in code, but invisibly. Show them as "Suggested", and default tutor gender to "Any".</div></div>
+      <div class="move"><div class="mvt">Save the draft</div><div class="mvb">Persist the in-flight request so a backgrounded or killed app does not wipe it. The parent resumes where they left off.</div></div>
+      <div class="move"><div class="mvt">Status reflects reality</div><div class="mvb">Replace the hard-coded "within 24 hours" line with the real state, so it never contradicts the tutor count on the same screen.</div></div>
     </div>
   </div>
 
-  <div class="sech">The funnel: 5 screens to 2 (online)</div>
-  <div class="secs">The student pick folds into screen 1. For in-person, a third "Where" screen captures the class address (pre-filled from the parent's profile); online skips it.</div>
+  <!-- 1 REQUESTS LIST -->
+  <div class="sech">1 &middot; Requests (the list)</div>
+  <div class="secs">The Open / Completed tab list, reached from the tab bar. Today the cards and empty art are off-skin, and the title reads "Tutor Requests". The redesign brings the list onto the parent language with a clear segmented control, a real empty state, and a resume banner when a saved draft exists (the fix for the wiped-funnel defect).</div>
   <div class="pair">
     <div class="col">
-      <div class="cl b">BEFORE &middot; screen 1, then a separate student screen</div>
+      <div class="cl b">BEFORE &middot; off-skin cards, no draft recovery</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Tutor Requests</div>
+        <div class="nsub">Open &middot; Completed (2)</div>
+        <div class="card2" style="border-color:#243cb3;color:#243cb3">Open <span style="font-size:9px">Completed (2)</span></div>
+        <div class="grp">
+          <div class="row"><div class="rl">Form 4 Maths<small>JT-10428 &middot; Adam</small></div><div class="rv">RM360</div><div class="chev">&#8250;</div></div>
+          <div class="row"><div class="rl">Science<small>JT-10391 &middot; Siti</small></div><div class="rv">RM300</div><div class="chev">&#8250;</div></div>
+        </div>
+        <div class="sp"></div>
+        <div class="cta">Request New Tutor</div>
+        <div class="muted">Bordered cards on GhostWhite with a custom tab view. If the parent started a request and the app was backgrounded, that half-filled request is gone, nothing here brings it back.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; on-skin list + resume a saved draft</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Your requests</div>
+        <div class="nsub">Open and completed tutor requests.</div>
+        <div class="seg"><div class="segb on">Open</div><div class="segb">Completed</div></div>
+        <div class="banner" style="max-width:100%;margin-bottom:11px;padding:10px 11px"><div class="bemoji">&#128221;</div><div class="bt"><b>Continue your draft</b><br>Form 4 Maths for Adam, not submitted yet.</div><div class="bc">Resume</div></div>
+        <div class="grp">
+          <div class="row"><div class="rl">Form 4 Maths<small>JT-10428 &middot; Adam</small></div><div class="rv">RM360</div><div class="chev">&#8250;</div></div>
+          <div class="row"><div class="rl">Science<small>JT-10391 &middot; Siti</small></div><div class="rv">RM300</div><div class="chev">&#8250;</div></div>
+        </div>
+        <div class="sp"></div>
+        <div class="cta">Request a new tutor</div>
+        <div class="muted">Inset rows on the parent skin, a stock segmented control, and a resume banner when a saved draft exists, so a backgrounded request is no longer lost.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 REQUESTNOW -->
+  <div class="sech">2 &middot; RequestNow (mode + level + subject)</div>
+  <div class="secs">Step 1 of the funnel: pick a mode, a level, then a subject. Two real problems live here. Online is already the default intent but still needs a tap, and <b>switching mode silently wipes the chosen subject and level</b> with no warning (the code resets both on every mode tap). The redesign pre-selects Online, auto-picks the only child, and warns before clearing on a mode change.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; mode resets subject with no hint</div>
       <div class="ph bf">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="nt">Create Tutor Request</div>
         <div class="nsub">Select Mode &middot; Pick 1</div>
-        <div class="card2">Online <span class="chev">&#9711;</span></div>
+        <div class="card2" style="background:#243cb3;color:#fff;border-color:#243cb3">Online <span style="color:#fff">&#9673;</span></div>
         <div class="card2">In-Person <span class="chev">&#9711;</span></div>
         <div class="grp"><div class="row"><div class="rl">Select Level</div><div class="rv empty">Choose</div><div class="chev">&#8250;</div></div></div>
+        <div class="grp"><div class="row"><div class="rl">Select Subject</div><div class="rv">Form 4 Maths</div><div class="chev">&#8250;</div></div></div>
         <div class="sp"></div>
         <div class="cta dim">Create Tutor Request</div>
-        <div class="muted">Mode needs a tap even though Online is the default. Picking the student is a whole separate screen after this.</div>
+        <div class="muted">Tap In-Person now and the chosen "Form 4 Maths" subject and level vanish with no warning, the code clears both on every mode change. Picking the student is a whole separate screen after this.</div>
       </div>
     </div>
     <div class="col">
@@ -144,21 +185,63 @@
         <div class="seg"><div class="segb on">Online</div><div class="segb">In-Person</div></div>
         <div class="grp">
           <div class="row"><div class="rl">Level</div><div class="rv empty">Choose</div><div class="chev">&#8250;</div></div>
-          <div class="row"><div class="rl">Subject</div><div class="rv empty">Choose</div><div class="chev">&#8250;</div></div>
+          <div class="row"><div class="rl">Subject</div><div class="rv">Form 4 Maths</div><div class="chev">&#8250;</div></div>
         </div>
         <div class="chosen"><span class="ck">&#10003;</span><div class="ci"><div class="cn">Adam</div><div class="cs">Added automatically &middot; your only child</div></div><span class="chg">Change</span></div>
-        <div class="reassure">Online and Adam are pre-filled. For In-Person you add the class address next.</div>
+        <div class="reassure">Online and Adam are pre-filled. Switching to In-Person keeps your subject and asks before changing anything.</div>
         <div class="sp"></div>
         <div class="cta">Continue</div>
       </div>
     </div>
   </div>
 
-  <div class="sech">Screen 2 &middot; When + confirm (Review folded in)</div>
-  <div class="secs">The heaviest screen, now the last one. The hidden defaults are surfaced as "Suggested", gender defaults to "Any", and the price + Submit live inline (the old separate Review screen). The parent sets only days and time.</div>
+  <!-- 3 TUTORREQUEST -->
+  <div class="sech">3 &middot; TutorRequest (class info + student)</div>
+  <div class="secs">The middle step: it confirms the class info and asks the parent to add a student (up to five), plus the class address for in-person. It carries a 3-dot stepper and two big "Class Information" / "Student Information" accordion cards. The redesign folds the student pick into step 1 (it is auto-picked there), so for the common one-child online case this whole screen disappears. In-person keeps a slim "Where" screen for the address.</div>
   <div class="pair">
     <div class="col">
-      <div class="cl b">BEFORE &middot; 6 blank dropdowns + a separate Review screen</div>
+      <div class="cl b">BEFORE &middot; a separate student + class-info screen</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">New Tutor Request</div>
+        <div class="dots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="grp" style="background:#243cb3;margin-bottom:8px"><div class="row" style="border:none"><div class="rl" style="color:#fff">Class Information</div><span style="color:#fff;font-weight:800">&#10003;</span></div></div>
+        <div class="facts">
+          <div class="kv"><span class="kk">Class Type</span><span class="kvv">Online</span></div>
+          <div class="kv"><span class="kk">Level</span><span class="kvv">Form 4</span></div>
+          <div class="kv"><span class="kk">Subject</span><span class="kvv">Maths</span></div>
+        </div>
+        <div class="grp" style="background:#243cb3;margin-bottom:8px"><div class="row" style="border:none"><div class="rl" style="color:#fff">Student Information</div><span style="color:#fff;font-weight:800">&#10003;</span></div></div>
+        <div class="card2" style="color:#243cb3;border-style:dashed">+ Add Students</div>
+        <div class="sp"></div>
+        <div class="cta">Next</div>
+        <div class="muted">A whole screen to add a student and re-confirm the class info already chosen on step 1. For one child online this is pure repetition.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; folded away (or a slim "Where" for in-person)</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Where will classes be?</div>
+        <div class="nsub">In-Person only &middot; online skips this</div>
+        <div class="grp">
+          <div class="row"><div class="rl">Address<small>Dari profil cikgu</small></div><div class="rv">12, Jln Melati</div><div class="chev">&#8250;</div></div>
+          <div class="row"><div class="rl">Area or landmark</div><div class="rv empty">Add a landmark</div><div class="chev">&#8250;</div></div>
+        </div>
+        <div class="chosen"><span class="ck">&#10003;</span><div class="ci"><div class="cn">Adam</div><div class="cs">Already added on the first step</div></div><span class="chg">Add another</span></div>
+        <div class="reassure">For online, this screen is skipped entirely. The student is already added, so most parents never see it.</div>
+        <div class="sp"></div>
+        <div class="cta">Continue</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 SCHEDULEPREFERENCESFORM -->
+  <div class="sech">4 &middot; SchedulePreferencesForm (sessions + schedule)</div>
+  <div class="secs">The heaviest screen: sessions, duration, gender, subscription, days, time, plus an optional note. Three of these already default in code (4 sessions, 1h 30m, Long-Term) but the dropdowns render empty, so the parent opens every one. The redesign surfaces those defaults as "Suggested", defaults gender to "Any", and folds the separate Review screen in as an inline live price, so days and time are the only required taps.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; 6 blank dropdowns, hidden defaults</div>
       <div class="ph bf">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="nt">New Tutor Request</div>
@@ -173,7 +256,7 @@
         </div>
         <div class="sp"></div>
         <div class="cta">Next</div>
-        <div class="muted">Three of these already have a default, but it is invisible, so the parent opens every one. Then a separate Review screen repeats it all before Submit.</div>
+        <div class="muted">Sessions, duration and plan already have a default in code, but it is invisible, so the parent opens every row. Then a separate Request Summary screen repeats it all before Submit.</div>
       </div>
     </div>
     <div class="col">
@@ -198,28 +281,113 @@
     </div>
   </div>
 
-  <div class="sech">After submit: a toast onto ONE detail screen</div>
-  <div class="secs">The thin success screen becomes a toast. The two detail screens (open + completed) become one that adapts by state. For an open request it leads with matching status; the full recap sits behind "View full details". The applicant tally is gone from the parent view (kept internal for staff).</div>
+  <!-- 5 GETTUTORREQUESTPRICE -->
+  <div class="sech">5 &middot; GetTutorRequestPrice (the Request Summary)</div>
+  <div class="secs">A full read-only recap with a "Monthly Fee" total and Previous / Submit. It re-lists everything the parent just entered across two steps. The reassess folds this recap into the inline price on the schedule screen (above), so there is one Submit, not a separate Review then Submit. Kept here as its own before so the merge is visible.</div>
   <div class="pair">
     <div class="col">
-      <div class="cl b">BEFORE &middot; thin success screen + a tally</div>
+      <div class="cl b">BEFORE &middot; a separate full-recap Review screen</div>
       <div class="ph bf">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
-        <div class="nt" style="text-align:center;margin-top:8px">Request submitted!</div>
-        <div class="promise" style="margin-top:10px">&#128075; Great! Tutors applied.<br>Check the Tutor Request page in 24 hours for a <b>list of applying tutors</b>.</div>
-        <div class="cnt" style="margin-top:14px">Detail screen: &ldquo;4 Tutors Applied&rdquo;</div>
+        <div class="nt">Request Summary</div>
+        <div class="grp" style="background:#243cb3;margin-bottom:8px"><div class="row" style="border:none"><div class="rl" style="color:#fff">26 June 2026</div><span style="color:#fff;font-weight:700;font-size:10px">Online</span></div></div>
+        <div class="facts">
+          <div class="kv"><span class="kk">Student Name</span><span class="kvv">Adam</span></div>
+          <div class="kv"><span class="kk">Sessions</span><span class="kvv">4</span></div>
+          <div class="kv"><span class="kk">Duration</span><span class="kvv">1h 30m</span></div>
+          <div class="kv"><span class="kk">Level</span><span class="kvv">Form 4</span></div>
+          <div class="kv"><span class="kk">Subject</span><span class="kvv">Maths</span></div>
+          <div class="kv"><span class="kk">Pref. Tutor</span><span class="kvv">Any</span></div>
+        </div>
+        <div class="card2" style="background:#243cb3;color:#fff;border-color:#243cb3">Monthly Fee <span style="color:#fff">RM360 &#9432;</span></div>
         <div class="sp"></div>
-        <div class="muted">A thin gif screen with stale "browse applicants" copy, then a separate detail screen showing an applicant tally the parent cannot act on.</div>
+        <div class="cta">Submit</div>
+        <div class="muted">Every value here was already set one screen earlier. A whole extra screen and an extra Next tap before the parent can Submit.</div>
       </div>
     </div>
     <div class="col">
-      <div class="cl a">AFTER &middot; toast, then the unified detail</div>
+      <div class="cl a">AFTER &middot; merged into the schedule screen's inline price</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Confirm and submit</div>
+        <div class="nsub">The recap now lives inline on step 2.</div>
+        <div class="price"><div class="prow"><span class="pl">Monthly fee</span><span class="pv">RM360</span></div><div class="psub">Form 4 Maths &middot; 4 sessions &middot; 1h 30m &middot; Online &middot; Any tutor</div></div>
+        <div class="expand"><span>See full breakdown</span><span class="chev">&#8250;</span></div>
+        <div class="facts">
+          <div class="kv"><span class="kk">Student</span><span class="kvv">Adam</span></div>
+          <div class="kv"><span class="kk">Schedule</span><span class="kvv">Mon &amp; Wed &middot; 5pm</span></div>
+          <div class="kv"><span class="kk">Plan</span><span class="kvv">Long-Term</span></div>
+        </div>
+        <div class="sp"></div>
+        <div class="cta">Submit request</div>
+        <div class="muted">No separate screen. The live price and a tappable full breakdown sit at the foot of step 2, so the parent reviews and submits in one place.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 TUTORREQUESTAPPLIEDSTATUS -->
+  <div class="sech">6 &middot; TutorRequestAppliedStatus (the success screen)</div>
+  <div class="secs">After Submit, a thin screen with the SIFU.gif, a "Request submitted! Check email or Tutor Request page in 24 hours for a list of applying tutors" line, an embedded YouTube video, and Home / Make Tutor Request buttons. The "list of applying tutors" copy is stale (parents do not browse applicants, the platform curates). The redesign collapses it into a toast that lands the parent on the request detail, where the real status lives.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; thin gif screen, stale "browse applicants" copy</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div style="height:80px;border-radius:14px;background:linear-gradient(135deg,#e6eaf9,#eef1fb);display:flex;align-items:center;justify-content:center;font-size:34px;margin:18px 0 12px">&#127881;</div>
+        <div class="grp" style="background:#243cb3;margin-bottom:12px"><div class="row" style="border:none"><div class="rl" style="color:#fff;font-weight:700">&#10003; Request submitted! Check email or Tutor Request page in 24 hours for a list of applying tutors.</div></div></div>
+        <div style="height:90px;border-radius:12px;background:#000;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;margin-bottom:12px">&#9654; YouTube intro</div>
+        <div class="sp"></div>
+        <div class="card2" style="justify-content:center;border-color:#e2e2e6">Home</div>
+        <div class="card2" style="background:#243cb3;color:#fff;border-color:#243cb3;justify-content:center">Make Tutor Request</div>
+        <div class="muted">A dead-end gif screen. The "list of applying tutors" line is stale (parents do not pick applicants, Sifututor curates) and the real status is one more navigation away.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; a toast onto the live detail</div>
       <div class="ph af">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="toast">&#10003; Request submitted</div>
         <div class="nt">Form 4 Maths</div>
         <div class="nsub">For Adam &middot; Online</div>
-        <div class="status"><div class="stt">Matching in progress</div><div class="sts">Verified tutors are responding. We will assign your best-fit within 24 hours.</div></div>
+        <div class="status"><div class="stt">Finding your tutor</div><div class="sts">Verified tutors are being matched. We will let you know the moment one is assigned.</div></div>
+        <div class="facts">
+          <div class="kv"><span class="kk">Schedule</span><span class="kvv">Mon &amp; Wed &middot; 5pm</span></div>
+          <div class="kv"><span class="kk">Sessions</span><span class="kvv">4 / month</span></div>
+          <div class="kv"><span class="kk">Monthly fee</span><span class="kvv">RM360</span></div>
+        </div>
+        <div class="sp"></div>
+        <div class="cta">Pay commitment fee</div>
+        <div class="muted">A confirmation toast drops the parent straight onto the request detail, with the real matching state and the next action, no dead-end screen, no stale applicant copy.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 REQUESTDETAILS -->
+  <div class="sech">7 &middot; RequestDetails (the open request)</div>
+  <div class="secs">The detail for an open request. The real defect: it shows "<b>N Tutors Applied</b>" from live data, then directly below renders a hard-coded "Matching in progress &middot; SifuTutor will assign your best-fit tutor within 24 hours" banner regardless of the actual status, so a matched or stalled request still reads "in progress within 24 hours", and the banner can contradict the count right above it. The redesign drives the status line from the real state and cases "Sifututor" correctly.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; hard-coded status, can contradict the count</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="grp" style="background:#243cb3;margin-bottom:9px">
+          <div class="row" style="border:none;flex-direction:column;align-items:flex-start;gap:6px">
+            <div style="display:flex;justify-content:space-between;width:100%"><span style="background:#fff;color:#243cb3;font-size:9px;font-weight:800;padding:2px 8px;border-radius:6px">JT-10428</span><span style="color:#fff;font-size:9px">&#9432; Details</span></div>
+            <div style="color:#fff;font-weight:700;font-size:12px">Form 4 Maths</div>
+            <div style="color:#fff;font-size:10px;border-top:0.5px solid rgba(255,255,255,.4);width:100%;padding-top:6px">&#128100; 3 Tutors Applied</div>
+          </div>
+        </div>
+        <div class="status" style="background:#dbe7ff;border-color:#243cb3;text-align:left"><div class="stt">Matching in progress</div><div class="sts"><b style="color:#b42318">SifuTutor</b> will assign your best-fit tutor within 24 hours. You'll be notified once matched.</div></div>
+        <div class="muted">"3 Tutors Applied" and "Matching in progress within 24 hours" are both shown, but the banner is hard-coded, it says the same thing whether 0 or 30 tutors applied, or even once a tutor is assigned. Note "SifuTutor" mis-cased.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; status reflects reality, cased right</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Form 4 Maths</div>
+        <div class="nsub">JT-10428 &middot; For Adam &middot; Online</div>
+        <div class="status"><div class="stt">Finding your tutor</div><div class="sts">Sifututor is matching a verified, fitting tutor for Adam. We will notify you the moment one is assigned.</div></div>
         <div class="facts">
           <div class="kv"><span class="kk">Schedule</span><span class="kvv">Mon &amp; Wed &middot; 5pm</span></div>
           <div class="kv"><span class="kk">Sessions</span><span class="kvv">4 / month</span></div>
@@ -228,12 +396,91 @@
         <div class="expand"><span>View full details</span><span class="chev">&#8250;</span></div>
         <div class="sp"></div>
         <div class="cta">Pay commitment fee</div>
+        <div class="muted">One honest status line driven by the real state ("Finding your tutor", "Tutor assigned", or a slip note), so it never contradicts itself. The internal applicant tally stays with staff, not the parent. "Sifututor" cased right.</div>
       </div>
     </div>
   </div>
 
+  <!-- 8 REQUESTCOMPLETEDDETAILS -->
+  <div class="sech">8 &middot; RequestCompletedDetails (the finished request)</div>
+  <div class="secs">The detail for a completed request: tutor, students, and a grid of session / duration / time / total / progress-report / location tiles. Two values are hard-coded in code ("Duration: 1 Month", "Total Class Time: N Hours" mislabelled), and the tiles are off-skin webp icons. The redesign brings it onto one language with the open detail (one state-adaptive screen), fixes the labels, and leads with the outcome plus the progress report.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; off-skin tiles, hard-coded "1 Month"</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="grp" style="background:#243cb3;margin-bottom:9px">
+          <div class="row" style="border:none;flex-direction:column;align-items:flex-start;gap:5px">
+            <div style="display:flex;justify-content:space-between;width:100%"><span style="background:#fff;color:#243cb3;font-size:9px;font-weight:800;padding:2px 8px;border-radius:6px">JT-10391</span><span style="color:#fff;font-size:9px">Online</span></div>
+            <div style="color:#fff;font-weight:700;font-size:12px">Science</div>
+            <div style="color:#fff;font-size:10px">&#10003; Completed on 12-Jun-2026</div>
+          </div>
+        </div>
+        <div class="facts">
+          <div class="kv"><span class="kk">No. of Session</span><span class="kvv">4 / month</span></div>
+          <div class="kv"><span class="kk">Duration</span><span class="kvv">1 Month</span></div>
+          <div class="kv"><span class="kk">Time</span><span class="kvv">5pm-6:30pm</span></div>
+          <div class="kv"><span class="kk">Total Class Time</span><span class="kvv">1.5 Hours</span></div>
+        </div>
+        <div class="muted">A grid of webp icon tiles off the parent skin. "Duration: 1 Month" and "Total Class Time" are hard-coded or mislabelled, they do not reflect the real subscription length.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; one skin, real labels, outcome first</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Science</div>
+        <div class="nsub">JT-10391 &middot; For Siti &middot; Online</div>
+        <div class="status" style="background:#eef7f1;border-color:rgba(31,122,68,.3)"><div class="stt" style="color:#1f7a44">Completed</div><div class="sts">Finished on 12 June 2026 with Cikgu Aiman.</div></div>
+        <div class="facts">
+          <div class="kv"><span class="kk">Tutor</span><span class="kvv">Cikgu Aiman</span></div>
+          <div class="kv"><span class="kk">Sessions</span><span class="kvv">4 / month</span></div>
+          <div class="kv"><span class="kk">Each session</span><span class="kvv">1h 30m</span></div>
+          <div class="kv"><span class="kk">Time</span><span class="kvv">5pm - 6:30pm</span></div>
+        </div>
+        <div class="expand"><span>View progress report</span><span class="chev">&#8250;</span></div>
+        <div class="sp"></div>
+        <div class="cta">Request again</div>
+        <div class="muted">Same design language as the open detail (one state-adaptive screen). Real labels ("Each session 1h 30m", not "1 Month"), the tutor and outcome lead, and the progress report and a one-tap re-request are right there.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRAFT PERSISTENCE -->
+  <div class="sech">The dropped defect in focus: a draft that survives a restart</div>
+  <div class="secs">The funnel keeps its state only in <b>NewTutorRequestFormContext</b> (in-memory React context). Background the app or let it be killed mid-request and the half-filled request is gone with no trace. The fix saves the in-flight request and offers to resume it, shown on the list screen above and recapped here.</div>
+  <div class="pair">
+    <div class="col" style="max-width:300px;margin:0 auto">
+      <div class="cl s">FIX &middot; auto-saved draft, resume in one tap</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Pick up where you left off</div>
+        <div class="nsub">Saved automatically</div>
+        <div class="grp">
+          <div class="row"><div class="rl">Subject<small>From your saved draft</small></div><div class="rv">Form 4 Maths</div></div>
+          <div class="row"><div class="rl">Student</div><div class="rv">Adam</div></div>
+          <div class="row"><div class="rl">Mode</div><div class="rv">Online</div></div>
+          <div class="row"><div class="rl">Still needed</div><div class="rv empty">Days and time<span class="req">2 left</span></div></div>
+        </div>
+        <div class="reassure">Saved on your device, so closing the app no longer loses your progress.</div>
+        <div class="sp"></div>
+        <div class="cta">Continue draft</div>
+        <div class="alt">Start over instead</div>
+      </div>
+    </div>
+    <div class="col">
+      <div style="font-size:12.5px;line-height:1.65;color:#3a3a52">
+        <p style="margin:0 0 10px"><b>The defect.</b> Every funnel field lives in <code>NewTutorRequestFormContext</code>, and the defaults are set in a mount-time effect. Nothing is written to storage. iOS or Android reclaiming the app mid-request wipes the lot, the parent reopens to a blank form.</p>
+        <p style="margin:0 0 10px"><b>The fix.</b> Persist the in-flight request (the same shape the context already holds) to local storage on each step, clear it on submit. On return, the list shows a "Continue your draft" banner and the funnel can rehydrate.</p>
+        <p style="margin:0 0 10px"><b>Why it matters.</b> The drop-off here is invisible today: a parent who got two taps from submitting and lost it may simply not come back. This is pure client-side, zero backend.</p>
+        <p style="margin:0"><b>Guard:</b> a draft is clearly labelled and easy to discard, never a silent pre-fill the parent cannot see or clear.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- REPEAT -->
   <div class="sech">Repeat my last request (the backend-gated stretch)</div>
-  <div class="secs">The biggest tap-saver for the retention core: a returning parent re-requesting for the same child. Pre-load the last request, review, submit. Needs the Hafiz "repeat" ask (Priority 1) to expose prior-request fields.</div>
+  <div class="secs">The biggest tap-saver for the retention core: a returning parent re-requesting for the same child. Pre-load the last request, review, submit. Needs the Hafiz "repeat" ask to expose prior-request fields.</div>
   <div class="pair">
     <div class="col" style="max-width:300px;margin:0 auto">
       <div class="cl s">STRETCH &middot; about 3 taps</div>
@@ -259,30 +506,39 @@
         <p style="margin:0 0 10px"><b>Why it matters.</b> Returning parents are the retention core. A re-request that takes 3 taps instead of 19 removes the friction from the most valuable, highest-frequency case.</p>
         <p style="margin:0 0 10px"><b>What it needs.</b> The list endpoint already returns the request rows; it needs the schedule and preference fields included, or a "duplicate this request" action that pre-loads the funnel. No new data, just re-reading what the parent submitted.</p>
         <p style="margin:0 0 10px"><b>Cross-sell (founder direction):</b> a suggested extra subject is pre-selected, but itemised in the price and one-tap removable. Transparent, not a sneaky add (the guard).</p>
-        <p style="margin:0"><b>Tap-count:</b> open "Request again", Use these details, Submit = about 3 taps.</p>
+        <p style="margin:0"><b>Tap-count:</b> open "Request again", Use these details, Submit, about 3 taps.</p>
       </div>
     </div>
   </div>
 
+  <!-- CROSS-SELL -->
   <div class="sech">Cross-sell: a reusable "add a subject" banner</div>
   <div class="secs">Founder direction: suggest an additional subject at warm moments to lift subjects per parent. On "Request again?" the suggestion is pre-selected (above); the same banner drops into other surfaces. Always a clearly-removable suggestion, neutral copy, never a sneaky add.</div>
   <div class="banner"><div class="bemoji">&#128218;</div><div class="bt"><b>Add a subject for Adam?</b><br>Many Form 4 Maths students also get help in Add Maths.</div><div class="bc">Add</div></div>
   <div style="font-size:11.5px;line-height:1.65;color:#3a3a52;margin-top:13px">
     <p style="margin:0 0 8px"><b>Where it appears:</b> Home, the request detail, and after a strong progress report (the warmest moment).</p>
-    <p style="margin:0 0 8px"><b>Commercial pass (Rule 16):</b> Founder, lifts subjects per parent + GMV at near-zero cost. Sales, cross-sell at peak intent. Marketing, position around the child and A/B the placement. Analyst, track attach-rate; guard metric = primary-request completion must not drop.</p>
-    <p style="margin:0"><b>Needs (Hafiz Priority 4):</b> a source for the suggested subject. A curriculum-adjacency map ships now; a corpus "often requested together" model later.</p>
+    <p style="margin:0 0 8px"><b>Commercial pass (Rule 16):</b> Founder, lifts subjects per parent and GMV at near-zero cost. Sales, cross-sell at peak intent. Marketing, position around the child and A/B the placement. Analyst, track attach-rate; guard metric = primary-request completion must not drop.</p>
+    <p style="margin:0"><b>Needs (Hafiz):</b> a source for the suggested subject. A curriculum-adjacency map ships now; a corpus "often requested together" model later.</p>
   </div>
 
+  <!-- REASSESS -->
   <div class="sech">What the reassess changed (Step 2.5, founder-approved)</div>
-  <div class="note good"><b>Applied:</b> (1) fold the student step into screen 1 and make "Where" in-person-only, so the online funnel is 2 screens; (2) merge the Review screen into the schedule screen as an inline price; (3) collapse the success screen into a toast onto the request detail; (4) unify the open and completed detail screens into one state-adaptive screen, leading with status and tucking the full recap behind "View full details".</div>
+  <div class="note good"><b>Applied:</b> (1) fold the student step into screen 1 and make "Where" in-person-only, so the online funnel is 2 screens; (2) merge the Request Summary screen into the schedule screen as an inline price; (3) collapse the success screen into a toast onto the request detail; (4) unify the open and completed detail screens into one state-adaptive screen, leading with status and tucking the full recap behind "View full details".</div>
   <div class="note flag"><b>Kept on purpose (the guardrail):</b> "What + who" and "When + confirm" stay separate. Cramming the whole funnel onto one screen crosses two mental models and over one and a half scrolls. Right-sized, not just minimised.</div>
 
+  <!-- DEFECTS -->
+  <div class="sech">The three real defects, verified in code</div>
+  <div class="note spec"><b>1 &middot; A backgrounded app wipes a half-filled request.</b> The funnel state lives only in <code>NewTutorRequestFormContext</code> (in-memory), with defaults set in a mount-time effect and nothing written to storage. Fix: persist the draft per step, offer "Continue your draft" on the list, clear on submit. Zero backend.</div>
+  <div class="note spec"><b>2 &middot; The detail status is hard-coded.</b> RequestDetails always renders "Matching in progress &middot; SifuTutor will assign your best-fit tutor within 24 hours", directly under the live "N Tutors Applied" count, so the two can contradict each other and the line stays "in progress" even once matched. Fix: drive the status from the real state, hide the internal tally from parents, case "Sifututor" correctly.</div>
+  <div class="note spec"><b>3 &middot; A mode switch silently clears the subject.</b> RequestNow's <code>handleModeSelect</code> resets subject and level on every mode tap with no hint. Fix: keep the selection across a mode change, and confirm before clearing anything that would not carry over.</div>
+
+  <!-- NOTES -->
   <div class="sech">Notes for Hafiz</div>
   <div class="note spec"><b>Backend, parallel track (founder approved):</b> "repeat my last request" needs prior-request fields on <code>GET parent/tutor-requests</code> or a clone endpoint. The single biggest tap-saver. Full list in <code>01-requirements/parent-questions-for-hafiz.md</code>.</div>
-  <div class="note flag"><b>Verified, not a blocker:</b> matching runs on a scheduled job, so requests reach tutors (on a cron, not instantly). Confirm the cadence supports the "within 24 hours" copy. The realtime "new ticket" toast to the admin portal is commented out on the parent path, so staff get no live pop-up for app-submitted requests.</div>
-  <div class="note good"><b>Zero-backend wins ship now:</b> the 2-screen funnel, surfaced defaults, gender default, the success toast, the unified detail, and the reframed tally. None of these need backend.</div>
+  <div class="note flag"><b>Confirm, not a blocker:</b> the detail status fix needs the real state field the matching pipeline already tracks (matching / assigned / slipped) exposed on the request-detail response, so the app can stop hard-coding the line. Confirm the matching-job cadence supports any "within X" copy we keep.</div>
+  <div class="note good"><b>Zero-backend wins ship now:</b> the 2-screen funnel, surfaced defaults, the gender default, the saved draft, the mode-switch fix, the success toast, the unified detail, the corrected labels and "Sifututor" casing. None of these need backend.</div>
 
-  <div class="foot">Scope: C1 is the parent's request-creation funnel plus the request list and the unified request detail. It hands off to the curated-choice surface (already designed, backend-gated). Next in sequence: C2, schedule and attendance.</div>
+  <div class="foot">Scope: C1 is the parent's request-creation funnel plus the request list and the unified request detail, all eight screens, each before and after. It hands off to the curated-choice surface (already designed, backend-gated). Next in sequence: C2, schedule and attendance.</div>
 </div>
 <script src="review-widget.js"></script>
 </body>

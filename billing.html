@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Parent billing · sharpen the already-redesigned bill</title>
+<title>Parent billing &middot; nine screens, one skin, fixed bugs</title>
 <style>
   *{box-sizing:border-box}
   html,body{background:#fff}
@@ -80,103 +80,25 @@
 </head>
 <body>
 <div class="doc">
-  <div class="head"><div class="t">Parent billing &middot; sharpen the already-redesigned bill</div><div class="s">C3 of the customer-app redesign. The invoice redesign (hero cards, group-by-request, receipt feed, Pay-All) is already merged to main. This is a targeted clarity and trust pass on that live surface, not a re-skin. For Hafiz &middot; 25 June 2026.</div></div>
+  <div class="head"><div class="t">Parent billing &middot; nine screens, one skin, fixed bugs</div><div class="s">Cluster C3 of the customer-app redesign, expanded. Every billing and payment screen, each before and after, on the parent design language already in the app's code. Sharpens the three screens the redesign already touched (list, Pay-All, commitment fee) and adds the six detail and payment screens, fixing the brand typo, the contradictory due date, the misleading post-charge error, and the raw backend strings. For Hafiz &middot; 26 June 2026.</div></div>
 
-  <div class="intro">Billing is <b>already redesigned</b>, so we build ON the live language. The win is the gaps the redesign did not solve: <b>explain the commitment-fee credit</b> (today an unexplained red line), <b>fix the opaque older-invoice block</b>, add a <b>global "pay everything"</b> across requests, surface the <b>due date</b>, bridge to C2 (<b>"paying unblocks your class"</b>), and <b>declutter</b> the bill. Price stays as today (no commission breakdown). Plus a brand bug: PDFs say "Siftutor" (missing a "u").</div>
+  <div class="intro">Three billing screens were already redesigned (hero cards, group-by-request, receipt feed, Pay-All) and are reused here, sharpened. The other six (the invoice and receipt details, the commitment-fee detail, the refund detail, the gateway step, and the success screen) are still rough or still on the old look. This brings all nine onto one language and fixes the real bugs found in code: the PDF and support email read <b>"Siftutor"</b> (missing a "u"), the PDF due date is both wrong and self-contradictory, a successful charge can still show <b>"Payment successful but network error occurred"</b>, and raw backend error strings reach the parent. Each screen below is its own before/after pair.</div>
 
-  <div class="sech">1 &middot; The bill, explained</div>
-  <div class="secs">Same hero-card layout, sharpened: the commitment-fee credit is explained, a due date appears, the bill drops restated request data, and a line ties it to the class it unblocks.</div>
-  <div class="pair">
-    <div class="col">
-      <div class="cl b">BEFORE &middot; an unexplained red line, no due date</div>
-      <div class="ph bf">
-        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
-        <div class="nt">Invoice Detail</div>
-        <div class="nsub">PINV-3201</div>
-        <div class="dhero"><div class="dhr"><div><div class="dhn">PINV-3201 &middot; Form 4 Maths</div><div class="dhm">Adam &middot; first invoice</div></div><span class="badge un">Unpaid</span></div><div class="dhv" style="margin-top:8px">RM310</div></div>
-        <div class="sect"><div class="sh">Details</div>
-          <div class="row"><div class="rl">Student</div><div class="rv">Adam</div></div>
-          <div class="row"><div class="rl">Gender &middot; Age</div><div class="rv">Male &middot; 16</div></div>
-          <div class="row"><div class="rl">Special Need</div><div class="rv">None</div></div>
-          <div class="row"><div class="rl">Sessions</div><div class="rv">4</div></div>
-        </div>
-        <div class="sect"><div class="sh">Payment</div>
-          <div class="row"><div class="rl">Sub Total</div><div class="rv">RM360</div></div>
-          <div class="row ded"><div class="rl">Commitment fee adjustment</div><div class="rv">&minus; RM50</div></div>
-          <div class="row total"><div class="rl">Total Amount</div><div class="rv">RM310</div></div>
-        </div>
-        <div class="cta">Pay Now</div>
-        <div class="muted">The red "adjustment" is unexplained. No due date. The bill restates Gender / Special Need. Nothing links it to the class it unblocks.</div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="cl a">AFTER &middot; explained, dated, decluttered</div>
-      <div class="ph af">
-        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
-        <div class="nt">Invoice</div>
-        <div class="nsub">PINV-3201 &middot; Form 4 Maths for Adam</div>
-        <div class="dhero"><div class="dhr"><div><div class="dhn">RM310 due</div><div class="dhm">Due 30 June 2026 &middot; first invoice</div></div><span class="badge un">Unpaid</span></div></div>
-        <div class="bridge"><span class="brw">&#128274;</span><div class="brt">Paying this unblocks Adam's class verification.</div></div>
-        <div class="sect"><div class="sh">What you are paying for</div>
-          <div class="row"><div class="rl">Form 4 Maths</div><div class="rv">4 sessions &middot; 1h 30m</div></div>
-        </div>
-        <div class="sect"><div class="sh">Payment</div>
-          <div class="row"><div class="rl">Sub Total</div><div class="rv">RM360</div></div>
-          <div class="row credit"><div class="rl">Commitment fee credit<small>Your one-time RM50 fee, applied here</small></div><div class="rv">&minus; RM50</div></div>
-          <div class="row total"><div class="rl">Total to pay</div><div class="rv">RM310</div></div>
-        </div>
-        <div class="sp"></div>
-        <div class="cta">Pay RM310</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sech">2 &middot; The older-invoice block, made clear</div>
-  <div class="secs">Today the block is an amber line with a permanently-disabled "continue". The fix explains the why and makes paying the oldest the obvious next step.</div>
-  <div class="pair">
-    <div class="col">
-      <div class="cl b">BEFORE &middot; opaque, "continue" disabled</div>
-      <div class="ph bf">
-        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
-        <div class="nt">Invoice Detail</div>
-        <div class="nsub">PINV-3208</div>
-        <div class="older"><div class="olh">&#9888; Request TREQ-687 &middot; earlier invoice unpaid</div><div class="ols">Tap to review and pay it first.</div></div>
-        <div class="cta dim" style="background:#c3c8e3">Pay Now</div>
-        <div class="disbtn">Continue with this (disabled)</div>
-        <div class="sp"></div>
-        <div class="muted">Why is it blocked? Buried in a sheet. "Continue" is permanently off. The only path is to hunt for the older bill.</div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="cl a">AFTER &middot; clear why + oldest-first CTA</div>
-      <div class="ph af">
-        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
-        <div class="nt">Pay your earliest invoice first</div>
-        <div class="nsub">Form 4 Maths &middot; TREQ-687</div>
-        <div class="older"><div class="olh">Why first?</div><div class="ols">We collect oldest-first so your billing stays in order. Clear this one and the next unlocks.</div>
-          <div class="oli"><div><div class="olin">PINV-3105 &middot; RM360</div><div class="olim">5 days overdue</div></div><span class="badge un">Unpaid</span></div>
-        </div>
-        <div class="sp"></div>
-        <div class="cta">Pay PINV-3105 first &middot; RM360</div>
-        <div class="alt">Then your newer invoice unlocks</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="sech">3 &middot; One tap to pay everything</div>
-  <div class="secs">Today Pay-All is per request: a parent with 3 requests pays 3 separate bundles. A top-level "pay everything outstanding" clears them in one go (needs a backend multi-request bundle).</div>
+  <!-- 1 INVOICE LIST -->
+  <div class="sech">1 &middot; Invoice (list)</div>
+  <div class="secs">The Pending and Receipt tabs. Already redesigned with the hero total and group-by-request cards, so this is a sharpen, not a re-skin: per-request Pay-All becomes a global "pay everything", and the hero copy names how many requests and what is overdue.</div>
   <div class="pair">
     <div class="col">
       <div class="cl b">BEFORE &middot; per-request Pay-All only</div>
       <div class="ph bf">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="nt">Invoice</div>
-        <div class="nsub">Pending</div>
+        <div class="nsub">Pending &middot; Receipt</div>
         <div class="ihero"><div class="ihl">Total outstanding</div><div class="ihv">RM930</div><div class="ihp"><span class="pip">1 overdue</span><span class="pip">2 due soon</span></div></div>
         <div class="gcard"><div class="gch"><div><div class="gct">Form 4 Maths &middot; Adam</div><div class="gcm">Aisha &middot; Online</div></div><div class="gcv">RM310</div></div><div class="payall">Pay All &middot; RM310</div></div>
         <div class="gcard"><div class="gch"><div><div class="gct">Form 2 Science &middot; Lia</div><div class="gcm">Rajesh &middot; Online</div></div><div class="gcv">RM310</div></div><div class="payall">Pay All &middot; RM310</div></div>
         <div class="sp"></div>
-        <div class="muted">Three requests means three separate Pay-All taps and three card entries. No single button.</div>
+        <div class="muted">Three requests means three separate Pay-All taps and three card entries. There is no single button to clear everything.</div>
       </div>
     </div>
     <div class="col">
@@ -184,59 +106,356 @@
       <div class="ph af">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="nt">Invoice</div>
-        <div class="nsub">Pending</div>
+        <div class="nsub">Pending &middot; Receipt</div>
         <div class="globalpay"><div class="gpl">Total outstanding</div><div class="gpv">RM930</div><div class="gpm">Across 3 requests &middot; 1 overdue</div><div class="gpb">Pay everything &middot; RM930</div></div>
         <div class="gcard"><div class="gch"><div><div class="gct">Form 4 Maths &middot; Adam</div><div class="gcm">Aisha &middot; Online</div></div><div class="gcv">RM310</div></div><div class="payall">Pay this one &middot; RM310</div></div>
         <div class="gcard"><div class="gch"><div><div class="gct">Form 2 Science &middot; Lia</div><div class="gcm">Rajesh &middot; Online</div></div><div class="gcv">RM310</div></div><div class="payall">Pay this one &middot; RM310</div></div>
         <div class="sp"></div>
-        <div class="muted">One hero CTA clears all of it; per-request pay stays as the second option.</div>
+        <div class="muted">One hero CTA clears all of it. Per-request pay stays as the second option. The hero names the request count and what is overdue.</div>
       </div>
     </div>
   </div>
 
-  <div class="sech">4 &middot; The one leftover old screen, re-skinned</div>
-  <div class="secs">The commitment-fee receipt is the only billing screen still in the old flat layout. Bring it onto the hero-card / section language for consistency.</div>
+  <!-- 2 PAY ALL SUMMARY -->
+  <div class="sech">2 &middot; PayAllSummary</div>
+  <div class="secs">The breakdown screen before a bundled charge: the request hero, every outstanding invoice with its due state, a payment summary, and one "Pay All" button. Already on-skin; the sharpen names the due state per line and trims the doubled total bar.</div>
   <div class="pair">
     <div class="col">
-      <div class="cl b">BEFORE &middot; old flat layout</div>
+      <div class="cl b">BEFORE &middot; total shown twice, plain rows</div>
       <div class="ph bf">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
-        <div class="nt">Receipts</div>
-        <div class="flatt"><div style="font-size:10px">25 June 2026</div><span class="badge paid" style="background:rgba(255,255,255,.25);color:#fff">Paid</span></div>
-        <div class="flat"><div class="flatr"><span>Payer Name</span><b>Siti R.</b></div><div class="flatr"><span>Payer Email</span><b>siti@&hellip;</b></div></div>
-        <div class="flat"><div class="flatr"><span>Commitment Fee</span><b>RM50</b></div></div>
-        <div class="sp"></div>
-        <div class="muted">Plain rows, no hero, inconsistent with every other billing screen.</div>
+        <div class="nt">Pay All</div>
+        <div class="nsub">Form 4 Maths &middot; Adam</div>
+        <div class="ihero"><div class="ihl">Total outstanding</div><div class="ihv">RM620</div><div class="ihp"><span class="pip">across 2 invoices</span></div></div>
+        <div class="sect"><div class="sh">Outstanding invoices</div>
+          <div class="row"><div class="rl">PINV-3105 &middot; 14 Jun 2026</div><div class="rv">RM360</div></div>
+          <div class="row"><div class="rl">PINV-3201 &middot; 20 Jun 2026</div><div class="rv">RM260</div></div>
+        </div>
+        <div class="flatt"><span style="font-size:11px;font-weight:800">Total Amount</span><span style="font-size:15px;font-weight:800">RM620</span></div>
+        <div class="cta">Pay All &middot; RM620</div>
+        <div class="muted">The total appears in the hero and again in a second blue bar just above the button. Rows do not say which invoice is overdue.</div>
       </div>
     </div>
     <div class="col">
-      <div class="cl a">AFTER &middot; matches the rest</div>
+      <div class="cl a">AFTER &middot; due state per line, one total</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Pay all</div>
+        <div class="nsub">Form 4 Maths for Adam &middot; TREQ-687</div>
+        <div class="globalpay"><div class="gpl">Total to pay</div><div class="gpv">RM620</div><div class="gpm">Across 2 invoices &middot; 1 overdue</div></div>
+        <div class="sect"><div class="sh">Outstanding invoices</div>
+          <div class="row ded"><div class="rl">PINV-3105 &middot; 14 Jun<br><small style="font-style:italic;color:#b42318">5 days overdue</small></div><div class="rv">RM360</div></div>
+          <div class="row"><div class="rl">PINV-3201 &middot; 20 Jun<br><small style="font-style:italic;color:#71717a">Due in 4 days</small></div><div class="rv">RM260</div></div>
+          <div class="row total"><div class="rl">Total to pay</div><div class="rv">RM620</div></div>
+        </div>
+        <div class="sp"></div>
+        <div class="cta">Pay RM620</div>
+        <div class="muted">The total lives in one place. Each line carries its own due state, so the parent sees what is overdue before paying.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 COMMITMENT FEE PENDING -->
+  <div class="sech">3 &middot; CommitmentFeePending</div>
+  <div class="secs">The one-time RM50 commitment fee, unpaid. Already on the hero-card language. The sharpen explains what the fee buys (it credits against the first invoice) and fixes the older-fee block, which today is an amber line with a disabled button.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; fee unexplained, opaque older-fee block</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Invoice</div>
+        <div class="nsub">Commitment fee</div>
+        <div class="dhero"><div class="dhr"><div><div class="dhn">CF-90211 &middot; Form 4 Maths</div><div class="dhm">Adam &middot; commitment</div></div><span class="badge un">Unpaid</span></div><div class="dhv" style="margin-top:8px">RM50</div></div>
+        <div class="older"><div class="olh">&#9888; Request TREQ-687 &middot; earlier commitment fee unpaid</div><div class="ols">Tap to review and pay it first.</div></div>
+        <div class="sect"><div class="sh">Payment</div>
+          <div class="row total"><div class="rl">Total Amount</div><div class="rv">RM50</div></div>
+        </div>
+        <div class="cta">Pay Now</div>
+        <div class="muted">Nothing says what the RM50 is for or that it credits back later. The older-fee block explains nothing and the path is to hunt for the older fee.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; what it buys + clear older-first</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Commitment fee</div>
+        <div class="nsub">Form 4 Maths for Adam &middot; TREQ-687</div>
+        <div class="dhero"><div class="dhr"><div><div class="dhn">RM50 due</div><div class="dhm">One-time, per request</div></div><span class="badge un">Unpaid</span></div></div>
+        <div class="bridge"><span class="brw">&#8635;</span><div class="brt">This RM50 is credited toward your first invoice, so you are not paying it twice.</div></div>
+        <div class="older"><div class="olh">Pay your earliest fee first</div><div class="ols">An earlier commitment fee on this request is still unpaid. Clear it and this one unlocks.</div>
+          <div class="oli"><div><div class="olin">CF-90188 &middot; RM50</div><div class="olim">Dated 12 Jun 2026</div></div><span class="badge un">Unpaid</span></div>
+        </div>
+        <div class="sp"></div>
+        <div class="cta">Pay CF-90188 first &middot; RM50</div>
+        <div class="muted">A line explains the fee credits back. The older-fee block states the why and offers the oldest-first action directly.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 INVOICE DETAIL PENDING -->
+  <div class="sech">4 &middot; InvoiceDetailPending</div>
+  <div class="secs">An unpaid invoice, opened. Today the hero card is good, but it restates request data (Gender, Special Need), shows no due date on screen, and the PDF behind "Share" carries the brand typo and a self-contradictory due date. A failed verify can also leak a raw backend string.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; restated fields, no due date, buggy PDF</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Invoice Detail</div>
+        <div class="nsub">PINV-3201</div>
+        <div class="dhero"><div class="dhr"><div><div class="dhn">PINV-3201 &middot; Form 4 Maths</div><div class="dhm">Adam</div></div><span class="badge un">Unpaid</span></div><div class="dhv" style="margin-top:8px">RM310</div></div>
+        <div class="sect"><div class="sh">Details</div>
+          <div class="row"><div class="rl">Student</div><div class="rv">Adam</div></div>
+          <div class="row"><div class="rl">Gender &middot; Age</div><div class="rv">Male &middot; 16 y/o</div></div>
+          <div class="row"><div class="rl">No. of Sessions</div><div class="rv">4</div></div>
+          <div class="row"><div class="rl">Special Need</div><div class="rv">None</div></div>
+        </div>
+        <div class="sect"><div class="sh">Payment</div>
+          <div class="row"><div class="rl">Sub Total Amount</div><div class="rv">RM360</div></div>
+          <div class="row ded"><div class="rl">Commitment fee</div><div class="rv">&minus; RM50</div></div>
+          <div class="row total"><div class="rl">Total Amount</div><div class="rv">RM310</div></div>
+        </div>
+        <div class="cta">Pay Now</div>
+        <div class="muted">No due date on screen. The PDF reads "Siftutor", shows "Due (created+6 days)" while the fine print says "within 3 working days", and a failed verify can show a raw "104: ..." string.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; dated, decluttered, correct PDF</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Invoice</div>
+        <div class="nsub">PINV-3201 &middot; Form 4 Maths for Adam</div>
+        <div class="dhero"><div class="dhr"><div><div class="dhn">RM310 due</div><div class="dhm">Due 27 June 2026 &middot; 4 sessions</div></div><span class="badge un">Unpaid</span></div></div>
+        <div class="bridge"><span class="brw">&#128274;</span><div class="brt">Paying this confirms Adam's classes with Aisha.</div></div>
+        <div class="sect"><div class="sh">What you are paying for</div>
+          <div class="row"><div class="rl">Form 4 Maths &middot; Online</div><div class="rv">4 sessions</div></div>
+        </div>
+        <div class="sect"><div class="sh">Payment</div>
+          <div class="row"><div class="rl">Sub total</div><div class="rv">RM360</div></div>
+          <div class="row credit"><div class="rl">Commitment fee credit<small>Your one-time RM50, applied here</small></div><div class="rv">&minus; RM50</div></div>
+          <div class="row total"><div class="rl">Total to pay</div><div class="rv">RM310</div></div>
+        </div>
+        <div class="sp"></div>
+        <div class="cta">Pay RM310</div>
+        <div class="muted">One due date, shown once and consistent with the PDF. Gender and Special Need drop. The PDF reads "Sifututor". A failed verify shows a plain "we could not confirm it yet, here is your reference" line.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 INVOICE DETAIL PAID -->
+  <div class="sech">5 &middot; InvoiceDetailPaid</div>
+  <div class="secs">A paid invoice, opened as a receipt. Same shared body as the pending detail, so it inherits the restated fields and the same buggy PDF. The "Share" PDF is the document a parent forwards for reimbursement, so the brand typo matters most here.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; "Receipts", buggy shared PDF</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Receipts</div>
+        <div class="nsub">PINV-3105</div>
+        <div class="dhero"><div class="dhr"><div><div class="dhn">PINV-3105 &middot; Form 4 Maths</div><div class="dhm">Adam</div></div><span class="badge paid">Paid</span></div><div class="dhv" style="margin-top:8px">RM360</div></div>
+        <div class="sect"><div class="sh">Details</div>
+          <div class="row"><div class="rl">Student</div><div class="rv">Adam</div></div>
+          <div class="row"><div class="rl">Gender &middot; Age</div><div class="rv">Male &middot; 16 y/o</div></div>
+          <div class="row"><div class="rl">Special Need</div><div class="rv">None</div></div>
+        </div>
+        <div class="sect"><div class="sh">Payment</div>
+          <div class="row total"><div class="rl">Total Amount</div><div class="rv">RM360</div></div>
+        </div>
+        <div class="ghost">Share</div>
+        <div class="muted">Header says "Receipts" (plural). The shared "Official Receipt" PDF logo alt and footer email both read "Siftutor" / hello@siftutor.my, the brand a parent forwards to their employer.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; "Receipt", correct PDF</div>
       <div class="ph af">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="nt">Receipt</div>
-        <div class="nsub">Commitment fee</div>
-        <div class="dhero"><div class="dhr"><div><div class="dhn">Commitment fee</div><div class="dhm">Paid 25 June 2026</div></div><span class="badge paid">Paid</span></div><div class="dhv" style="margin-top:8px">RM50</div></div>
+        <div class="nsub">PINV-3105 &middot; Form 4 Maths for Adam</div>
+        <div class="dhero"><div class="dhr"><div><div class="dhn">RM360 paid</div><div class="dhm">Paid 16 June 2026</div></div><span class="badge paid">Paid</span></div></div>
+        <div class="bridge"><span class="brw">&#10003;</span><div class="brt">Receipt for Adam's Form 4 Maths, 4 sessions.</div></div>
+        <div class="sect"><div class="sh">Paid for</div>
+          <div class="row"><div class="rl">Form 4 Maths &middot; Online</div><div class="rv">4 sessions</div></div>
+        </div>
+        <div class="sect"><div class="sh">Payment</div>
+          <div class="row total"><div class="rl">Total paid</div><div class="rv">RM360</div></div>
+        </div>
+        <div class="sp"></div>
+        <div class="cta">Share receipt</div>
+        <div class="ghost">Download PDF</div>
+        <div class="muted">Single "Receipt". The PDF logo and footer read "Sifututor" and hello@sifututor.my, so the forwarded receipt shows the right brand.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 COMMITMENT FEE DETAIL -->
+  <div class="sech">6 &middot; CommitmentFeeDetail</div>
+  <div class="secs">The paid commitment-fee receipt. This is the one billing screen still on the old flat layout: a flat blue date bar, a black status pill, plain "Payer Name / Payer Email" boxes, no hero. The redesign brings it onto the hero-card language the rest of billing already uses.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; old flat layout, black pill</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Receipts</div>
+        <div class="flatt"><div style="font-size:11px;font-weight:700">25 June 2026</div><span class="badge" style="background:#000;color:#fff">Paid</span></div>
+        <div style="font-size:11px;font-weight:700;margin:4px 0 7px">Details</div>
+        <div class="flat"><div class="flatr"><span>Payer Name</span><b>Siti R.</b></div><div class="flatr"><span>Payer Email</span><b>siti@&hellip;</b></div></div>
+        <div style="font-size:11px;font-weight:700;margin:4px 0 7px">Payment Detail</div>
+        <div class="flat"><div class="flatr"><span>Commitment Fee</span><b>RM50</b></div></div>
+        <div class="ghost">Share</div>
+        <div class="muted">A flat blue date bar with a black "Paid" pill, plain boxes, no hero, no link to the request the fee belongs to. It does not match any other billing screen. The PDF carries the same "Siftutor" typo.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; on the hero-card language</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Receipt</div>
+        <div class="nsub">Commitment fee &middot; Form 4 Maths</div>
+        <div class="dhero"><div class="dhr"><div><div class="dhn">RM50 paid</div><div class="dhm">Paid 25 June 2026 &middot; CF-90211</div></div><span class="badge paid">Paid</span></div></div>
         <div class="sect"><div class="sh">Payer</div>
           <div class="row"><div class="rl">Name</div><div class="rv">Siti R.</div></div>
           <div class="row"><div class="rl">Email</div><div class="rv">siti@mail.com</div></div>
         </div>
-        <div class="bridge"><span class="brw">&#10003;</span><div class="brt">Credited toward your first invoice.</div></div>
+        <div class="bridge"><span class="brw">&#8635;</span><div class="brt">Credited toward your first invoice for this request.</div></div>
         <div class="sp"></div>
-        <div class="ghost">Share receipt</div>
+        <div class="cta">Share receipt</div>
+        <div class="muted">Same hero, sections, and status pill as every other receipt. It names the request and states the credit. The PDF reads "Sifututor".</div>
       </div>
     </div>
   </div>
 
+  <!-- 7 REFUND INVOICE DETAIL -->
+  <div class="sech">7 &middot; RefundInvoiceDetail</div>
+  <div class="secs">A refund record, opened. Shares the invoice body but with no Payment section and a refund total. Today it reuses the "Receipts" header and the same restated request fields, and the refund is not clearly framed as money returned.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; reads like an invoice, not a refund</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Receipts</div>
+        <div class="nsub">TREQ-540</div>
+        <div class="dhero"><div class="dhr"><div><div class="dhn">TREQ-540 &middot; Form 2 Science</div><div class="dhm">Lia</div></div><span class="badge paid" style="background:#eef1fb;color:#243cb3">Refund</span></div><div class="dhv" style="margin-top:8px">RM180</div></div>
+        <div class="sect"><div class="sh">Details</div>
+          <div class="row"><div class="rl">Student</div><div class="rv">Lia</div></div>
+          <div class="row"><div class="rl">Gender &middot; Age</div><div class="rv">Female &middot; 13 y/o</div></div>
+          <div class="row"><div class="rl">Special Need</div><div class="rv">None</div></div>
+        </div>
+        <div class="sect"><div class="sh">&nbsp;</div>
+          <div class="row total"><div class="rl">Total Amount</div><div class="rv">RM180</div></div>
+        </div>
+        <div class="ghost">Share</div>
+        <div class="muted">The "Receipts" header and the restated Gender / Special Need make a refund look like an ordinary invoice. Nothing says the money came back to the parent.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; clearly money returned</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Refund</div>
+        <div class="nsub">Form 2 Science for Lia &middot; TREQ-540</div>
+        <div class="dhero"><div class="dhr"><div><div class="dhn">RM180 refunded</div><div class="dhm">Processed 22 June 2026</div></div><span class="badge paid" style="background:#eef1fb;color:#243cb3">Refund</span></div></div>
+        <div class="bridge"><span class="brw">&#8617;</span><div class="brt">RM180 returned to your original payment method.</div></div>
+        <div class="sect"><div class="sh">Refund for</div>
+          <div class="row"><div class="rl">Form 2 Science &middot; Online</div><div class="rv">2 sessions</div></div>
+        </div>
+        <div class="sect"><div class="sh">Refund</div>
+          <div class="row total"><div class="rl">Amount refunded</div><div class="rv">RM180</div></div>
+        </div>
+        <div class="sp"></div>
+        <div class="cta">Share refund record</div>
+        <div class="muted">Titled "Refund", with a line confirming the money was returned. Restated personal fields drop. The PDF reads "Sifututor".</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8 PAYMENT GATEWAY -->
+  <div class="sech">8 &middot; PaymentGateway</div>
+  <div class="secs">A thin step that shows a single "Fees / RMxxx" row and a "Proceed to Pay" button before handing off to the gateway. Today it shows the amount with almost no context: no idea what the fee is for, which request, or that the next step leaves the app.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; a bare fee and a button</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Payment</div>
+        <div class="sp" style="flex:0 0 18px"></div>
+        <div class="flat" style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:11px;color:#52525b">Fees</b><b style="font-size:18px;color:#243cb3">RM50</b></div>
+        <div class="cta">Proceed to Pay</div>
+        <div class="sp"></div>
+        <div class="muted">One "Fees" row and a button. No mention of what the fee is for, which request it belongs to, or that "Proceed to Pay" opens an external payment screen.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; named fee, request, and handoff cue</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Confirm payment</div>
+        <div class="nsub">Form 4 Maths for Adam &middot; TREQ-687</div>
+        <div class="sect"><div class="sh">You are paying</div>
+          <div class="row"><div class="rl">Commitment fee</div><div class="rv">RM50</div></div>
+          <div class="row total"><div class="rl">Total</div><div class="rv">RM50</div></div>
+        </div>
+        <div class="bridge"><span class="brw">&#128179;</span><div class="brt">The next step opens a secure payment screen. You will return here once it is done.</div></div>
+        <div class="sp"></div>
+        <div class="cta">Proceed to pay &middot; RM50</div>
+        <div class="muted">Names the fee, the request, and the total, and tells the parent the next step is an external secure screen they will return from.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9 PAYMENT CONGRATULATIONS -->
+  <div class="sech">9 &middot; PaymentCongratulations</div>
+  <div class="secs">The success screen after a charge clears. When the gateway succeeds but the backend confirmation times out or 4xx/5xx, the app instead shows the alarming "Payment successful but network error occurred". The redesign confirms what is known and turns that contradiction into one calm, plain message.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; thin success, contradictory error path</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="sp" style="flex:0 0 30px"></div>
+        <div style="text-align:center;font-size:40px">&#9989;</div>
+        <div style="text-align:center;font-size:18px;font-weight:800;color:#243cb3;margin-top:10px">RM&mdash;</div>
+        <div style="text-align:center;font-size:20px;font-weight:800;margin-top:8px">Payment Successful</div>
+        <div style="text-align:center;font-size:10px;color:#71717a;margin-top:6px;line-height:1.5">Your payment has been received.<br>Thank you!</div>
+        <div class="sp"></div>
+        <div class="note spec" style="font-size:9px;margin:0 0 8px;padding:8px 10px">On a verify timeout the parent instead sees a popup: <b>"Payment successful but network error occurred."</b> Successful and error in one line is alarming and unclear.</div>
+        <div class="cta">Back To Dashboard</div>
+        <div class="muted">The amount can render as "RM&mdash;" when the field is missing. The error-path copy contradicts itself and offers no clear next step.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; confirmed, with a calm pending fallback</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="sp" style="flex:0 0 24px"></div>
+        <div style="text-align:center;font-size:40px">&#10003;</div>
+        <div style="text-align:center;font-size:22px;font-weight:800;color:#243cb3;margin-top:8px">RM310 paid</div>
+        <div style="text-align:center;font-size:18px;font-weight:800;margin-top:6px">Payment received</div>
+        <div style="text-align:center;font-size:10px;color:#71717a;margin-top:6px;line-height:1.5">PINV-3201 &middot; Form 4 Maths for Adam.<br>A receipt is in your Receipt tab.</div>
+        <div class="bridge" style="margin-top:14px"><span class="brw">&#8505;</span><div class="brt">If confirmation is slow, your payment is safe. We will update the receipt shortly. Reference: TXN-77310.</div></div>
+        <div class="sp"></div>
+        <div class="cta">View receipt</div>
+        <div class="ghost">Back to home</div>
+        <div class="muted">Shows the real amount and what was paid. The timeout case becomes one plain "your payment is safe, confirmation is on the way" line with a reference, never "successful but error".</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REASSESS -->
   <div class="sech">What this is, and is not (Step 2.5 reassess)</div>
-  <div class="note good"><b>Applied:</b> explain the commitment-fee credit; surface a due date; bridge to C2 ("paying unblocks your class"); declutter the bill (cut Gender / Special Need / requirements); fix the older-invoice block with a clear why + oldest-first CTA; add a global "pay everything across requests"; re-skin the lone old commitment-fee receipt.</div>
-  <div class="note flag"><b>Kept on purpose (the guardrail):</b> we do NOT re-skin the hero cards, group cards, receipt feed, or Pay-All; the team already redesigned those and they are good. We sharpen, not replace. Price stays as today (no commission breakdown, per your call).</div>
+  <div class="note good"><b>Applied:</b> a global "pay everything" on the list; one consistent total and per-line due state on Pay-All; the commitment fee explained (it credits the first invoice) with a clear oldest-first block; a due date on the invoice detail, decluttered of restated personal fields; the paid receipt and refund framed correctly (money paid, money returned); the commitment-fee receipt moved off the old flat layout onto the hero-card language; the gateway step given context and a handoff cue; the success screen given the real amount and a calm pending fallback. Across all nine: the consistency floor (tokens, one brand blue, "Sifututor" casing everywhere, neutral plain copy, real loading and error states).</div>
+  <div class="note flag"><b>Kept on purpose:</b> the hero cards, group-by-request cards, receipt feed, and Pay-All bundle are already redesigned and good, so they are sharpened, not replaced. Price stays as today (no commission breakdown). No field is cut for matching or accounting, only the restated personal fields are dropped from the bill view, where the request already carries them.</div>
 
+  <!-- BUG NOTES -->
+  <div class="sech">Real bugs fixed (verified in code)</div>
+  <div class="note spec"><b>Brand typo:</b> the invoice and receipt PDFs and the support email read <b>"Siftutor"</b> and <b>hello@siftutor.my</b> (missing the "u"), in CommitmentFeePending, CommitmentFeeDetail, and the shared invoice/receipt body. Every PDF a parent forwards shows the wrong brand. Fix to "Sifututor" and hello@sifututor.my.</div>
+  <div class="note spec"><b>Wrong, self-contradictory due date:</b> the invoice PDF header prints "Due (created date + 6 days)" while the fine print below says "Payment is due within 3 working days". Neither matches the billing rule (cycle date + 7). The AFTER shows one due date, derived from the rule, on screen and in the PDF.</div>
+  <div class="note spec"><b>Misleading post-charge message:</b> when the gateway succeeds but the backend confirmation times out or returns 4xx/5xx, the parent sees <b>"Payment successful but network error occurred"</b> (in SharedInvoiceDetail, PayAllSummary, and CommitmentFeePending). The AFTER replaces it with a calm "your payment is safe, confirmation is on the way" line plus a transaction reference.</div>
+  <div class="note spec"><b>Raw backend strings shown to the parent:</b> failed verify paths show "104: (raw error)" and similar from the response body straight in a popup. The AFTER maps these to plain, neutral messages with a reference, and keeps the raw detail in telemetry only.</div>
+
+  <!-- NOTES FOR HAFIZ -->
   <div class="sech">Notes for Hafiz</div>
-  <div class="note spec"><b>Backend, Priority 6:</b> a global multi-request pay-all bundle; the older-invoice acknowledgement path (or confirm oldest-first is the hard rule); a due date in the parent payload; return waived commitment fees as receipts; an SST / e-invoice line if compliant invoices are required. Full list in <code>01-requirements/parent-questions-for-hafiz.md</code>.</div>
-  <div class="note spec"><b>Brand bug (quick fix):</b> invoice PDFs and the support email read "Siftutor" / "hello@siftutor.my" (missing a "u"). The brand is Sifututor; the app elsewhere uses sifututor.my. Parents get the wrong brand on every invoice.</div>
-  <div class="note good"><b>Zero-backend now:</b> the credit explanation, the due-date display (once in the payload), the C2 bridge copy, the decluttered bill, the older-invoice clarity, and the receipt re-skin. The global pay-all lights up when the backend bundle lands.</div>
+  <div class="note flag"><b>Backend:</b> the global multi-request pay-all bundle (so "pay everything" can clear invoices across requests in one charge); a due date in the parent invoice payload so the app can show one correct date; confirm the commitment-fee credit appears as a line the app can label; and confirm oldest-first is the hard collection rule so the older-first copy is accurate.</div>
+  <div class="note good"><b>Zero-backend now:</b> the brand typo fix, the consistent total and due-state copy, the commitment-fee explanation, the decluttered bill, the receipt and refund framing, the commitment-fee receipt re-skin, the gateway context, the success-screen amount and pending fallback, and the plain error mapping. The global pay-all and the on-screen due date light up once the backend payload changes land.</div>
 
-  <div class="foot">Scope: C3 is the parent's billing surface, built on the already-merged invoice redesign. Next in sequence: C4 Reports (the trust aha), then C5 Home.</div>
+  <div class="foot">Scope: C3 expanded, the parent's full billing and payment surface, nine screens before and after on the one parent design language. Next in sequence: C4 Reports (the trust aha), then C5 Home.</div>
 </div>
 <script src="review-widget.js"></script>
 </body>

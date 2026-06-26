@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Referral + Static · on-skin, payout made real</title>
+<title>Referral + Static · five screens, one skin, honest referral</title>
 <style>
   *{box-sizing:border-box}
   html,body{background:#fff}
@@ -55,114 +55,198 @@
   .note.spec{background:#fff7e6;border:1px solid rgba(245,158,11,.3)}
   .note.good{background:#eef7f1;border:1px solid rgba(31,122,68,.3)}
   .foot{margin-top:12px;font-size:13px;font-weight:700;color:#fff;background:#475569;border-radius:12px;padding:14px 18px;line-height:1.5}
+  /* small skin-consistent helpers for this doc */
+  .legaltitle{font-size:13px;font-weight:800;color:#18181b;margin-bottom:7px}
+  .legalcard{background:#fff;border-radius:12px;padding:12px 13px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:9px}
+  .legalh{font-size:10px;font-weight:800;color:#18181b;margin-bottom:5px}
+  .legalln{height:6px;background:#eef1fb;border-radius:99px;margin-bottom:6px}
+  .legalln.s{width:72%}.legalln.m{width:88%}
+  .blank{flex:1;display:flex;align-items:center;justify-content:center;color:#d4d4da;font-size:10px;font-weight:700;border:1px dashed #e2e2e6;border-radius:12px;margin:6px 0}
+  .errbox{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:9px;padding:0 14px}
+  .errico{font-size:30px}
+  .errh{font-size:11px;font-weight:800;color:#18181b}
+  .errs{font-size:9px;color:#71717a;line-height:1.45}
+  .errbtn{background:var(--tint);color:#fff;font-size:10px;font-weight:800;padding:9px 22px;border-radius:999px;margin-top:2px}
+  .sharetag{background:#eef1fb;border:1px solid rgba(36,60,179,.18);border-radius:8px;padding:7px 10px;font-size:8.5px;color:#3f3f46;line-height:1.4;font-weight:600;margin-bottom:10px;display:flex;gap:6px;align-items:flex-start}
   @media (max-width:760px){ .pair{flex-direction:column;gap:26px;align-items:center} .ph{width:330px} .head .t{font-size:20px} }
 </style>
 </head>
 <body>
 <div class="doc">
-  <div class="head"><div class="t">Referral + Static &middot; on-skin, payout made real</div><div class="s">Clusters D + E of the secondary sweep, the last ones. The referral and static screens, re-skinned, with the referral earnings made real (the backend will pay parent referrals). For Hafiz &middot; 26 June 2026.</div></div>
+  <div class="head"><div class="t">Referral + Static &middot; five screens, one skin, honest referral</div><div class="s">Clusters D + E of the secondary sweep, the last ones. The two referral screens and the three static / legal pages, re-skinned, with the referral made honest and the legal pages given real error states. For Hafiz &middot; 26 June 2026.</div></div>
 
-  <div class="intro">A re-skin to the design-system language across all five (refer, earnings, FAQs, terms, privacy). The referral <b>code and sharing already works</b> and stays. The earnings screen was built but the backend never paid parents; <b>that payout will be built</b> (your call), so the earnings + Claim become real instead of a dead RM0. All else is consistency.</div>
+  <div class="intro">All five screens are still on the old look. This brings them onto the parent design language that already lives in the app's code. Two real problems get fixed: the referral screens <b>advertise "Get RM50" and a Claim button, but the parent payout was never built</b> (the payout logic is tutor-only, the parent balance is always RM0, and the Claim reports a false "claimed successfully"), so the AFTER tells the truth and stays share-only until payout exists; and Privacy / Terms <b>show a blank white screen on a load failure</b>, so the AFTER adds a real error and retry. Each screen below is its own before / after pair.</div>
 
-  <div class="sech">1 &middot; Refer a friend, on-skin</div>
-  <div class="secs">The share flow works today; this brings it onto the skin. Same code, share channels, and earnings entry.</div>
+  <!-- 1 REFERFRIEND -->
+  <div class="sech">1 &middot; ReferFriend</div>
+  <div class="secs">The share screen. The code, the share channels (WhatsApp, email, Instagram, copy link), and the link all <b>work today and stay</b>. The problem is the headline: it promises "Get RM50" and "earn RM50 credit", but the parent is never paid. The AFTER keeps the working share, drops the false RM promise, and frames it honestly as helping a friend join.</div>
   <div class="pair">
     <div class="col">
-      <div class="cl b">BEFORE &middot; works, off-skin</div>
+      <div class="cl b">BEFORE &middot; works, but promises RM that never pays</div>
       <div class="ph bf">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="nt">Refer a Friend</div>
         <div class="refamt" style="text-align:center;font-size:24px">Get RM50!</div>
         <div class="refimg" style="margin-top:11px">&#127873;</div>
         <div class="refsub" style="text-align:center">Invite a friend and earn RM50 credit when they join.</div>
-        <div class="flatbox" style="margin-top:11px;display:flex;justify-content:space-between"><span>Your referral code<br><b style="color:#243cb3;font-size:14px">SITI50</b></span><span>&#128203;</span></div>
+        <div class="flatbox" style="margin-top:11px;display:flex;justify-content:space-between"><span>Your referral code<br><b style="color:#243cb3;font-size:14px">SITI2026</b></span><span>&#128203;</span></div>
         <div class="sp"></div>
-        <div class="muted">Functional but off-skin: ad-hoc spacing, manual fonts, marketing layout.</div>
+        <div class="muted">Off-skin spacing and fonts, and the headline promises RM50 that the backend never credits to a parent. The share itself works.</div>
       </div>
     </div>
     <div class="col">
-      <div class="cl a">AFTER &middot; same flow, on-skin</div>
+      <div class="cl a">AFTER &middot; same share, honest copy, on-skin</div>
       <div class="ph af">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="nt">Refer a friend</div>
-        <div class="refhero"><div class="refimg">&#127873;</div><div class="refamt">Earn RM50</div><div class="refsub">Invite a friend, earn RM50 credit when they join.</div></div>
-        <div class="codecard"><div><div class="codel">YOUR REFERRAL CODE</div><div class="codev">SITI50</div></div><span style="color:#243cb3">&#128203;</span></div>
-        <div class="cta">Invite</div>
+        <div class="refhero"><div class="refimg">&#127873;</div><div class="refamt">Help a friend start</div><div class="refsub">Share Sifututor so a friend can find a verified tutor too.</div></div>
+        <div class="codecard"><div><div class="codel">YOUR REFERRAL CODE</div><div class="codev">SITI2026</div></div><span style="color:#243cb3">&#128203;</span></div>
+        <div class="cta">Share invite</div>
         <div class="sharerow"><span class="shareic">&#128172;</span><span class="shareic">&#9993;</span><span class="shareic">&#128247;</span><span class="shareic">&#128279;</span></div>
-        <div class="earnentry"><span>&#129689; My earnings</span><span style="color:#c8c8cc">&#8250;</span></div>
-        <div class="sp"></div>
-        <div class="muted">Re-skinned hero + inset code card + share row + earnings entry. Same working flow.</div>
+        <div class="muted">Re-skinned hero, inset code card, the same working share row. No RM promise until parent payout is built. The code and channels are unchanged.</div>
       </div>
     </div>
   </div>
 
-  <div class="sech">2 &middot; My earnings, made real</div>
-  <div class="secs">Built but always RM0 (the backend never paid parents). With the payout built, the earnings and Claim work as designed.</div>
+  <!-- 2 MYREFERRALEARNINGS -->
+  <div class="sech">2 &middot; MyReferralEarnings</div>
+  <div class="secs">The earnings ledger. Three real issues: the balance is <b>always RM0</b> because parent payout was never built; the <b>Claim button reports "Earnings claimed successfully" while the backend returns no_balance and credits nothing</b> (a false success); and dates render US-style <b>"Jun 12 2026"</b> here while the rest of the app uses 12-Jun-2026. Until payout exists, the honest version drops the dead balance and Claim and keeps only what is true: who you have invited.</div>
   <div class="pair">
     <div class="col">
-      <div class="cl b">BEFORE &middot; RM0, dead Claim</div>
+      <div class="cl b">BEFORE &middot; RM0, false-success Claim, US dates</div>
       <div class="ph bf">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="nt">My Referral Earnings</div>
-        <div class="flatbox" style="background:#243cb3;color:#fff;text-align:center;padding:20px"><div>My Earnings</div><div class="flatamt" style="color:#fff">RM0</div><div style="background:#fff;color:#243cb3;border-radius:99px;padding:8px;font-size:11px;font-weight:800">Claim Now</div></div>
-        <div class="muted">A complete earnings screen, but RM0 forever and the Claim does nothing, because the backend never credited parent referrals.</div>
+        <div class="flatbox" style="background:#243cb3;color:#fff;text-align:center;padding:18px"><div>My Earnings</div><div class="flatamt" style="color:#fff">RM0</div><div style="background:#fff;color:#243cb3;border-radius:99px;padding:8px;font-size:11px;font-weight:800">Claim Now</div></div>
+        <div class="faqflat" style="margin-top:10px"><span>Farah A.<br><span style="font-size:8px;color:#9a9aa0;font-weight:600">Referred on Jun 12 2026</span></span><span style="color:#243cb3;font-weight:800">RM50</span></div>
+        <div class="sp"></div>
+        <div class="muted">RM0 forever (payout never built). Tapping Claim shows "Earnings claimed successfully" but credits nothing. Date is "Jun 12 2026" (US order), unlike the rest of the app.</div>
       </div>
     </div>
     <div class="col">
-      <div class="cl a">AFTER &middot; on-skin + real</div>
+      <div class="cl a">AFTER &middot; honest ledger, one date format</div>
       <div class="ph af">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
-        <div class="nt">My earnings</div>
-        <div class="earnhero"><div class="ehl">Total earned</div><div class="ehv">RM50</div><div class="ehs">1 friend joined</div><div class="ehb">Claim RM50</div></div>
-        <div class="tabs"><div class="tab on">Completed</div><div class="tab">Pending</div><div class="tab">How it works</div></div>
-        <div class="refrow"><span class="refav">F</span><div><div class="refn">Farah A.</div><div class="refd">Joined 12 Jun 2026</div></div><span class="refamt2">RM50</span></div>
+        <div class="nt">Your referrals</div>
+        <div class="sharetag"><span>&#8505;</span><span>Cash rewards are not available yet. We will let you know here the moment they are.</span></div>
+        <div class="tabs"><div class="tab on">Joined</div><div class="tab">Pending</div><div class="tab">How it works</div></div>
+        <div class="refrow"><span class="refav">F</span><div><div class="refn">Farah A.</div><div class="refd">Joined 12-Jun-2026</div></div><span class="refamt2" style="color:#1a5c38;font-size:9px">Joined</span></div>
+        <div class="refrow"><span class="refav">A</span><div><div class="refn">Aiman K.</div><div class="refd">Joined 03-Jun-2026</div></div><span class="refamt2" style="color:#1a5c38;font-size:9px">Joined</span></div>
         <div class="sp"></div>
-        <div class="muted">Re-skinned, and real once the backend pays parent referrals (Hafiz).</div>
+        <div class="muted">No phantom RM0 hero, no false-success Claim. Shows only the true thing (who joined) with one date format, 12-Jun-2026. The RM hero and Claim return when payout is built.</div>
       </div>
     </div>
   </div>
 
-  <div class="sech">3 &middot; FAQs + the static pages</div>
-  <div class="secs">The FAQ accordion and the Terms / Privacy article pages, brought onto inset cards and the Ink ramp.</div>
+  <!-- 3 FAQS -->
+  <div class="sech">3 &middot; FAQs</div>
+  <div class="secs">The help accordion, loaded from the backend. It already has a working error and retry (unlike the legal pages below), so this one is purely a re-skin: the flat rows become an inset accordion on the Ink ramp, grouped by category.</div>
   <div class="pair">
     <div class="col">
-      <div class="cl b">BEFORE &middot; off-skin accordion</div>
+      <div class="cl b">BEFORE &middot; off-skin flat rows</div>
       <div class="ph bf">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="nt">FAQs</div>
-        <div class="faqflat"><span>How does matching work?</span><span>+</span></div>
-        <div class="faqflat"><span>When am I charged?</span><span>+</span></div>
-        <div class="faqflat"><span>How do I approve a class?</span><span>+</span></div>
+        <div class="faqflat"><span>How does tutor matching work?</span><span>+</span></div>
+        <div class="faqflat"><span>When am I charged for a class?</span><span>+</span></div>
+        <div class="faqflat"><span>How do I reschedule a class?</span><span>+</span></div>
+        <div class="faqflat"><span>What if I am not happy with my tutor?</span><span>+</span></div>
         <div class="sp"></div>
-        <div class="muted">Flat rows, off-skin radii and fonts. Terms + Privacy are similar HTML pages.</div>
+        <div class="muted">Flat rows, off-skin radii and fonts. The error and retry already exist in code, so only the look changes here.</div>
       </div>
     </div>
     <div class="col">
-      <div class="cl a">AFTER &middot; on-skin, grouped</div>
+      <div class="cl a">AFTER &middot; on-skin, grouped accordion</div>
       <div class="ph af">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="nt">Help &amp; FAQ</div>
         <div class="faqcat">Getting started</div>
-        <div class="faqq open"><span>How does matching work?</span><span>&#8722;</span></div>
-        <div class="faqa">After you request, we shortlist verified tutors that fit and you pick one. We assign your best-fit within 24 hours.</div>
-        <div class="faqq"><span>When am I charged?</span><span>&#43;</span></div>
+        <div class="faqq open"><span>How does tutor matching work?</span><span>&#8722;</span></div>
+        <div class="faqa">After you request, we shortlist verified tutors that fit and you pick one. We aim to recommend your best fit within 24 hours.</div>
+        <div class="faqq"><span>When am I charged for a class?</span><span>&#43;</span></div>
         <div class="faqcat">Classes &amp; billing</div>
-        <div class="faqq"><span>How do I approve a class?</span><span>&#43;</span></div>
+        <div class="faqq"><span>How do I reschedule a class?</span><span>&#43;</span></div>
+        <div class="faqq"><span>What if I am not happy with my tutor?</span><span>&#43;</span></div>
         <div class="sp"></div>
-        <div class="muted">Inset accordion + the Ink ramp. Terms + Privacy use the same on-skin article style.</div>
+        <div class="muted">Inset accordion on the Ink ramp, grouped by category. Same content and the existing retry, on the parent skin.</div>
       </div>
     </div>
   </div>
 
+  <!-- 4 TERMANDCONDITIONS -->
+  <div class="sech">4 &middot; TermAndConditions</div>
+  <div class="secs">The Terms article, loaded from the backend. The real bug: on a load failure it just stops loading with an empty list, so the parent sees a <b>blank white screen with no message and no way to retry</b>. The AFTER re-skins the article into inset cards and adds a real error state with a Try again button.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; blank white on load failure</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Term and Conditions</div>
+        <div class="blank">(blank white &middot; no content, no error, no retry)</div>
+        <div class="muted">When the policies call fails after its retries, loading just ends with an empty list. The parent is left on an empty white screen with nothing to do.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; on-skin article + real error / retry</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Terms &amp; Conditions</div>
+        <div class="legalcard">
+          <div class="legalh">1. Using Sifututor</div>
+          <div class="legalln m"></div><div class="legalln"></div><div class="legalln s"></div>
+        </div>
+        <div class="legalcard">
+          <div class="legalh">2. Payments and refunds</div>
+          <div class="legalln"></div><div class="legalln m"></div><div class="legalln s"></div>
+        </div>
+        <div class="sharetag" style="margin-top:2px"><span>&#8635;</span><span>On a load failure: a clear "Could not load" message with a Try again button (shown below), never a blank screen.</span></div>
+        <div class="sp"></div>
+        <div class="muted">Article on inset cards, and a real error state replaces the blank white page. Same fix on Privacy.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 PRIVACYPOLICY -->
+  <div class="sech">5 &middot; PrivacyPolicy</div>
+  <div class="secs">The Privacy article, same pattern and same blank-white-on-failure bug as Terms. The AFTER shows the actual error state in full: the explicit "Could not load" screen with a Try again button, instead of an empty white page.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; blank white on load failure</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Privacy Policy</div>
+        <div class="blank">(blank white &middot; no content, no error, no retry)</div>
+        <div class="muted">Identical to Terms: a failed load leaves the parent on a white screen with no explanation and no retry.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; the real error state, with retry</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="nt">Privacy Policy</div>
+        <div class="errbox">
+          <div class="errico">&#128245;</div>
+          <div class="errh">Could not load this page</div>
+          <div class="errs">Please check your connection and try again.</div>
+          <div class="errbtn">Try again</div>
+        </div>
+        <div class="muted">The error state the page is missing today: a plain message and a Try again button on the skin, so a failed load is recoverable. When it loads, it uses the same inset-card article as Terms.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REASSESS -->
   <div class="sech">What this is (Step 2.5 reassess)</div>
-  <div class="note good"><b>Applied:</b> all five screens re-skinned to the design-system language; the referral share flow kept and re-skinned; the earnings screen re-skinned and made real (the backend payout will be built); the FAQ accordion and the Terms / Privacy article pages brought on-skin.</div>
-  <div class="note flag"><b>Kept on purpose:</b> all five stay as distinct screens. No merges (a share, an earnings ledger, and three legal/help pages are separate by nature).</div>
+  <div class="note good"><b>Applied:</b> all five screens re-skinned to the parent language (inset cards on GhostWhite, #243cb3, the tokens, "Sifututor" cased right, neutral copy); the referral made honest (the false "Get RM50" / "earn RM50 credit" / Claim removed until parent payout exists, share kept and re-skinned); the false-success Claim removed; the US date "Jun 12 2026" changed to one format, 12-Jun-2026; real error and retry states added to Terms and Privacy in place of the blank white screen.</div>
+  <div class="note flag"><b>Kept on purpose:</b> all five stay as distinct screens. A share, a referral ledger, and three help / legal pages are separate by nature, no merges. The referral ledger keeps its tabs and "How it works", it just stops advertising a reward that does not pay.</div>
 
+  <!-- NOTES -->
   <div class="sech">Notes for Hafiz</div>
-  <div class="note spec"><b>Backend, Priority 11:</b> implement parent referral payout (credit the parent's completed-referral reward, and wire the Claim/withdraw), so the earnings screen works as the UI already promises. Today the payout logic is tutor-only.</div>
-  <div class="note good"><b>Zero-backend now:</b> the entire re-skin, including the earnings screen's new look. Only the actual payout crediting needs backend; the UI is ready for it.</div>
+  <div class="note spec"><b>Backend decision (Priority 11):</b> the parent referral payout is your call. Today the payout logic is tutor-only, so the parent balance is always RM0 and the Claim returns no_balance while the UI says "claimed successfully". Until you build the parent credit, the AFTER is honest and share-only. When payout ships, the RM hero, the earned amount, and a working Claim come back on this same skin.</div>
+  <div class="note spec"><b>Backend confirm:</b> Terms / Privacy go blank on a failed load because the screen has no error branch, it just ends loading with an empty list. The AFTER adds an explicit error + Try again. No backend change is required for that, the retry calls the same existing endpoint.</div>
+  <div class="note good"><b>Zero-backend now:</b> the entire re-skin, the honest referral copy, removing the false-success Claim, the single date format, and the Terms / Privacy error and retry states. Only restoring the RM reward depends on the parent-payout decision.</div>
 
-  <div class="foot">Scope: Clusters D + E, the last of the all-screens sweep. With these, every customer-app screen is on one design language. The sweep is complete.</div>
+  <div class="foot">Scope: Clusters D + E, the last of the all-screens sweep. With these, every customer-app screen is on one design language, the referral tells the truth, and the legal pages fail safely. The sweep is complete.</div>
 </div>
 <script src="review-widget.js"></script>
 </body>
