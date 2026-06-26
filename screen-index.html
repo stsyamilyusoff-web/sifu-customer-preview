@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sifututor customer app · complete screen index</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{background:#f6f7fb}
+  body{margin:0;padding:24px 16px 110px;font-family:-apple-system,system-ui,"Segoe UI",sans-serif;color:#18181b;--tint:#243cb3}
+  .wrap{max-width:760px;margin:0 auto}
+  .head{background:#243cb3;color:#fff;border-radius:18px;padding:24px}
+  .head .t{font-size:23px;font-weight:800;letter-spacing:-.3px}
+  .head .s{font-size:13px;opacity:.92;margin-top:8px;line-height:1.6}
+  .how{font-size:12.5px;color:#52525b;margin:16px 4px;line-height:1.6}
+  .how b{color:#18181b}
+  details{background:#fff;border:1px solid #e6e6ea;border-radius:12px;padding:12px 16px;margin:12px 0}
+  summary{font-size:13px;font-weight:700;cursor:pointer}
+  details ul{margin:10px 0 2px;padding-left:18px}
+  details li{font-size:12px;color:#3f3f46;line-height:1.7}
+  .cat{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#243cb3;margin:22px 4px 8px}
+  .cat a{font-size:10.5px;font-weight:700;color:#7a7a85;text-decoration:none;text-transform:none;letter-spacing:0;margin-left:8px}
+  .row{background:#fff;border:1px solid #e6e6ea;border-radius:13px;padding:13px 15px;margin-bottom:9px}
+  .row.touched{border-color:#243cb3;box-shadow:0 1px 8px rgba(36,60,179,.10)}
+  .rtop{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .nm{font-size:15px;font-weight:700;text-decoration:none;color:#18181b}
+  .nm:hover{color:#243cb3}
+  .rt{font-size:10.5px;color:#9a9aa0;font-family:ui-monospace,Menlo,monospace}
+  .badge{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;border-radius:99px;padding:3px 8px;white-space:nowrap}
+  .b-ok{background:#e9f5ee;color:#1a5c38}
+  .b-pass{background:#fbf1e2;color:#8a5a00}
+  .b-shared{background:#eef0f3;color:#6b7280}
+  .pills{display:flex;gap:7px;margin:11px 0 0}
+  .pill{flex:0 0 auto;font-size:12px;font-weight:700;border-radius:99px;padding:6px 14px;border:1.4px solid #d4d4d8;background:#fff;color:#52525b;cursor:pointer;user-select:none}
+  .pill.ok.on{background:#e9f5ee;border-color:#1a5c38;color:#1a5c38}
+  .pill.ch.on{background:#fdecec;border-color:#b42318;color:#b42318}
+  textarea{width:100%;margin-top:9px;border:1px solid #e6e6ea;border-radius:9px;padding:9px 11px;font-size:13px;font-family:inherit;color:#18181b;resize:vertical;min-height:38px;background:#fbfbfd}
+  textarea:focus{outline:none;border-color:#243cb3;background:#fff}
+  .bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #e6e6ea;padding:11px 16px;display:flex;gap:9px;align-items:center;box-shadow:0 -2px 14px rgba(0,0,0,.06)}
+  .barwrap{max-width:760px;margin:0 auto;display:flex;gap:9px;align-items:center;width:100%}
+  .prog{font-size:12px;color:#52525b;font-weight:600;flex:1;line-height:1.3}
+  .prog b{color:#243cb3}
+  .btn{font-size:13px;font-weight:700;border-radius:10px;padding:10px 14px;border:none;cursor:pointer;white-space:nowrap}
+  .btn.primary{background:#243cb3;color:#fff}
+  .btn.ghost{background:#eef1fb;color:#243cb3}
+  .toast{position:fixed;left:50%;bottom:78px;transform:translateX(-50%) translateY(20px);background:#18181b;color:#fff;font-size:13px;font-weight:600;padding:11px 18px;border-radius:99px;opacity:0;pointer-events:none;transition:.25s}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .foot{font-size:11px;color:#9a9aa0;text-align:center;margin-top:24px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div class="t">Complete screen index</div>
+    <div class="s">Every screen in the Sifututor customer app, 44 in all, grouped by area. For Hafiz to review, comment, and approve the design-consistency scope. The team builds; this is the design sign-off.</div>
+  </div>
+
+  <div class="how"><b>How to review:</b> open a screen's design (tap its name to see the brief), then mark <b>OK</b> or <b>Needs work</b> and add a comment if you have one. Skip any screen you are happy with. When done, tap <b>Copy all feedback</b> at the bottom and send it to Syami, or use <b>Email</b>. Your notes are saved on this phone as you go.</div>
+
+  <details>
+    <summary>The consistency floor (the standard each screen must meet)</summary>
+    <ul>
+      <li>Design tokens, not hard-coded colors or sizes (one source of truth).</li>
+      <li>One brand blue and one radius scale across all screens.</li>
+      <li>Brand spelled <b>Sifututor</b> everywhere (no "SifuTutor", no "Siftutor").</li>
+      <li>Neutral, plain copy. No em-dashes.</li>
+      <li>One date format app-wide (DD-MMM-YYYY).</li>
+      <li>Real loading, empty, and error states. No blank screens, no raw error text.</li>
+      <li>Consistent headers, buttons, and spacing between sibling screens.</li>
+    </ul>
+    <ul style="margin-top:8px">
+      <li><span class="badge b-ok">in brief</span> design direction already shown &nbsp; · &nbsp; <span class="badge b-pass">needs pass</span> inherits the cluster skin, needs its own consistency pass</li>
+    </ul>
+  </details>
+
+  <div id="list"></div>
+  <div class="foot">Sifututor customer app · 44 screens · design-consistency review · previews are mockups, not the live app</div>
+</div>
+
+<div class="bar"><div class="barwrap">
+  <div class="prog" id="prog">0 of 44 reviewed</div>
+  <button class="btn ghost" onclick="emailFeedback()">Email</button>
+  <button class="btn primary" onclick="copyFeedback()">Copy all feedback</button>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const TO_EMAIL = "stsyamilyusoff@gmail.com";
+const KEY = "sifu-screen-review-v1";
+const CATS = [
+  {n:"1 · Onboarding & Auth", brief:"onboarding.html", screens:[
+    {s:"Splash", r:"Splash", st:"pass"},
+    {s:"OnBoarding", r:"OnBoarding", st:"ok"},
+    {s:"GetStarted", r:"GetStarted", st:"ok"},
+    {s:"Register", r:"Register", st:"ok"},
+    {s:"VerifyCode (OTP)", r:"VerifyCode", st:"ok"},
+    {s:"UpdateProfile", r:"UpdateProfile", st:"ok"},
+  ]},
+  {n:"2 · Home", brief:"home.html", screens:[
+    {s:"Home", r:"Home", st:"ok"},
+  ]},
+  {n:"3 · Request & Matching", brief:"request-flow.html", screens:[
+    {s:"Requests (list)", r:"Requests", st:"ok"},
+    {s:"RequestNow", r:"RequestNow", st:"ok"},
+    {s:"TutorRequest (entry)", r:"TutorRequest", st:"pass"},
+    {s:"SchedulePreferencesForm", r:"TutorRequestForm3", st:"ok"},
+    {s:"GetTutorRequestPrice", r:"GetTutorRequestPrice", st:"pass"},
+    {s:"TutorRequestAppliedStatus", r:"TutorRequestAppliedStatus", st:"pass"},
+    {s:"RequestDetails", r:"RequestDetails", st:"pass"},
+    {s:"RequestCompletedDetails", r:"RequestCompletedDetails", st:"pass"},
+    {s:"Curated choice", r:"shared surface", st:"shared"},
+  ]},
+  {n:"4 · Classes & Attendance", brief:"schedule-attendance.html", screens:[
+    {s:"ClassSchedule (Calendar)", r:"ClassSchedule", st:"ok"},
+    {s:"TutorClassAttendance", r:"TutorClassAttendance", st:"ok"},
+  ]},
+  {n:"5 · Billing & Payments", brief:"billing.html", screens:[
+    {s:"Invoice (list)", r:"Invoice", st:"ok"},
+    {s:"PayAllSummary", r:"PayAllSummary", st:"ok"},
+    {s:"CommitmentFeePending", r:"CommitmentFeePending", st:"ok"},
+    {s:"InvoiceDetailPending", r:"InvoiceDetailPending", st:"pass"},
+    {s:"InvoiceDetailPaid", r:"InvoiceDetailPaid", st:"pass"},
+    {s:"CommitmentFeeDetail", r:"CommitmentFeeDetail", st:"pass"},
+    {s:"RefundInvoiceDetail", r:"RefundInvoiceDetail", st:"pass"},
+    {s:"PaymentGateway", r:"PaymentGateway", st:"pass"},
+    {s:"PaymentCongratulations", r:"PaymentCongratulations", st:"pass"},
+    {s:"SharedInvoiceDetail", r:"shared component", st:"shared"},
+  ]},
+  {n:"6 · Reports", brief:"reports-view.html", screens:[
+    {s:"StudentReport (hub)", r:"StudentReport", st:"ok"},
+    {s:"EvaluationReport", r:"EvaluationReport", st:"ok"},
+    {s:"ProgressReport", r:"ProgressReport", st:"ok"},
+  ]},
+  {n:"7 · Profile, Account & Students", brief:"profile-hub.html", screens:[
+    {s:"ProfileMenu", r:"ProfileMenu", st:"ok"},
+    {s:"ParentProfile", r:"ParentProfile", st:"ok"},
+    {s:"StudentList", r:"StudentList", st:"ok"},
+    {s:"AddNewStudent", r:"AddNewStudent", st:"ok"},
+    {s:"CameraScreen", r:"CameraScreen", st:"pass"},
+  ]},
+  {n:"8 · Content & Notifications", brief:"content-notifications.html", screens:[
+    {s:"News (feed)", r:"News", st:"ok"},
+    {s:"NewsDetails", r:"NewsDetails", st:"ok"},
+    {s:"LatestBlog", r:"LatestBlog", st:"ok"},
+    {s:"RouteToBlogsDetails", r:"RouteToBlogsDetails", st:"ok"},
+    {s:"Notifications", r:"Notifications", st:"ok"},
+  ]},
+  {n:"9 · Referral", brief:"referral-static.html", screens:[
+    {s:"ReferFriend", r:"ReferFriend", st:"ok"},
+    {s:"MyReferralEarnings", r:"MyReferralEarnings", st:"ok"},
+  ]},
+  {n:"10 · Static / Legal", brief:"referral-static.html", screens:[
+    {s:"FAQs", r:"FAQs", st:"ok"},
+    {s:"TermAndConditions", r:"TermAndConditions", st:"ok"},
+    {s:"PrivacyPolicy", r:"PrivacyPolicy", st:"ok"},
+  ]},
+];
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ state = {}; }
+
+const TOTAL = CATS.reduce((a,c)=>a+c.screens.filter(s=>s.st!=="shared").length,0);
+const BADGE = {ok:["b-ok","in brief"], pass:["b-pass","needs pass"], shared:["b-shared","shared"]};
+
+function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
+function rowKey(r){ return r; }
+
+function setDecision(r, d, el){
+  const cur = state[r] || {};
+  cur.d = (cur.d === d) ? "" : d;
+  state[r] = cur; save();
+  const row = el.closest(".row");
+  row.querySelectorAll(".pill").forEach(p=>p.classList.remove("on"));
+  if(cur.d==="ok") row.querySelector(".pill.ok").classList.add("on");
+  if(cur.d==="ch") row.querySelector(".pill.ch").classList.add("on");
+  markTouched(row, r); updateProg();
+}
+function setComment(r, val, el){
+  const cur = state[r] || {}; cur.c = val; state[r] = cur; save();
+  markTouched(el.closest(".row"), r); updateProg();
+}
+function markTouched(row, r){
+  const c = state[r] || {};
+  row.classList.toggle("touched", !!(c.d || (c.c && c.c.trim())));
+}
+function reviewedCount(){
+  return Object.values(state).filter(c => c.d || (c.c && c.c.trim())).length;
+}
+function updateProg(){
+  document.getElementById("prog").innerHTML = "<b>"+reviewedCount()+"</b> of "+TOTAL+" reviewed";
+}
+
+function render(){
+  const list = document.getElementById("list");
+  let html = "";
+  CATS.forEach(cat=>{
+    html += '<div class="cat">'+cat.n+' <a href="'+cat.brief+'">view design &#8594;</a></div>';
+    cat.screens.forEach(sc=>{
+      const c = state[sc.r] || {};
+      const [bc,bt] = BADGE[sc.st];
+      const touched = (c.d || (c.c && c.c.trim())) ? " touched" : "";
+      if(sc.st==="shared"){
+        html += '<div class="row"><div class="rtop"><span class="nm" style="color:#9a9aa0">'+sc.s+'</span>'
+              + '<span class="rt">'+sc.r+'</span><span class="badge '+bc+'">'+bt+'</span></div></div>';
+        return;
+      }
+      html += '<div class="row'+touched+'">'
+            + '<div class="rtop"><a class="nm" href="'+cat.brief+'">'+sc.s+'</a>'
+            + '<span class="rt">'+sc.r+'</span><span class="badge '+bc+'">'+bt+'</span></div>'
+            + '<div class="pills">'
+            + '<div class="pill ok'+(c.d==="ok"?" on":"")+'" onclick="setDecision(\''+sc.r+'\',\'ok\',this)">OK</div>'
+            + '<div class="pill ch'+(c.d==="ch"?" on":"")+'" onclick="setDecision(\''+sc.r+'\',\'ch\',this)">Needs work</div>'
+            + '</div>'
+            + '<textarea placeholder="Comment for the team (optional)" oninput="setComment(\''+sc.r+'\',this.value,this)">'
+            + (c.c?String(c.c).replace(/</g,"&lt;"):"")+'</textarea>'
+            + '</div>';
+    });
+  });
+  list.innerHTML = html;
+  updateProg();
+}
+
+function collectFeedback(){
+  let out = "Sifututor customer app: screen review (Hafiz)\n";
+  let n = 0, lines = "";
+  CATS.forEach(cat=>{
+    let block = "";
+    cat.screens.forEach(sc=>{
+      const c = state[sc.r]; if(!c) return;
+      const has = c.d || (c.c && c.c.trim()); if(!has) return;
+      n++;
+      const dec = c.d==="ok" ? "OK" : c.d==="ch" ? "NEEDS WORK" : "comment";
+      block += "  • "+sc.s+": "+dec+(c.c && c.c.trim() ? " - \""+c.c.trim()+"\"" : "")+"\n";
+    });
+    if(block) lines += "\n["+cat.n+"]\n"+block;
+  });
+  out += n+" of "+TOTAL+" screens flagged\n"+lines;
+  return {text: out, n};
+}
+function toast(msg){
+  const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"), 2200);
+}
+function copyFeedback(){
+  const {text,n} = collectFeedback();
+  if(!n){ toast("Mark or comment on a screen first"); return; }
+  const done = ()=>toast("Copied, paste it to Syami");
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text,done));
+  } else fallbackCopy(text, done);
+}
+function fallbackCopy(text, done){
+  const ta = document.createElement("textarea"); ta.value = text;
+  ta.style.position="fixed"; ta.style.top="-1000px"; document.body.appendChild(ta);
+  ta.select(); try{ document.execCommand("copy"); done(); }catch(e){ prompt("Copy this feedback:", text); }
+  document.body.removeChild(ta);
+}
+function emailFeedback(){
+  const {text,n} = collectFeedback();
+  if(!n){ toast("Mark or comment on a screen first"); return; }
+  window.location.href = "mailto:"+TO_EMAIL+"?subject="+encodeURIComponent("Sifututor screen review (Hafiz)")+"&body="+encodeURIComponent(text);
+}
+render();
+</script>
+</body>
+</html>
