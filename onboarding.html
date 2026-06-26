@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Onboarding + Auth · on one skin, lighter front door</title>
+<title>Onboarding + Auth · all six screens, one skin, lighter front door</title>
 <style>
   *{box-sizing:border-box}
   html,body{background:#fff}
@@ -60,57 +60,170 @@
   .note.spec{background:#fff7e6;border:1px solid rgba(245,158,11,.3)}
   .note.good{background:#eef7f1;border:1px solid rgba(31,122,68,.3)}
   .foot{margin-top:12px;font-size:13px;font-weight:700;color:#fff;background:#475569;border-radius:12px;padding:14px 18px;line-height:1.5}
+  /* splash-specific (skin-consistent, brand-blue full bleed) */
+  .splash{flex:1;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+  .splash.bf{background:linear-gradient(160deg,#243cb3,#1a2d8c)}
+  .splash.af{background:linear-gradient(160deg,#243cb3,#1a2d8c)}
+  .splogo{font-size:26px;font-weight:800;color:#fff;letter-spacing:-.3px}
+  .spload{width:22px;height:22px;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:99px}
+  .sptag{font-size:9.5px;color:rgba(255,255,255,.85);font-weight:600;letter-spacing:.2px}
+  .gs-img{height:170px;border-radius:14px;background:linear-gradient(135deg,#e6eaf9,#eef1fb);display:flex;align-items:center;justify-content:center;font-size:48px;margin:6px 0 14px}
+  .phin{background:#fff;border:1.5px solid #e2e2e6;border-radius:12px;padding:12px 13px;display:flex;align-items:center;gap:9px;margin-bottom:7px}
+  .flag{font-size:13px}
+  .ccode{font-size:11px;font-weight:700;color:#3f3f46}
+  .pnum{font-size:11px;color:#b8b8be;flex:1}
+  .fld-lbl{font-size:9px;font-weight:700;color:#52525b;margin:0 0 5px 2px}
   @media (max-width:760px){ .pair{flex-direction:column;gap:26px;align-items:center} .ph{width:330px} .head .t{font-size:20px} }
 </style>
 </head>
 <body>
 <div class="doc">
-  <div class="head"><div class="t">Onboarding + Auth &middot; on one skin, lighter front door</div><div class="s">Cluster A of the secondary sweep. The six onboarding and auth screens, brought onto the parent design language that already lives in the app's code, plus the cheap fixes and a lighter first wall. For Hafiz &middot; 26 June 2026.</div></div>
+  <div class="head"><div class="t">Onboarding + Auth &middot; all six screens, one skin, lighter front door</div><div class="s">Cluster A of the secondary sweep. The six onboarding and auth screens, each before and after, brought onto the parent design language that already lives in the app's code, plus the cheap fixes and a lighter first wall. For Hafiz &middot; 26 June 2026.</div></div>
 
-  <div class="intro">The parent skin already exists in code (the design tokens + the redesigned Invoice / Requests / Profile screens). These six screens are still on the old look. This brings them onto one language, ports the OTP fix the tutor app already shipped, restores the intro copy (commented out today), and <b>splits the heaviest gate in the app</b>: UpdateProfile asked for a full profile (about 13 taps) before the parent saw any value.</div>
+  <div class="intro">The parent skin already exists in code (the design tokens + the redesigned Invoice / Requests / Profile screens). These six screens are still on the old look. This brings them onto one language, ports the OTP fix the tutor app already shipped, restores the intro copy (commented out today), and <b>splits the heaviest gate in the app</b>: UpdateProfile asked for a full profile (about 13 taps) before the parent saw any value. Each screen below is its own before/after pair.</div>
 
-  <div class="sech">1 &middot; Onboarding intro, on-skin and with its words back</div>
-  <div class="secs">Today the three intro slides render image-only (all copy is commented out), and a near-duplicate GetStarted screen repeats the value-prop. The redesign restores the copy on-skin and folds GetStarted into the last slide.</div>
+  <!-- 1 SPLASH -->
+  <div class="sech">1 &middot; Splash</div>
+  <div class="secs">The launch screen while the app decides where to send you (onboarding, sign-in, or home). Today it is a full-bleed marketing image with the logo. The redesign keeps it brand-blue, adds the wordmark and a quiet loading state, so a slow start reads as loading and not as frozen.</div>
   <div class="pair">
     <div class="col">
-      <div class="cl b">BEFORE &middot; image only, no words</div>
+      <div class="cl b">BEFORE &middot; full-bleed image, no loading cue</div>
       <div class="ph bf">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
-        <div class="skip">Skip</div>
-        <div class="illus" style="background:#5B56FB;color:#fff;height:430px">&#128247;</div>
-        <div class="muted">A full-bleed marketing image with every headline commented out, so the intro says nothing. Then a separate GetStarted screen repeats the same pitch.</div>
+        <div class="splash bf">
+          <div class="splogo">Sifututor</div>
+          <div class="sptag" style="opacity:.55">(no loading indicator)</div>
+        </div>
+        <div class="muted">A marketing-image background with the white logo. If routing is slow there is no sign anything is happening, so a cold start can look stuck.</div>
       </div>
     </div>
     <div class="col">
-      <div class="cl a">AFTER &middot; on-skin, copy restored, GetStarted folded in</div>
+      <div class="cl a">AFTER &middot; on-brand wordmark + quiet loading</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="splash af">
+          <div class="splogo">Sifututor</div>
+          <div class="spload"></div>
+          <div class="sptag">Getting things ready</div>
+        </div>
+        <div class="muted">Brand blue, the wordmark spelled "Sifututor", and a small spinner with a plain line, so a slow launch reads as loading rather than frozen.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 ONBOARDING -->
+  <div class="sech">2 &middot; OnBoarding</div>
+  <div class="secs">The three intro slides. Today each renders image-only because every headline is commented out, so the intro says nothing. The redesign brings them on-skin and <b>restores the copy</b>, with brand-blue progress dots and a Skip exit.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; image only, all words commented out</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="skip">Skip</div>
+        <div class="illus" style="background:#5B56FB;color:#fff;height:430px;border-radius:14px">&#128247;</div>
+        <div class="muted">A full-bleed slide image (slide 1 of 3) with the "Accelerate Your Child's Success" headline and subtitle commented out in code. White prev/next circles and dots, but no text at all.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; on-skin, copy restored</div>
       <div class="ph af">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="skip">Skip</div>
         <div class="illus">&#127891;</div>
+        <div class="ihead">Accelerate your child's success</div>
+        <div class="isub">Effortless tutor matching, secure payments, and a simple interface for seamless learning.</div>
+        <div class="dots2"><div class="dot2 on"></div><div class="dot2"></div><div class="dot2"></div></div>
+        <div class="sp"></div>
+        <div class="cta">Next</div>
+        <div class="muted">Slide 1 of 3, on-skin, with its real headline and subtitle back, brand-blue dots, and one primary action.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 GETSTARTED -->
+  <div class="sech">3 &middot; GetStarted</div>
+  <div class="secs">A separate screen right after the slides that repeats the same value-prop with one "Get Started" button. It is a near-duplicate of the last slide. The redesign keeps the message on-skin (and, in reassess, recommends <b>folding it into the last slide</b> to drop one screen).</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; duplicate pitch on a flat blue screen</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span style="color:#fff">&#9646;&#9646;&#9646;</span></div>
+        <div class="splash bf" style="gap:14px;padding:0 14px">
+          <div class="splogo" style="font-size:18px">Welcome to Sifututor!</div>
+          <div class="sptag" style="font-size:10px;line-height:1.6;text-align:center;max-width:200px">Simplify your tutor search for your child's success. Get a recommended tutor within 24 hours.</div>
+          <div style="font-size:40px;margin:6px 0">&#129489;&#8205;&#127891;</div>
+          <div style="background:#E7EBF0;color:#000;font-size:12px;font-weight:700;padding:11px 40px;border-radius:999px">Get Started</div>
+        </div>
+        <div class="muted">A flat #243cb3 screen that restates the slide pitch with an off-white button. It works, but it duplicates the slide just shown.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; on-skin (or folded into slide 3)</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div class="gs-img">&#129489;&#8205;&#127891;</div>
         <div class="ihead">Get a recommended tutor within 24 hours</div>
         <div class="isub">Simplify your tutor search for your child's success. Verified tutors, matched to you.</div>
         <div class="dots2"><div class="dot2"></div><div class="dot2"></div><div class="dot2 on"></div></div>
         <div class="sp"></div>
         <div class="cta">Get started</div>
-        <div class="muted">On-skin ground, real headline, brand-blue progress dots, one primary CTA. 3 slides to 3, plus GetStarted folded away.</div>
+        <div class="muted">On-skin ground, one clear headline, brand-blue dots. Reassess folds this into slide 3, so onboarding is 3 slides instead of 3 slides plus a duplicate.</div>
       </div>
     </div>
   </div>
 
-  <div class="sech">2 &middot; The OTP screen, re-skinned and fixed</div>
-  <div class="secs">The same "Resend in 59 Seconds" issue the tutor app already fixed is here too. The redesign ports that fix and groups the code into an on-skin card.</div>
+  <!-- 4 REGISTER -->
+  <div class="sech">4 &middot; Register</div>
+  <div class="secs">The phone-number entry that starts sign-in. Today the title reads <b>"Login"</b> (the screen only shows "Register" when reached with a specific param it rarely gets), and the phone field is a bordered box on GhostWhite. The redesign fixes the title, puts the field in an inset card, and names the step.</div>
   <div class="pair">
     <div class="col">
-      <div class="cl b">BEFORE &middot; off-skin, disjoint resend</div>
+      <div class="cl b">BEFORE &middot; title says "Login", off-skin field</div>
       <div class="ph bf">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
-        <div class="nt">Verify Code</div>
-        <div class="nsub">A Verification OTP has been sent to +60 12-345 6789</div>
-        <div class="otp"><div class="otpcell">3</div><div class="otpcell">9</div><div class="otpcell e">&middot;</div><div class="otpcell e">&middot;</div><div class="otpcell e">&middot;</div></div>
-        <div class="resend">Expire in 59 Seconds</div>
-        <div class="resend" style="margin-top:9px">Didn't Receive a Code? <b>Resend Code</b></div>
+        <div style="font-size:11px;color:#666;margin-bottom:9px">&#8249; Back</div>
+        <div class="nt">Login</div>
+        <div class="nsub" style="margin-top:9px">Please enter your phone number to register and begin using our app.</div>
+        <div class="fld-lbl">Phone Number*</div>
+        <div class="phin"><span class="flag">&#127474;&#127486;</span><span class="ccode">+60</span><span class="pnum">102298245</span></div>
         <div class="sp"></div>
-        <div class="muted">Bare title, two disjoint resend/countdown rows, no step counter, no reassurance, no "wrong number" exit.</div>
+        <div style="background:#243cb3;color:#fff;text-align:center;font-size:13px;font-weight:700;padding:13px;border-radius:999px">Continue</div>
+        <div class="muted">Title says "Login" while the body says "register", a small mismatch. Bordered phone box on GhostWhite, no step counter.</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="cl a">AFTER &middot; honest title, inset card, step named</div>
+      <div class="ph af">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div style="font-size:11px;color:#243cb3;font-weight:700;margin-bottom:9px">&#8249; Back</div>
+        <span class="stage">Step 1 of 2</span>
+        <div class="nt">Enter your phone number</div>
+        <div class="nsub">We will send a code to confirm it is you.</div>
+        <div class="grp">
+          <div class="row" style="padding:13px"><span class="flag">&#127474;&#127486;</span><span class="ccode">+60</span><div class="rv empty" style="flex:1">12-345 6789</div></div>
+        </div>
+        <div class="sp"></div>
+        <div class="cta">Continue</div>
+        <div class="muted">Title now matches the action, the field sits in an on-skin inset card, and "Step 1 of 2" sets up the OTP step that follows.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 VERIFYCODE -->
+  <div class="sech">5 &middot; VerifyCode (OTP)</div>
+  <div class="secs">The 5-digit code screen. The same "Resend Code" plus "Expire in 59 Seconds" split that the tutor app already fixed is here too: two disjoint rows, no step counter, no exit. The redesign ports the tutor fix on-skin.</div>
+  <div class="pair">
+    <div class="col">
+      <div class="cl b">BEFORE &middot; off-skin, two disjoint resend rows</div>
+      <div class="ph bf">
+        <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
+        <div style="font-size:11px;color:#666;margin-bottom:9px">&#8249; Back</div>
+        <div class="nt">Verify Code</div>
+        <div class="nsub" style="margin-top:7px">A Verification OTP has been sent to +60 12-345 6789</div>
+        <div class="otp"><div class="otpcell">3</div><div class="otpcell">9</div><div class="otpcell e">&middot;</div><div class="otpcell e">&middot;</div><div class="otpcell e">&middot;</div></div>
+        <div class="resend" style="margin-top:9px">Didn't Receive a Code? <b style="color:#333">Resend Code</b></div>
+        <div class="resend" style="margin-top:9px">Expire in <b style="color:#333">59 Seconds</b></div>
+        <div class="sp"></div>
+        <div class="muted">Bare title, two separate resend and countdown rows, no step counter, no reassurance, no "wrong number" exit.</div>
       </div>
     </div>
     <div class="col">
@@ -124,28 +237,31 @@
         <div class="resend">Resend in <b>0:59</b></div>
         <div class="editln">Wrong number? Edit</div>
         <div class="sp"></div>
-        <div class="muted">Step counter, a clear reassurance line, one coherent resend control, and an edit exit.</div>
+        <div class="muted">Step counter, a clear reassurance line, one coherent resend control that counts down then enables, and an edit exit back to the number.</div>
       </div>
     </div>
   </div>
 
-  <div class="sech">3 &middot; The first wall, split and lightened (the hero)</div>
-  <div class="secs">UpdateProfile is the heaviest gate in the whole app: a full profile, about 13 taps, before any value. The split lets the parent in on the essentials and asks for location at the first request (where it is already collected). The referral field comes back.</div>
+  <!-- 6 UPDATEPROFILE -->
+  <div class="sech">6 &middot; UpdateProfile (the first wall)</div>
+  <div class="secs">UpdateProfile is the heaviest gate in the whole app: name, email, gender, address, state, city, postcode, all required (about 13 taps) before any value. The "SifuTutor's" casing is wrong and the referral field is commented out. The split lets the parent in on the essentials and defers location to the first request (where it is already collected).</div>
   <div class="pair">
     <div class="col">
       <div class="cl b">BEFORE &middot; full profile, ~13 taps, off-skin</div>
       <div class="ph bf">
         <div class="sb"><span>9:41</span><span>&#9646;&#9646;&#9646;</span></div>
         <div class="nt">Update Profile</div>
-        <div class="nsub">Enter your details.</div>
+        <div class="nsub" style="margin-top:6px">We are glad that you joined with us, enter your details.</div>
         <div class="skinflat">Full Name</div>
         <div class="skinflat">Email</div>
-        <div class="skinflat">Gender</div>
+        <div class="skinflat">Select Gender</div>
+        <div class="skinflat" style="color:#bdbdbd">+60 12-345 6789 (locked)</div>
         <div class="skinflat">Address (Area and State)</div>
-        <div class="skinflat">State</div>
-        <div class="skinflat">City</div>
+        <div class="skinflat">Select State</div>
+        <div class="skinflat">Select City</div>
         <div class="skinflat">Postcode</div>
-        <div class="muted">A long flat form of free-floating boxes, everything required before entry. The single biggest drop-off point in the funnel.</div>
+        <div class="tc" style="margin-top:6px"><span style="width:16px;height:16px;border:1.5px solid #999;border-radius:4px;flex-shrink:0"></span><div>By doing this, you agree to <b style="color:#000">SifuTutor's</b> Terms and Conditions</div></div>
+        <div class="muted">A long flat form of free-floating boxes, everything required before entry, "SifuTutor" mis-cased, referral field commented out. The single biggest drop-off in the funnel.</div>
       </div>
     </div>
     <div class="col">
@@ -164,19 +280,23 @@
         <div class="tc"><span class="tcb">&#10003;</span><div>I agree to <b>Sifututor's</b> Terms and Conditions.</div></div>
         <div class="sp"></div>
         <div class="cta">Get started</div>
+        <div class="muted">Name, email, the verified phone, and optional referral, in one inset card. Gender, address, state, city and postcode move to the first request. "Sifututor" cased right.</div>
       </div>
     </div>
   </div>
 
+  <!-- REASSESS -->
   <div class="sech">What this is (Step 2.5 reassess)</div>
-  <div class="note good"><b>Applied:</b> all six screens re-skinned to the parent language (inset cards on GhostWhite, #243cb3, the tokens); the OTP fix ported (step counter, reassurance, coherent resend, edit exit); the intro copy restored and GetStarted folded into the last slide (6 screens to 5); the UpdateProfile wall split (essentials in fast, location deferred to the first request); the referral field restored; the "Login" title fixed to a sign-up label; the "SifuTutor's" casing fixed; dead code removed.</div>
-  <div class="note flag"><b>Kept on purpose:</b> Splash, Register, and the OTP step stay as distinct steps. The full profile is not deleted, just deferred: location is captured at the first request (C1) and can be completed anytime in the profile. No field is cut, the wall is re-timed.</div>
+  <div class="note good"><b>Applied:</b> all six screens re-skinned to the parent language (inset cards on GhostWhite, #243cb3, the tokens); a loading state added to Splash; the intro copy restored; the "Login" title fixed to a sign-up label; the OTP fix ported (step counter, reassurance, one coherent resend, edit exit); the UpdateProfile wall split (essentials in fast, location deferred to the first request); the referral field restored; the "SifuTutor's" casing fixed; dead/commented code removed.</div>
+  <div class="note flag"><b>Kept on purpose:</b> Splash, Register, and the OTP step stay as distinct steps. The full profile is not deleted, just deferred: gender, address, state, city and postcode are captured at the first request (C1) and can be completed anytime in the profile. No field is cut, the wall is re-timed.</div>
+  <div class="note flag"><b>One screen merge proposed:</b> GetStarted (screen 3) duplicates the last onboarding slide. Reassess folds it into slide 3, taking onboarding from 6 screens to 5, so the parent reaches the phone field one tap sooner.</div>
 
+  <!-- NOTES -->
   <div class="sech">Notes for Hafiz</div>
-  <div class="note spec"><b>Confirm (Priority 9):</b> the minimum profile the matching engine needs at signup, so the split is safe (we propose name + email + the verified phone now; address/location at the first request). The referral code already posts to the backend; the input just needs restoring.</div>
-  <div class="note good"><b>Zero-backend now:</b> the entire re-skin, the OTP fix, the intro copy, folding GetStarted, restoring the referral input, and the casing/dead-code fixes. Only the wall-split timing depends on confirming the matching minimum.</div>
+  <div class="note spec"><b>Confirm (Priority 9):</b> the minimum profile the matching engine needs at signup, so the split is safe (we propose name + email + the verified phone now; gender/address/location at the first request). The referral code already posts to the backend; the input just needs restoring.</div>
+  <div class="note good"><b>Zero-backend now:</b> the entire re-skin, the Splash loading state, the OTP fix, the intro copy, folding GetStarted, restoring the referral input, and the casing/dead-code fixes. Only the wall-split timing depends on confirming the matching minimum.</div>
 
-  <div class="foot">Scope: Cluster A of the all-screens consistency sweep, the onboarding + auth front door. Next clusters: B Profile + account hub, C Content + Notifications, D Referral, E Static.</div>
+  <div class="foot">Scope: Cluster A of the all-screens consistency sweep, the onboarding + auth front door (6 screens, before and after). Next clusters: B Profile + account hub, C Content + Notifications, D Referral, E Static.</div>
 </div>
 <script src="review-widget.js"></script>
 </body>
