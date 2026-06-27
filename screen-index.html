@@ -18,6 +18,12 @@
   summary{font-size:13px;font-weight:700;cursor:pointer}
   details ul{margin:10px 0 2px;padding-left:18px}
   details li{font-size:12px;color:#3f3f46;line-height:1.7}
+  .demoted-box{background:#fbf6ec;border:1px solid rgba(180,120,20,.28);border-radius:12px;padding:14px 16px;margin:12px 0}
+  .demoted-box .dt{font-size:12.5px;font-weight:800;color:#8a5a00}
+  .demoted-box .ds{font-size:11.5px;color:#7a6433;margin:5px 0 10px;line-height:1.5}
+  .demoted-box .di{font-size:12px;color:#3f3f46;line-height:1.7}
+  .demoted-box .di b{color:#18181b}
+  .demoted-box .di .arr{color:#8a5a00;font-weight:700}
   .catcard{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid #e6e6ea;border-radius:14px;padding:16px 18px;margin-bottom:11px;box-shadow:0 1px 3px rgba(0,0,0,.05);transition:box-shadow .15s,transform .15s}
   .catcard:hover{box-shadow:0 6px 20px rgba(36,60,179,.12);transform:translateY(-1px)}
   .cathead{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
@@ -27,7 +33,7 @@
   .chip{display:inline-flex;align-items:center;gap:6px;background:#f4f4f6;border-radius:8px;padding:5px 9px;font-size:12px;font-weight:600;color:#3f3f46}
   .badge{font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;border-radius:99px;padding:2px 6px}
   .b-ok{background:#e9f5ee;color:#1a5c38}
-  .b-pass{background:#fbf1e2;color:#8a5a00}
+  .b-demoted{background:#fbf1e2;color:#8a5a00}
   .b-shared{background:#eef0f3;color:#6b7280}
   .foot{font-size:11px;color:#9a9aa0;text-align:center;margin-top:24px;line-height:1.6}
 </style>
@@ -36,10 +42,16 @@
 <div class="wrap">
   <div class="head">
     <div class="t">Complete screen index</div>
-    <div class="s">All 44 screens in the Sifututor customer app, grouped into 10 categories. This is the menu, open a category to see its design and comment on each screen there. For Hafiz to review and approve the design-consistency scope.</div>
+    <div class="s">All 44 screens in the Sifututor customer app, grouped into 10 categories. Each screen has a before/after on its design page. 8 are demoted (merged or folded into another screen). This is the menu, open a category to see the designs and comment on each screen there.</div>
   </div>
 
   <div class="how"><b>How to review:</b> tap a category to open its design page. Under each screen there, mark <b>OK</b> or <b>Needs work</b> and add a comment. When done, tap <b>Copy all feedback</b> (on any page) and send it to Syami. Your notes are saved on this phone as you go.</div>
+
+  <div class="demoted-box">
+    <div class="dt">Demoted screens (8)</div>
+    <div class="ds">These screens are removed from the redesign, merged or folded into another screen. Each still has its before/after on its design page (the "after" shows the demotion), so the removal is visible and you can comment on it.</div>
+    <div id="demoted" class="di"></div>
+  </div>
 
   <details>
     <summary>The consistency floor (the standard each screen must meet)</summary>
@@ -53,53 +65,64 @@
       <li>Consistent headers, buttons, and spacing between sibling screens.</li>
     </ul>
     <ul style="margin-top:8px">
-      <li><span class="badge b-ok">in brief</span> design direction already shown &nbsp; · &nbsp; <span class="badge b-pass">needs pass</span> needs its own consistency pass</li>
+      <li><span class="badge b-ok">redesigned</span> kept and brought onto one skin &nbsp; · &nbsp; <span class="badge b-demoted">demoted</span> merged or folded into another screen &nbsp; · &nbsp; <span class="badge b-shared">shared</span> designed elsewhere</li>
     </ul>
   </details>
 
   <div id="list"></div>
-  <div class="foot">Sifututor customer app · 44 screens · design-consistency review · previews are mockups, not the live app</div>
+  <div class="foot">Sifututor customer app · 44 screens (8 demoted) · design-consistency review · previews are mockups, not the live app</div>
 </div>
 
 <script>
 const CATS = [
   {n:"1 · Onboarding & Auth", brief:"onboarding.html", screens:[
-    {s:"Splash", st:"pass"},{s:"OnBoarding", st:"ok"},{s:"GetStarted", st:"ok"},
+    {s:"Splash", st:"ok"},{s:"OnBoarding", st:"ok"},{s:"GetStarted", st:"demoted", into:"the onboarding intro slide (6 screens to 5)"},
     {s:"Register", st:"ok"},{s:"VerifyCode", st:"ok"},{s:"UpdateProfile", st:"ok"}]},
   {n:"2 · Home", brief:"home.html", screens:[{s:"Home", st:"ok"}]},
   {n:"3 · Request & Matching", brief:"request-flow.html", screens:[
-    {s:"Requests (list)", st:"ok"},{s:"RequestNow", st:"ok"},{s:"TutorRequest", st:"pass"},
-    {s:"SchedulePreferencesForm", st:"ok"},{s:"GetTutorRequestPrice", st:"pass"},
-    {s:"TutorRequestAppliedStatus", st:"pass"},{s:"RequestDetails", st:"pass"},
-    {s:"RequestCompletedDetails", st:"pass"},{s:"Curated choice", st:"shared"}]},
+    {s:"Requests (list)", st:"ok"},{s:"RequestNow", st:"ok"},{s:"TutorRequest", st:"demoted", into:"request step 1 (online skips it)"},
+    {s:"SchedulePreferencesForm", st:"ok"},{s:"GetTutorRequestPrice", st:"demoted", into:"the schedule screen's inline price"},
+    {s:"TutorRequestAppliedStatus", st:"demoted", into:"a toast on the request detail"},{s:"RequestDetails", st:"ok"},
+    {s:"RequestCompletedDetails", st:"demoted", into:"unified with RequestDetails (one state-adaptive screen)"},{s:"Curated choice", st:"shared"}]},
   {n:"4 · Classes & Attendance", brief:"schedule-attendance.html", screens:[
     {s:"ClassSchedule", st:"ok"},{s:"TutorClassAttendance", st:"ok"}]},
   {n:"5 · Billing & Payments", brief:"billing.html", screens:[
     {s:"Invoice (list)", st:"ok"},{s:"PayAllSummary", st:"ok"},{s:"CommitmentFeePending", st:"ok"},
-    {s:"InvoiceDetailPending", st:"pass"},{s:"InvoiceDetailPaid", st:"pass"},
-    {s:"CommitmentFeeDetail", st:"pass"},{s:"RefundInvoiceDetail", st:"pass"},
-    {s:"PaymentGateway", st:"pass"},{s:"PaymentCongratulations", st:"pass"},{s:"SharedInvoiceDetail", st:"shared"}]},
+    {s:"InvoiceDetailPending", st:"ok"},{s:"InvoiceDetailPaid", st:"ok"},
+    {s:"CommitmentFeeDetail", st:"ok"},{s:"RefundInvoiceDetail", st:"ok"},
+    {s:"PaymentGateway", st:"ok"},{s:"PaymentCongratulations", st:"ok"},{s:"SharedInvoiceDetail", st:"shared"}]},
   {n:"6 · Reports", brief:"reports-view.html", screens:[
     {s:"StudentReport", st:"ok"},{s:"EvaluationReport", st:"ok"},{s:"ProgressReport", st:"ok"}]},
   {n:"7 · Profile, Account & Students", brief:"profile-hub.html", screens:[
     {s:"ProfileMenu", st:"ok"},{s:"ParentProfile", st:"ok"},{s:"StudentList", st:"ok"},
-    {s:"AddNewStudent", st:"ok"},{s:"CameraScreen", st:"pass"}]},
+    {s:"AddNewStudent", st:"ok"},{s:"CameraScreen", st:"ok"}]},
   {n:"8 · Content & Notifications", brief:"content-notifications.html", screens:[
-    {s:"News (feed)", st:"ok"},{s:"NewsDetails", st:"ok"},{s:"LatestBlog", st:"ok"},
-    {s:"RouteToBlogsDetails", st:"ok"},{s:"Notifications", st:"ok"}]},
+    {s:"News (feed)", st:"ok"},{s:"NewsDetails", st:"demoted", into:"the one shared reader"},{s:"LatestBlog", st:"demoted", into:"the News & Articles feed"},
+    {s:"RouteToBlogsDetails", st:"demoted", into:"the one shared reader (near-duplicate)"},{s:"Notifications", st:"ok"}]},
   {n:"9 · Referral", brief:"referral-static.html", screens:[
     {s:"ReferFriend", st:"ok"},{s:"MyReferralEarnings", st:"ok"}]},
   {n:"10 · Static / Legal", brief:"referral-static.html", screens:[
     {s:"FAQs", st:"ok"},{s:"TermAndConditions", st:"ok"},{s:"PrivacyPolicy", st:"ok"}]},
 ];
-const BADGE = {ok:["b-ok","in brief"], pass:["b-pass","needs pass"], shared:["b-shared","shared"]};
+const BADGE = {ok:["b-ok","redesigned"], demoted:["b-demoted","demoted"], shared:["b-shared","shared"]};
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+
+// demoted callout
+let dem = "";
+CATS.forEach(c=>{ c.screens.forEach(sc=>{ if(sc.st==="demoted") dem += '<div><b>'+esc(sc.s)+'</b> <span class="arr">&#8594;</span> '+esc(sc.into)+'</div>'; }); });
+document.getElementById("demoted").innerHTML = dem;
+
+// category cards
 let html = "";
 CATS.forEach(c=>{
   html += '<a class="catcard" href="'+c.brief+'">'
         + '<div class="cathead"><div class="catt">'+esc(c.n)+'</div><div class="catgo">Open &amp; comment &#8594;</div></div>'
         + '<div class="screens">';
-  c.screens.forEach(sc=>{ const [bc,bt]=BADGE[sc.st]; html += '<span class="chip">'+esc(sc.s)+' <span class="badge '+bc+'">'+bt+'</span></span>'; });
+  c.screens.forEach(sc=>{
+    const [bc,bt]=BADGE[sc.st];
+    const tip = sc.st==="demoted" ? ' title="Demoted: merges into '+esc(sc.into)+'"' : '';
+    html += '<span class="chip"'+tip+'>'+esc(sc.s)+' <span class="badge '+bc+'">'+bt+'</span></span>';
+  });
   html += '</div></a>';
 });
 document.getElementById("list").innerHTML = html;
